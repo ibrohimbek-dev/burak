@@ -143,7 +143,7 @@ interface Person_Ts {
     nation: string;
 };
 
-const person_ts Person_Ts ={
+const person_ts: Person_Ts ={
     name: "Brian",
     age: 25, // If you use another data type instead of number an error will occurr because of the number type
     nation: "Mars"
@@ -177,7 +177,7 @@ let employee: {
 let universe: string[]; // Your array only can includes string data types
 universe = ["voyager", "meteor", "planet", "cosmos", "planet", "saturn", "satellite"]; // Do not add any data types except string
 
-let numbers; number[]; // Your array only can includes number data types
+let numbers: number[]; // Your array only can includes number data types
 numbers = [1, 2, 3, 4, 5, 6, 7] // Do not add any data types except number
 
 // Agar bizga number & string data turlari yagona array tarkibida kerak bo'lsa
@@ -230,3 +230,72 @@ const student_ts = new Student_TS("Brian", "Web Development", 25); // Argument T
 // https://www.typescripttutorial.net/typescript-tutorial/what-is-typescript/
 
 
+// --------------------------------------------------------------------------
+// Run server.ts
+
+// npm install typescript => It will installed as a dependency package
+// But we have to install is as devDependency package so use this command:
+
+// npm install typescript -D => It will installed as a devDependency package
+// npm install typescript --save-dev
+
+// This is main server.js file
+// TypeScript Lessons started here
+// 35th lesson: TypeScript & Patterns
+
+// Enjoy Life 😊😊😊!
+
+// Faqatgina develop jarayonida kerak bo'ladigon package'larni => devDepencies'ga install qilamiz
+// Loyihamizni ishlash jarayonida (production) kerak bo'ladigan package'larni => dependencies'ga install qilamiz
+
+// COMMAND LINES:
+// npm init --yes
+// npm i moment
+// npm i typescript -D
+// npm i typescript --save-dev
+// tsc --init
+// npm i nodemon -D
+// npm ts-node -D
+// npm i tsconfig-paths -D
+// npm i
+
+// Command at once and install all of them:
+// ./command.sh
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+
+// -------------------------------------------------------------------------
+// Har qanday Front-end yoki Backend ma'lum bit Pattern'lar asosida quriladi
+// Asosan backend uchun bir necha xil programming language'lardan foydalanishimiz mumkin: Java, PHP, NodeJS, Python, GoLang, etc.
+
+// Har qaday programming tillaridan foydalanishimizga qaramasdan biz doim, Architectural va Pattern'lariga murojaat qilamiz
+
+// Va bular language'lar aro bir xil tushunchalar
+// Agar siz shu Architectural va Design Patternlarni yaxshi tushunib olsangiz, bir tildan boshqa bir tilga o'tishingiz juda ham oson kechadi
+
+
+// ------------------------------------------------------------------------
+// Backend bo'yicha eng mashxur Architectural Pattern'lar:
+// 1) MVC => Model-View-Controller
+// 2) DI => Dependency Injection
+
+// Frontend bo'yicha eng mashxur architectural pattern'lar:
+// 1) MVP => Model-View-Presenter
+
+// Backend bo'yicha eng mashxur Design Pattern'lar:
+// 1) Middleware
+// 2) Decorator
+
+// -----------------------------------------------------------------------
+// Architectural Pattern => Bu backend uchun suyak hisoblanadi. Ya'ni backendimizdagi ma'lumotlar oqimini tartibga soladigan arxitekturasi hisoblanadi
+// Design Pattern => Butun bir backend tizimidagi ma'lum bir bo'laklaridagi struktularni yechishda xizmat qiladigan pattern hisoblanadi (vositachi emas).
+
+
+// Architectural Pattern'ni misol sifatida butun boshlik insonning suyagi desak, Design Pattern bu o'sha insonning qo'l suyagi hisoblanadi. Ya'ni qo'l bu ma'lum bir vazifani bajaradigon bo'lim hisoblanadi.
+// Architectural Pattern esa o'sha insonning o'zi hisoblanadi
+
+
+// 35th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
