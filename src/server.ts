@@ -15,3 +15,8 @@
 import dotenv from "dotenv";
 
 dotenv.config();
+
+// CLUSTER => DATABASE => COLLECTION => DOCUMENT
+
+// MongoDB is NoSQL Database
+// GIT also is version controll
