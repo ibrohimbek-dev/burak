@@ -1,22 +1,11 @@
 // 2024-06-06
-// 36th lesson
-// Environmental variablar va loyihamiz uchun yangi database
+// 37th lesson
+// Mongoose & Express
 
 // Darsimiz rejasi:
-// 1) Environmental variable'larni integratsiyasini amalga oshiramiz
-// 2) Burak loyihasi uchun yangi database'ni xosil qilamiz
+// 1) MongoDB'ga mongoose orqalik ulanamiz
+// 2) Loyihamizga expressni o'rnatamiz
 
 // =================================================================
 
-// const moment = require("moment") // CommonJS
-// import moment from "moment"; // ModuleJS
 
-// ---------------------------------------------------------------
-import dotenv from "dotenv";
-
-dotenv.config();
-
-// CLUSTER => DATABASE => COLLECTION => DOCUMENT
-
-// MongoDB is NoSQL Database
-// GIT also is version controll
