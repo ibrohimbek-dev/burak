@@ -14,8 +14,10 @@
   "author": "Ibrohimbek Alisherov (Brian)",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "moment": "^2.29.1"
+    "dotenv": "^16.0.3",
+    "moment": "^2.29.1",
+    "mongodb": "^3.2.6",
+    "mongoose": "^6.2.9"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
