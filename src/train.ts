@@ -13,7 +13,7 @@
 // ==========================================================================
 
 console.log("METHOD ONE");
-const getDigits_1 = (text: string) => {
+const getDigits_1 = (text: string): string => {
   return text
     .split("")
     .filter((lt) => parseInt(lt))
