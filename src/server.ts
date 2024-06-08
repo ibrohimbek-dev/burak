@@ -12,6 +12,10 @@
 
 // Mongoose bu MongoDB bilan ishlash uchun hosil qilingan maxsus package hisoblanadi
 
+// MVC => Model View Controller
+// Order of MVC
+// Client => Controller => Model => Database => Model => Controller => View => Controller => Client
+
 // Connect MongoDB via Mongoose
 import mongoose from "mongoose";
 import dotenv from "dotenv";
