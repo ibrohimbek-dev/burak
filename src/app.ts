@@ -26,10 +26,10 @@ app.set("view engine", "ejs");
 
 // Middleware Design Pattern
 // This router is for BSSR
-app.use("/admin", routerAdmin); // EJS
+app.use("/admin", routerAdmin);       // EJS
 
 // This router is for React project
-app.use("/", router); // REACT
+app.use("/", router);                 // REACT
 
 
 // Export app.ts in order to use it in another file

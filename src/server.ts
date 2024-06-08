@@ -1,12 +1,11 @@
 // 2024-06-08
-// 38th lesson
-// Routers & Controllers
+// 39th lesson
+// Member Schema Models
 
 // Darsimiz rejasi:
-// 1) Router'larni o'rganamiz
-// 2) MVC artichectual patterni o'rganamiz
-// 3) Member controllerlarni xosil qilamiz
-// 4) Restaurant controllerlarni xosil qilamiz
+// 1) Member Service Model xaqida gaplashamiz
+// 2) Mongoose documentation'ga borib unda Schema, Model va Query tushunchalarini o'rganamiz
+// 3) Schema Member Model xosil qilamiz
 
 // =================================================================
 
