@@ -98,3 +98,8 @@ const getDigits_7 = (text: string) => {
 
 const result_7 = getDigits_7("m14i1t");
 console.log(`(method seven) result: '${result_7}'`);
+
+
+
+// TASK H2 shu yerda yakunlandi
+// 고생 하셨습니다!
