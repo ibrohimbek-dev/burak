@@ -1,10 +1,12 @@
-// 2024-06-06
-// 37th lesson
-// Mongoose & Express
+// 2024-06-08
+// 38th lesson
+// Routers & Controllers
 
 // Darsimiz rejasi:
-// 1) MongoDB'ga mongoose orqalik ulanamiz
-// 2) Loyihamizga expressni o'rnatamiz
+// 1) Router'larni o'rganamiz
+// 2) MVC artichectual patterni o'rganamiz
+// 3) Member controllerlarni xosil qilamiz
+// 4) Restaurant controllerlarni xosil qilamiz
 
 // =================================================================
 

@@ -153,7 +153,7 @@ const person_ts: Person_Ts ={
 // Interface'lar object singarin instance'ga ega bo'lmaydi, ular faqatgina type uchun xizmat qiladigan soya hisoblanadi
 
 // --------------------------------------------
-// Quyidagi misol singarin TypeScript'da object'larni instance'siz
+// Quyidagi misol singarin TypeScript'da object'larni interface'siz
 // to'g'ridan - tog'ri hosil qilib olsak bo'ladi lekin bu birozgina noqulaylik kelitirib chiqaradi:
 
 let employee: {
