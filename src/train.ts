@@ -30,7 +30,7 @@ const getDigits_2 = (text: string): string | undefined => {
 };
 
 const result_2 = getDigits_2("m14i1t");
-console.log(`(method two) result: '${result_1}'`);
+console.log(`(method two) result: '${result_2}'`);
 
 // ==========================================================================
 
