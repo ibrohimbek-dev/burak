@@ -35,5 +35,5 @@ app.use("/", router);                 // REACT
 // Export app.ts in order to use it in another file
 export default app; // module.exports = app
 
-// 38th - dars shu yerda yakunlandi
+// 39th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
