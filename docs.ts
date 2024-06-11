@@ -49,3 +49,6 @@
 // ================================================================================================
 
 // .exec() orqalik query'lar ketma - ketligini to'xtatishimiz mumkin. Va bu kam resurs iste'mol qiladi
+
+// 41th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
