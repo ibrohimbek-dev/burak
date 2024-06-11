@@ -2,8 +2,10 @@ import express from "express";
 import path from "path";
 import router from "./router";
 import routerAdmin from "./routerAdmin";
-// Express Has Four Main Structures:
+import morgan from "morgan"
+import { MORGAN_FORMAT } from "./libs/config";
 
+// Express Has Four Main Structures:
 // 1) ENTERANCE
 const app = express();
 
@@ -12,6 +14,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(morgan(MORGAN_FORMAT))
 
 // 2) SESSIONS
 
@@ -35,5 +38,5 @@ app.use("/", router);                 // REACT
 // Export app.ts in order to use it in another file
 export default app; // module.exports = app
 
-// 39th - dars shu yerda yakunlandi
+// 40th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
