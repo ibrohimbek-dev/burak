@@ -19,6 +19,6 @@
 // 2) Naming Standards ==>
 //                      functions, methods, varibales => camelCase    // goHome
 //                      class => PasCalCase                           // MemberService
-//                      folder => keb-bab-case                        // fol-der-name
+//                      folder, file => keb-bab-case                        // fol-der-name
 //                      css => sna_ke_case                            // btn_style
 // 3) Error Handlings
