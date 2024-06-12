@@ -49,6 +49,7 @@ restaurantController.processSignup = async (req: Request, res: Response) => {
 
 		const memberService = new MemberService();
 		const result = await memberService.processSignup(newMember);
+		console.log(result);
 
 		res.send(result);
 	} catch (err: any) {
