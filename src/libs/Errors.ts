@@ -7,6 +7,7 @@ export enum HttpCode {
 	FORBIDDEN = 403,
 	NOT_FOUND = 404,
 	INTERNAL_SERVER_ERROR = 500,
+	EXIST = 403,
 }
 
 export enum Message {
@@ -17,6 +18,7 @@ export enum Message {
 	USED_NICK_PHONE = "You are inserting already used nick or phone!",
 	NO_MEMBER_NICK = "No member found with that member nick!",
 	INCORRECT_PASSWORD = "Wrong password, please try again! ",
+	USER_EXIST = "User already exist, please sign in instead",
 }
 
 class Errors extends Error {
