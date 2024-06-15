@@ -4,7 +4,9 @@ import MemberService from "../models/Member.service";
 import { LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 
-const restaurantController: T = {};
+const restaurantController: T = {  
+  
+};
 
 restaurantController.goHome = (req: Request, res: Response) => {
 	try {
@@ -17,8 +19,9 @@ restaurantController.goHome = (req: Request, res: Response) => {
 };
 
 restaurantController.getLogin = (req: Request, res: Response) => {
-	try {
-		res.send("getLogin!");
+  try {
+    
+		res.send("Login Page!");
 	} catch (err: any) {
 		console.log("Error on Login Page:", err.message);
 	}
@@ -26,18 +29,20 @@ restaurantController.getLogin = (req: Request, res: Response) => {
 
 restaurantController.getSignup = (req: Request, res: Response) => {
 	try {
-		res.send("getSignup!");
+		res.send("Sign Up Page!");
 	} catch (err: any) {
 		console.log("Error on Signup Page:", err.message);
 	}
 };
 
+
+
 restaurantController.processLogin = async (req: Request, res: Response) => {
 	try {
 		console.log("req.body: ", req.body);
-    const input: LoginInput = req.body;
-    
-    console.log("input:", input)
+		const input: LoginInput = req.body;
+
+		console.log("input:", input);
 
 		const memberService = new MemberService();
 		const result = await memberService.processLogin(input);
@@ -46,8 +51,8 @@ restaurantController.processLogin = async (req: Request, res: Response) => {
 
 		res.send(result);
 	} catch (err: any) {
-    console.log("Error on processLogin:", err.message);
-    res.send(err)
+		console.log("Error on processLogin:", err.message);
+		res.send(err);
 	}
 };
 

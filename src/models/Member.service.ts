@@ -31,7 +31,8 @@ class MemberService {
 			const result = await this.memberModel.create(input);
 
 			result.memberPassword = "";
-			return result;
+			// return result;
+			return result as Member;
 		} catch (err) {
 			throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 		}
