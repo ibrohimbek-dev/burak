@@ -11,18 +11,62 @@ class MemberService {
 		this.memberModel = MemberModel;
 	}
 
-	public async processSignup(input: MemberInput): Promise<Member> {
+	// ---------------------------------------------------------------------------------------------------------------------------------------------
+	// SPA uchun Member.service.ts bo'limi:
+	public async userSignup(input: MemberInput): Promise<Member> {
+    const salt = await bcrypt.genSalt();
+    input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+
+		try {
+			const result = await this.memberModel.create(input);
+			result.memberPassword = "";
+			return result.toJSON()
+    } catch (err: any) {
+      console.log("error on signup:", err.message)
+			throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
+		}
+  }
+  
+  public async userLogin(input: LoginInput): Promise<Member> {
+    // TODO consider member status later
+		const member = await this.memberModel
+			.findOne(
+				{
+					memberNick: input.memberNick,
+				},
+				{ _id: true, memberNick: 1, memberPassword: 1 }
+			)
+			.exec();
+
+		if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+
+		const isMatch = await bcrypt.compare(
+			input.memberPassword,
+			member.memberPassword
+		);
+
+		console.log("(Member.service.ts) login isMarch:", isMatch);
+
+		if (!isMatch) {
+			throw new Errors(HttpCode.UNAUTHORIZED, Message.INCORRECT_PASSWORD);
+		}
+
+		// return await this.memberModel.findById(member._id).exec();
+    // .lean() methodi orqalik biz datebase'dan olgan ma'lumotimizni o'zgartirish imkoniga ega bo'lamiz
+		return await this.memberModel.findById(member._id).lean().exec();
+	}
+
+	// ---------------------------------------------------------------------------------------------------------------------------------------------
+	// BSSR uchun Member.service.ts bo'limi:
+
+	public async adminSignup(input: MemberInput): Promise<Member> {
 		const exist = await this.memberModel
 			.findOne({ memberType: MemberType.RESTAURANT })
 			.exec();
 		if (exist) throw new Errors(HttpCode.EXIST, Message.USER_EXIST);
 
-		console.log("input.memberPassword (before):", input.memberPassword);
-
 		const salt = await bcrypt.genSalt();
 		input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
-
-		console.log("input.memberPassword (after):", input.memberPassword);
 
 		try {
 			// const tempResult = new this.memberModel(input);
@@ -31,18 +75,18 @@ class MemberService {
 			const result = await this.memberModel.create(input);
 
 			result.memberPassword = "";
-			// return result;
-			return result as Member;
+			return result;
+			// return result as Member;
 		} catch (err) {
 			throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 		}
 	}
 
-	public async processLogin(input: LoginInput): Promise<Member> {
+	public async adminLogin(input: LoginInput): Promise<Member> {
 		const member = await this.memberModel
 			.findOne(
 				{ memberNick: input.memberNick },
-				{ _id: 1, memberNick: 1, memberPassword: 1 }
+				{ _id: true, memberNick: 1, memberPassword: 1 }
 			)
 			.exec();
 

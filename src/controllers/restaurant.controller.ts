@@ -4,9 +4,9 @@ import MemberService from "../models/Member.service";
 import { LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 
-const restaurantController: T = {  
-  
-};
+const restaurantController: T = {};
+
+const memberService = new MemberService();
 
 restaurantController.goHome = (req: Request, res: Response) => {
 	try {
@@ -18,15 +18,6 @@ restaurantController.goHome = (req: Request, res: Response) => {
 	}
 };
 
-restaurantController.getLogin = (req: Request, res: Response) => {
-  try {
-    
-		res.send("Login Page!");
-	} catch (err: any) {
-		console.log("Error on Login Page:", err.message);
-	}
-};
-
 restaurantController.getSignup = (req: Request, res: Response) => {
 	try {
 		res.send("Sign Up Page!");
@@ -35,40 +26,48 @@ restaurantController.getSignup = (req: Request, res: Response) => {
 	}
 };
 
+restaurantController.getLogin = (req: Request, res: Response) => {
+	try {
+		res.send("Login Page!");
+	} catch (err: any) {
+		console.log("Error on Login Page:", err.message);
+	}
+};
 
+restaurantController.adminSignup = async (req: Request, res: Response) => {
+	try {
+		console.log("adminSignup!");
 
-restaurantController.processLogin = async (req: Request, res: Response) => {
+		const newMember: MemberInput = req.body;
+		newMember.memberType = MemberType.RESTAURANT;
+
+		const result = await memberService.adminSignup(newMember);
+
+		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
+		console.log("result adminSignup:", result);
+
+		res.send(result);
+	} catch (err: any) {
+		res.send(err);
+	}
+};
+
+restaurantController.adminLogin = async (req: Request, res: Response) => {
 	try {
 		console.log("req.body: ", req.body);
 		const input: LoginInput = req.body;
 
 		console.log("input:", input);
 
-		const memberService = new MemberService();
-		const result = await memberService.processLogin(input);
+		const result = await memberService.adminLogin(input);
+
+		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
 
 		console.log("result:", result);
 
 		res.send(result);
 	} catch (err: any) {
 		console.log("Error on processLogin:", err.message);
-		res.send(err);
-	}
-};
-
-restaurantController.processSignup = async (req: Request, res: Response) => {
-	try {
-		console.log("processSignup!");
-
-		const newMember: MemberInput = req.body;
-		newMember.memberType = MemberType.RESTAURANT;
-
-		const memberService = new MemberService();
-		const result = await memberService.processSignup(newMember);
-		console.log(result);
-
-		res.send(result);
-	} catch (err: any) {
 		res.send(err);
 	}
 };
