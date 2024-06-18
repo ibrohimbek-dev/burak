@@ -11,9 +11,7 @@ const memberController: T = {};
 const memberService = new MemberService();
 
 memberController.userSignup = async (req: Request, res: Response) => {
-	try {
-		console.log("(member.controller.ts): signup");
-
+	try {	
 		const input: MemberInput = req.body;
 
 		const result: Member = await memberService.userSignup(input);
@@ -24,11 +22,10 @@ memberController.userSignup = async (req: Request, res: Response) => {
 
 		res.json({ member: result });
 	} catch (err: any) {
-		console.log("Error on signup: ", err.message);
+		console.log("(member.controller.ts) Error on signup: ", err.message);
 
-    if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standard.code).json(Errors.standard.message)
-		res.json({ error: err.message });
+		if (err instanceof Errors) res.status(err.code).json(err);
+		else res.status(Errors.standard.code).json(Errors.standard.message);		
 	}
 };
 
@@ -44,7 +41,8 @@ memberController.userLogin = async (req: Request, res: Response) => {
 		res.json({ member: result });
 	} catch (err: any) {
 		console.log("Error on login", err.message);
-		res.json({ error: err.message });
+		if (err instanceof Errors) res.status(err.code).json(err);
+		else res.status(Errors.standard.code).json(Errors.standard);		
 	}
 };
 

@@ -22,7 +22,7 @@ class MemberService {
 			result.memberPassword = "";
 			return result.toJSON()
     } catch (err: any) {
-      console.log("error on signup:", err.message)
+      console.log("(Member.service.ts) error on signup:", err.message)
 			throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
 		}
   }
