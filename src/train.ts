@@ -1,42 +1,60 @@
-// 2024-06-15
+// 2024-06-18
 // MIT 14
-// TASK I:
+// TASK J:
 
-// Shunday function tuzing, u parametrdagi array ichida eng ko'p
-// takrorlangan raqamni topib qaytarsin.
+// Shunday function tuzing, u string qabul qilsin.
+// Va string ichidagi eng uzun so'zni qaytarsin.
 
-// MASALAN: majorityElement([1, 2, 3, 4, 5, 4, 3, 4]); return 4
+// MASALAN: findLongestWord("I came from Uzbekistan!"); return "Uzbekistan!"
 
-// Yuqoridag misolda argument sifatida kiritilayotgan array tarkibida 4 soni ko'p takrorlanganligi uchun 4'ni return qilmoqda.
+// Yuqoridagi text tarkibida 'Uzbekistan'
+// eng uzun so'z bo'lganligi uchun 'Uzbekistan'ni qaytarmoqda
 
 // ==========================================================================
+const sentence: string = "I came from Uzbekistan!";
 
-const numArr: number[] = [1, 2, 3, 4, 5, 4, 3, 4];
+console.info("METHOD ONE ----------------------------------------");
 
-console.log("METHOD ONE");
-const majorityElement_1 = (numbers: number[]) => {
-	const countObj: { [key: number]: number } = {};
+const findLongestWord_1 = (text: string): string => {
+	const textArr: string[] = text.split(" ");
+	const result: number[] = [];
 
-	for (let num of numbers) {
-		if (countObj[num]) {
-			countObj[num]++;
-		} else {
-			countObj[num] = 1;
-		}
-	}
+	textArr.forEach((txt) => result.push(txt.length));
 
-	let maxNum = 0;
-	let result = 0;
-
-	for (let [num, count] of Object.entries(countObj)) {
-		if (count > maxNum) {
-			maxNum = count;
-			result = Number(num);
-		}
-	}
-
-	return result;
+	return textArr[result.indexOf(Math.max(...result))];
 };
 
-const result_1 = majorityElement_1(numArr);
-console.log("result:", result_1);
+const result_1 = findLongestWord_1(sentence);
+console.info("(first method) result:", result_1);
+
+// ==========================================================================
+console.info("METHOD TWO ----------------------------------------");
+
+const findLongestWord_2 = (text: string) => {
+	const textArr: string[] = text.split(" ");
+
+	return textArr.reduce((maxLength, currentValue) => {
+		return currentValue.length > maxLength.length ? currentValue : maxLength;
+	}, "");
+};
+
+const result_2 = findLongestWord_2(sentence);
+console.info("(second method) result:", result_2);
+
+// ==========================================================================
+console.info("METHOD THREE ----------------------------------------");
+
+const findLongestWord_3 = (text: string) => {
+	let checkLength: string = "";
+
+	text.split(" ").forEach((txt) => {
+		if (txt.length > checkLength.length) {
+			checkLength = txt;
+		}
+	});
+
+	return checkLength;
+};
+
+const result_3 = findLongestWord_3(sentence);
+console.info("(third method) result:", result_3);
