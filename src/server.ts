@@ -12,8 +12,7 @@ mongoose
     const PORT = process.env.PORT ?? 3003;
     
 		app.listen(PORT, () => {
-      console.info(`Server is running on port: ${PORT}`);
-      
+      console.info(`Server is running on port: ${PORT}`);    
       console.info(`admin project on http://localhost:${PORT}/admin \n`)
     });
     

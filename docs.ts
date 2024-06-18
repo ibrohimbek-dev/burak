@@ -418,3 +418,7 @@
 // Va bizga bu imkoniyatni app.ts fayli tarkibidagi middleware hosil qilib bermoqda:
 
 // app.use(express.static(path.join(__dirname, "public")));
+
+
+// 45th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
