@@ -4,7 +4,7 @@ import restaurantController from "./controllers/restaurant.controller";
 
 // Restaurant
 // api
-routerAdmin.get("/", restaurantController.goHome);
+routerAdmin.get("/", restaurantController.getHome);
 
 
 routerAdmin

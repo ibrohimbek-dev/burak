@@ -396,3 +396,25 @@
 // Biz aynan qaysi birini bizdan so'rashini bilmaymiz. Shu sababli ikkalasini ham ishlatamiz
 
 // SPA'da Token'larni ishlatamiz, ya'ni ReacJS loyihamizda
+
+
+// 44th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
+
+// ==============================================================================================
+
+// 2024-06-18
+// EJS - Build Admin Frontend
+
+// Dars rejasi:
+// 1) Adminka loyihamizni frontend page'larini belgilaymiz
+// 2) Frontend CSS, image, JavaScript folder va fayllarni xosil qilamiz
+// 3) Frontendda external package'larni chaqiramiz va bootstrap css frameworkini ishlatamiz
+// 4) Frontendimizda ishlatiladigan header va footer'ni joriy qilamiz
+
+// ------------------------------------------------------------------------
+
+// public tarkibidagi barcha fayllarni to'g'ridan to'g'ri import yoki connect qila olamiz
+// Va bizga bu imkoniyatni app.ts fayli tarkibidagi middleware hosil qilib bermoqda:
+
+// app.use(express.static(path.join(__dirname, "public")));

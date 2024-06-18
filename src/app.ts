@@ -19,8 +19,8 @@ app.use(morgan(MORGAN_FORMAT))
 // 2) SESSIONS
 
 // 3) VIEWS
-app.set("view", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 // 4) ROUTERS
 // Biz Burak backend loyihamizni ikki maqsadda ishlatmoqdamiz:
