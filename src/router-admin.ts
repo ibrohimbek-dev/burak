@@ -13,7 +13,9 @@ routerAdmin
 
 routerAdmin
 	.get("/login", restaurantController.getLogin)
-	.post("/login", restaurantController.adminLogin);
+  .post("/login", restaurantController.adminLogin);
+  
+routerAdmin.get("/check-me", restaurantController.checkAuth)
 
 
 // Product

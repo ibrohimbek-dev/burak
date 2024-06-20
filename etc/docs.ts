@@ -464,3 +464,8 @@
 
 // ---------------------------------------------------------
 
+
+// Postman'da signup & login qilib keyin bir xil url'dan foydalanib agar biz
+// browserda ham login yoki signup qiladigan bo'lsak, biroz chalg'ish yuzaga keladi
+// Ya'ni signup yoki login qilib bo'lmaydi. Sababi postman va browser bular alohida browserlar hisoblanadi
+// Bir biriga dahldor emas
