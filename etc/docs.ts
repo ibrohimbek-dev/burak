@@ -545,3 +545,6 @@
 // -------------------------------------------------------
 // Biz bugungi darsgacha response'ning  quyidagi methodlarini ko'rib chiqdik:
 // res.send(), res.render(), res.json(), res.redirect()
+
+// 46th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
