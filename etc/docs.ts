@@ -448,3 +448,19 @@
 // resave: false => So'nggi faollik yangilanmaydi va destroy eski holatida qoladi
 // resave: true => So'nggi faollik yangilanadi va destroy ham yangilanadi
 
+
+// Bugungi darsimizda Session Authentication'ni o'rganamiz va bu Adminka loyihasiga dahldor hisoblanadi
+
+// ---------------------------------------------------------
+
+// req.session.member = result;
+// req.session.save(() => {
+// 	res.send(result);
+// });
+
+// Definition: Session'larimiz muvafaqqiyatlik saqlangach, ya'ni bizning browserimizdagi cookie'ni ichiga set'ni joylaydi
+// Va undan tashqari bizni session collection'imizga members data'mizni borib joylaydi
+// Unga qadar hech qanday response bo'lmaydi, qachonki .save() muvaffaqiyatlik saqlangach keyin bizning API'imizga javob yuboriladi
+
+// ---------------------------------------------------------
+

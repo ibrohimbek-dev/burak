@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
-import { LoginInput, MemberInput } from "../libs/types/member";
+import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 
 const restaurantController: T = {};
@@ -20,7 +20,7 @@ restaurantController.getHome = (req: Request, res: Response) => {
 
 restaurantController.getSignup = (req: Request, res: Response) => {
 	try {
-		res.render("signup")
+		res.render("signup");
 	} catch (err: any) {
 		console.log("Error on Signup Page:", err.message);
 	}
@@ -28,13 +28,13 @@ restaurantController.getSignup = (req: Request, res: Response) => {
 
 restaurantController.getLogin = (req: Request, res: Response) => {
 	try {
-		res.render("login")
+		res.render("login");
 	} catch (err: any) {
 		console.log("Error on Login Page:", err.message);
 	}
 };
 
-restaurantController.adminSignup = async (req: Request, res: Response) => {
+restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 	try {
 		console.log("adminSignup!");
 
@@ -44,15 +44,17 @@ restaurantController.adminSignup = async (req: Request, res: Response) => {
 		const result = await memberService.adminSignup(newMember);
 
 		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
-		console.log("result adminSignup:", result);
 
-		res.send(result);
+		req.session.member = result;
+		req.session.save(() => {
+			res.send(result);
+		});
 	} catch (err: any) {
 		res.send(err);
 	}
 };
 
-restaurantController.adminLogin = async (req: Request, res: Response) => {
+restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 	try {
 		console.log("req.body: ", req.body);
 		const input: LoginInput = req.body;
@@ -63,9 +65,11 @@ restaurantController.adminLogin = async (req: Request, res: Response) => {
 
 		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
 
-		console.log("result:", result);
+		req.session.member = result;
+		req.session.save(() => {
+			res.send(result);
+		});
 
-		res.send(result);
 	} catch (err: any) {
 		console.log("Error on processLogin:", err.message);
 		res.send(err);

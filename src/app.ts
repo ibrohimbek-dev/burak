@@ -6,12 +6,16 @@ import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 
 import session from "express-session";
-import ConnectMongoDBSession from "connect-mongodb-session";
+import ConnectMongoDB from "connect-mongodb-session";
 
-const MongoDBStore = ConnectMongoDBSession(session);
+import dotenv from "dotenv";
+dotenv.config();
+
+
+const MongoDBStore = ConnectMongoDB(session);
 
 const store = new MongoDBStore({
-	uri: String(process.env.MONGODB_URL),
+	uri: String(process.env.MONGODB_URL),	
 	collection: "sessions",
 });
 
