@@ -300,11 +300,9 @@
 // 35th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
 
-
 // ===========================================================================================
 
 // 2024-06-13
-
 
 // 43th lesson
 // web Server & Authentication
@@ -325,11 +323,8 @@
 
 // =================================================================
 
-
-
 // 43th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
-
 
 // ======================================================================
 // 44th - dars
@@ -338,8 +333,8 @@
 
 // Dars rejasi:
 // 1) Frontendni qurishning ikki hil usuli:
-                                   // 1) BSSR
-                                   // 2) SPA
+// 1) BSSR
+// 2) SPA
 
 // 2) Single Page Applicatation'imizning login hamda signup jarayonlarini develop qilamiz
 
@@ -359,7 +354,6 @@
 
 // Ya'ni SPA'da HTML backend'da qurilmaydi, aksincha, Client backend'dan kelgan ma'lumotdan foydalanib Frontend'da HTML'ni qurib oladi
 
-
 // ---------------------------------------------------------------------------
 
 // Shu vaqtgacha bilganlarimiz, Frontend'ni ikki hil usulda qursak bo'lar ekan
@@ -371,9 +365,7 @@
 // BSSR => Usulida biz Burak loyihasizning Adminka qismini qurmoqdamiz
 // SPA  => Usulida biz Burak loyihasining user'larga tegishli bo'lgan qismini quramiz
 
-
 // Quyidagi darsda res.send() emas aynan .json() formatlari bilan ishlaymiz
-
 
 // ----------------------------------------------------------------------
 
@@ -382,7 +374,6 @@
 
 // .lean() methodini yozish bilan biz database'dan olgan ma'lumotimizni o'zgartirish imkoniyatiga ega bo'lamiz
 
-
 // -----------------------------------------------------------
 
 // Biz darslarimizda ReactJS va SPA'ni o'rganamiz
@@ -390,13 +381,11 @@
 // Frontend & Backend ma'lumotlar oqimini to'liq ko'z oldimizga keltirish
 // va Backend & Frontend qanday ishlashini aniq qilib tushunish uchun bizga traditional Frontend yordamga
 
-
 // Endi Authentication haqida gaplashamiz
 // Biz biror kompaniyaga ishga kirganimizda bizdan Token yoki Session authentication'ni ishlatishni so'rashadi
 // Biz aynan qaysi birini bizdan so'rashini bilmaymiz. Shu sababli ikkalasini ham ishlatamiz
 
 // SPA'da Token'larni ishlatamiz, ya'ni ReacJS loyihamizda
-
 
 // 44th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
@@ -426,7 +415,6 @@
 // 45th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
 
-
 // ==============================================================================
 
 // 46th Lesson
@@ -439,7 +427,6 @@
 // 3) Session ishlash mexanizimini muxokama etamiz
 // 4) Birgalikda logout API'ni xosil qilamiz
 
-
 // ------------------------------------------------------------------
 
 // resave: false => auth: 10: 30 => active: 13: 30. destroy: 13: 31. active: 12: 00 => destroy remain: 13: 31
@@ -447,7 +434,6 @@
 
 // resave: false => So'nggi faollik yangilanmaydi va destroy eski holatida qoladi
 // resave: true => So'nggi faollik yangilanadi va destroy ham yangilanadi
-
 
 // Bugungi darsimizda Session Authentication'ni o'rganamiz va bu Adminka loyihasiga dahldor hisoblanadi
 
@@ -464,8 +450,98 @@
 
 // ---------------------------------------------------------
 
-
 // Postman'da signup & login qilib keyin bir xil url'dan foydalanib agar biz
 // browserda ham login yoki signup qiladigan bo'lsak, biroz chalg'ish yuzaga keladi
 // Ya'ni signup yoki login qilib bo'lmaydi. Sababi postman va browser bular alohida browserlar hisoblanadi
 // Bir biriga dahldor emas
+
+// ------------------------------------------------------------------
+
+// Quyida yozgan kodlarimiz SignUp va Login bo'lgan vaqtida bizga kim va qaysi vaqtga
+// murojaat etayotganiligini ayta olyapti
+
+// Quyida jarayon tahlili:
+// Quyidagi jarayon ikkita narsani xosil qilmoqda
+
+// req.session.member = result;
+// req.session.save(() => {
+// 	res.send(result);
+// });
+
+// 1) Yuqoridagi kod birinchi bo'lib browserimizga borib bizni
+// cookie'imiz ichiga sid'ni joylamoqda
+
+// 2) Ikkinchi bo'lib bizning database'imizga borib aynan sessions
+// collection'iga member ma'lumotini saqlamoqda
+
+// sid => session id
+
+// express session o'zi bilib database'imizga qaysi member qaysi id'ga tegishli
+// ekanligini belgilab saqlab boradi
+
+// ----------------------------------------------------------
+// Bizga user'ni login & signup qilganligini e'tirof etadigan ma'lumotlar qayerda joylashgan?
+// Browserdami yoki Database'da? Nima deb o'ylaysizlar?
+
+// Javob => Faqatgina DataBase'da
+
+// Browserda bizning member'ning ma'lumotlari mavjud emas.
+// Browserda faqatgina member'ning session ID'si (sid) mavjud xolos
+
+// Biz checkAuthSession metodini yaratib login & signup'larni check qildik
+// Bu holatda ham biz error emas aksincha aniq ma'lumot olmoqdamiz
+
+// Sababi cookie'ni o'ziga yarasha xislati borki, u har bir request'ga yopishib oladi
+
+// --------------------------------------------------------------
+
+// Quyida Cookie'ning xislatlari:
+
+// 1) Xar bir requestga join bo'lib oladi
+// Mana shu middleware qismiga cookie join bo'lmoqda
+// Birinchi store (session collection) ichidan izlab sid mavjud bo'lsa unga dahldor bo'lgan session ma'lumotlarini request'ga joylab beradi
+
+// app.use(
+// 	session({
+// 		secret: String(process.env.SESSION_SECRET),
+// 		cookie: {
+// 			maxAge: 3600 * 3600 * 3,
+// 		},
+// 		store: store,
+// 		resave: true,
+// 		saveUninitialized: true,
+// 	})
+// );
+
+// Agar biz browser'dan cookie'ni o'chirib tashlasak, browserimiz backend'ga murojaat qiladi
+// Lekin backendimiz cookie ichidagi SID'ni topa olmaydi, topa olmaganligi uchun
+// database'imiz tarkibidagi collection ichidagi sessions ma'lutmolarini requestimizga bog'lab bera olmaydi.
+// Ya'ni app.ts tarkibida sessions'ga dahldor bo'lgan middleware kiim murojaat etayotganligini bilmaydi. Sababi esa oddiy, cookie mavjud bo'lmaganligida!
+
+// 2) Cookie'ni ikkinchi xislati, agar biz session collection tarkibidan user'ni data'sini o'chirib yuborsak
+// u holda ham cookie'dan foydalanib login qilish jarayoni ham ishdan chiqadi. Ya'ni cookie'dan foydalanib login qila olmaymiz
+
+// Bizda browserda SID mavjud ammo database'da session collection user data mavjud emas.
+// Bunday holatda database tarkibidan browserda mavjud SID izlaydi va topa olmay shuning natijasida
+// user qayta login qila olmaydi
+
+// Soddaroq qilsak, Session Auth'da faqatginga browser uchun SID beriladi
+// Database'da esa ana shu SID'ga dahldor bo'lgan ma'lumot yoziladi
+
+// Cookie'ning yana bir imkoniyati bu o'zini o'zi self destroy qila olishida.
+// Avvaliga maxAge orqalik cookie'ning qancha muddat faol bo'lishligini ta'minlaymiz
+// Faollik yakunlangandan so'ng avval cookie browserdan o'chib ketadi, keyinroq esa o'sha cookie'ga
+// tegishlik bo'lgan sessions collections tarkibidagi ma'lumotlar database'dan o'chib ketadi
+
+// ----------------------------------------------------------------------
+
+// res.redirect() bizni ma'lum bir link (endpoint)'ga yuboradi
+// Quyida session destroy bo'lganidan so'ng bizni main page'ga yuborgin mantig'ini kirityapmiz:
+// req.session.destroy(() => {
+// 	res.redirect("/admin");
+// });
+
+
+// -------------------------------------------------------
+// Biz bugungi darsgacha response'ning  quyidagi methodlarini ko'rib chiqdik:
+// res.send(), res.render(), res.json(), res.redirect()

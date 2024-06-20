@@ -35,7 +35,7 @@ app.use(
 	session({
 		secret: String(process.env.SESSION_SECRET),
 		cookie: {
-			maxAge: 3600 * 3600 * 3,
+			maxAge: 3600 * 3600 * 6 // 6hours. Cookie will destry itself after 6 hours!
 		},
 		store: store,
 		resave: true,

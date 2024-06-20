@@ -4,19 +4,18 @@ import restaurantController from "./controllers/restaurant.controller";
 
 // Restaurant
 // api
-routerAdmin.get("/", restaurantController.getHome);
-
+routerAdmin.get("/", restaurantController.getAdminHome);
 
 routerAdmin
-	.get("/signup", restaurantController.getSignup)
+	.get("/signup", restaurantController.getAdminSignup)
 	.post("/signup", restaurantController.adminSignup);
 
 routerAdmin
-	.get("/login", restaurantController.getLogin)
-  .post("/login", restaurantController.adminLogin);
-  
-routerAdmin.get("/check-me", restaurantController.checkAuth)
+	.get("/login", restaurantController.getAdminLogin)
+	.post("/login", restaurantController.adminLogin);
 
+routerAdmin.get("/check-me", restaurantController.checkAdminAuthSession);
+routerAdmin.get("/logout", restaurantController.adminLogout);
 
 // Product
 
