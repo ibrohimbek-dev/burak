@@ -11,7 +11,7 @@ const memberController: T = {};
 const memberService = new MemberService();
 
 memberController.userSignup = async (req: Request, res: Response) => {
-	try {	
+	try {		
 		const input: MemberInput = req.body;
 
 		const result: Member = await memberService.userSignup(input);
@@ -42,7 +42,7 @@ memberController.userLogin = async (req: Request, res: Response) => {
 	} catch (err: any) {
 		console.log("Error on login", err.message);
 		if (err instanceof Errors) res.status(err.code).json(err);
-		else res.status(Errors.standard.code).json(Errors.standard);		
+		else res.status(Errors.standard.code).json(Errors.standard.message);		
 	}
 };
 

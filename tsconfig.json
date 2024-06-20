@@ -13,6 +13,6 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/server.ts", "train.ts"],
+  "include": ["src/**/*.ts", "src/server.ts", "train.ts", "etc/train.ts", "etc/review.ts"],
   "exclude": ["node_modules"]
 }

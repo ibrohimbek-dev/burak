@@ -404,6 +404,7 @@
 // ==============================================================================================
 
 // 2024-06-18
+// 45th dars
 // EJS - Build Admin Frontend
 
 // Dars rejasi:
@@ -419,6 +420,31 @@
 
 // app.use(express.static(path.join(__dirname, "public")));
 
+// .lean() metodini yozish orqalik biz database'dan kelgan ma'lumotni to'g'ridan - to'g'ri o'zgartira olishimiz mumkin:
+// return await this.memberModel.findById(member._id).lean().exec();
 
 // 45th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
+
+
+// ==============================================================================
+
+// 46th Lesson
+// 2024-06-20
+// Authentication Sessions*
+
+// Dars rejasi:
+// 1) Session authentication jarayonini develop qilamiz
+// 2) Test maqsadida checkAuthSession API'ni develop qilamiz
+// 3) Session ishlash mexanizimini muxokama etamiz
+// 4) Birgalikda logout API'ni xosil qilamiz
+
+
+// ------------------------------------------------------------------
+
+// resave: false => auth: 10: 30 => active: 13: 30. destroy: 13: 31. active: 12: 00 => destroy remain: 13: 31
+// resave: true => auth: 10: 30 => active: 13: 30. destroy: 13: 31. active: 12: 00 => destroy updated: 15: 00
+
+// resave: false => So'nggi faollik yangilanmaydi va destroy eski holatida qoladi
+// resave: true => So'nggi faollik yangilanadi va destroy ham yangilanadi
+
