@@ -6,7 +6,7 @@ import app from "./app";
 dotenv.config();
 
 mongoose
-	.connect(process.env.MONGODB_URL as string, {})
+	.connect(process.env.MONGO_URL as string, {})
 	.then((data) => {
 		console.log("MongoDB connected successfully!");
 		const PORT = process.env.PORT ?? 3003;

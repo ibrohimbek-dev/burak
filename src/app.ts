@@ -11,11 +11,10 @@ import ConnectMongoDB from "connect-mongodb-session";
 import dotenv from "dotenv";
 dotenv.config();
 
-
 const MongoDBStore = ConnectMongoDB(session);
 
 const store = new MongoDBStore({
-	uri: String(process.env.MONGODB_URL),	
+	uri: String(process.env.MONGO_URL),
 	collection: "sessions",
 });
 
@@ -35,7 +34,7 @@ app.use(
 	session({
 		secret: String(process.env.SESSION_SECRET),
 		cookie: {
-			maxAge: 3600 * 3600 * 6 // 6hours. Cookie will destry itself after 6 hours!
+			maxAge: 3600 * 3600 * 6, // 6hours. Cookie will destry itself after 6 hours!
 		},
 		store: store,
 		resave: true,

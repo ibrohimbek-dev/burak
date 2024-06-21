@@ -13,7 +13,6 @@
 // ==========================================================================
 // Assets:
 const vowels: string = "aeiou";
-const vowelsArr: string[] = ["a", "e", "i", "o", "u"];
 
 console.log("METHOD ONE -----------------------------------------");
 const countVowels_1 = (text: string) => {
@@ -104,10 +103,11 @@ console.log("(method six) result:", result_6);
 
 // ==========================================================================
 console.log("METHOD SEVEN -----------------------------------------");
-const countVowels_7 = (text: string) => {
-	// const found: string[] | null = text.toLowerCase().match(/[aeiuo]/g)
-	const found: string[] | null = text.match(/[aeiuo]/gi);
+// const found: string[] | null = text.toLowerCase().match(/[aeiuo]/g)
 
+const countVowels_7 = (text: string) => {
+  const found: string[] | null = text.match(/[aeiuo]/gi);
+  
 	return found?.length;
 };
 
