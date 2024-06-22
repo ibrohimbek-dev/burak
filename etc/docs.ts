@@ -468,11 +468,13 @@
 // 	res.send(result);
 // });
 
+// 2) Ikkinchi bo'lib bizning database'imizga borib aynan sessions
+// collection'iga member ma'lumotini saqlamoqda
+
 // 1) Yuqoridagi kod birinchi bo'lib browserimizga borib bizni
 // cookie'imiz ichiga sid'ni joylamoqda
 
-// 2) Ikkinchi bo'lib bizning database'imizga borib aynan sessions
-// collection'iga member ma'lumotini saqlamoqda
+
 
 // sid => session id
 
@@ -543,8 +545,53 @@
 
 
 // -------------------------------------------------------
-// Biz bugungi darsgacha response'ning  quyidagi methodlarini ko'rib chiqdik:
+// Biz bugungi darsgacha response'ning  quyidagi router'larini ko'rib chiqdik:
 // res.send(), res.render(), res.json(), res.redirect()
 
 // 46th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
+
+// ==============================================================================
+
+// 47th Lesson
+// 2024-06-22
+// Product Controller
+
+// Darsimiz rejasi:
+// 1) Productga daxldor MVC'ni birga quramiz
+// 2) Restaurant verification middleware mantig'ini hosil qilamiz
+// 3) Browser local variablelarini hosil qilishni o'rganamiz
+// 4) Serverizmizga fayl yuklash middleware mantig'ini develop qilamiz
+
+// ------------------------------------------------------------------------------------------
+
+// Hozirga qadar qilgan mantig'imiz memberlarga dahldor bo'lgan mantig'lar edi. Ya'ni bizning browserimizdan requestlar
+// amalga oshirilida va ular router'lar orqalik controller'imizga keyin model service & model schema orqalik database'ga,
+// keyin database'dan keraklik ma'lumotni olib Model => Controller => View tartibida ishlab Client'ga ma'lumot uzatildi
+
+// Bundan keyingi darslarimizda endi Product'ga dahldor bo'lgan mantig'larni develop qilamiz
+
+// ------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 47th - dars shu yerda yakunlandi
 // 수고 하셨습니다!

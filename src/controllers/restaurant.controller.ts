@@ -15,8 +15,8 @@ restaurantController.getAdminHome = (req: Request, res: Response) => {
 		res.render("home");
 		// send | json | redirect | end | render
 	} catch (err: any) {
-    console.log("Error on Home Page:", err.message);
-    res.redirect("/admin");
+		console.log("Error on Home Page:", err.message);
+		res.redirect("/admin");
 	}
 };
 
@@ -24,8 +24,8 @@ restaurantController.getAdminSignup = (req: Request, res: Response) => {
 	try {
 		res.render("signup");
 	} catch (err: any) {
-    console.log("Error on Signup Page:", err.message);
-    res.redirect("/admin");
+		console.log("Error on Signup Page:", err.message);
+		res.redirect("/admin");
 	}
 };
 
@@ -49,6 +49,8 @@ restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 
 		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
 
+
+
 		req.session.member = result;
 		req.session.save(() => {
 			res.send(result);
@@ -57,7 +59,7 @@ restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 		const message =
 			err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
 		res.send(
-			`<script>alert(${message}); window.location.replace("admin/signup")</script>`
+			`<script>alert('${message}'); window.location.replace("admin/signup")</script>`
 		);
 	}
 };
@@ -73,6 +75,8 @@ restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 
 		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
 
+    console.log("member:", result)
+
 		req.session.member = result;
 		req.session.save(() => {
 			res.send(result);
@@ -82,7 +86,7 @@ restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 		const message =
 			err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
 		res.send(
-			`<script>alert(${message}); window.location.replace("admin/login")</script>`
+			`<script>alert('${message}'); window.location.replace("admin/login")</script>`
 		);
 	}
 };
@@ -109,10 +113,10 @@ restaurantController.checkAdminAuthSession = async (
 
 		if (req.session?.member) {
 			// res.send(`HI, ${req.session.member.memberNick}`);
-			res.send(`<script>alert(${req.session.member.memberNick})</script>`);
+			res.send(`<script>alert('${req.session.member.memberNick}')</script>`);
 		} else {
 			// res.send(Message.NOT_AUTHENTICATED);
-			res.send(`<script>alert(${Message.NOT_AUTHENTICATED})</script>`);
+			res.send(`<script>alert('${Message.NOT_AUTHENTICATED}')</script>`);
 		}
 	} catch (err: any) {
 		console.log("Error on processLogin:", err.message);
