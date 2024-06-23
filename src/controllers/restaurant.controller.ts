@@ -129,7 +129,7 @@ restaurantController.verifyAdmin = (
 	next: NextFunction
 ) => {
 	if (req.session?.member?.memberType === MemberType.RESTAURANT) {
-    req.member = req.session.member;
+		req.member = req.session.member;
 		next();
 	} else {
 		const message = Message.NOT_AUTHENTICATED;

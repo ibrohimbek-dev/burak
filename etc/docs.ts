@@ -474,8 +474,6 @@
 // 1) Yuqoridagi kod birinchi bo'lib browserimizga borib bizni
 // cookie'imiz ichiga sid'ni joylamoqda
 
-
-
 // sid => session id
 
 // express session o'zi bilib database'imizga qaysi member qaysi id'ga tegishli
@@ -543,7 +541,6 @@
 // 	res.redirect("/admin");
 // });
 
-
 // -------------------------------------------------------
 // Biz bugungi darsgacha response'ning  quyidagi router'larini ko'rib chiqdik:
 // res.send(), res.render(), res.json(), res.redirect()
@@ -595,17 +592,14 @@
 // uploadProductImage.single() => bir vaqtni o'zida bitta faylni upload qiladi
 // uploadProductImage.array() => bir vaqtni o'zida bir necha fayllarni upload qiladi
 
-
 // 47th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
-
 
 // ==========================================================================================
 
 // 2024-06-23
 // 48th Leson
 // Develop Product Schema Model
-
 
 // Darsimiz rejasi:
 // 1) Product enum value'larini belgilaymiz
@@ -627,28 +621,6 @@
 // Biz Schema orqalik Database Validation'ni xosil qilmoqdamiz
 // Agar kiritilgan ma'lumot database'ga noto'g'ri yuborilgan bo'lsa
 // bizning schema'larimiz bizni himoyalaydi. Ya'ni noto'g'ri ma'lumotni kiritilmasligini ta'minlaydi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // 48th - dars shu yerda yakunlandi
 // 수고 하셨습니다!

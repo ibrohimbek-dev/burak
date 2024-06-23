@@ -14,21 +14,21 @@ class MemberService {
 	// ---------------------------------------------------------------------------------------------------------------------------------------------
 	// SPA uchun Member.service.ts bo'limi:
 	public async userSignup(input: MemberInput): Promise<Member> {
-    const salt = await bcrypt.genSalt();
-    input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+		const salt = await bcrypt.genSalt();
+		input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
 
 		try {
 			const result = await this.memberModel.create(input);
 			result.memberPassword = "";
-			return result.toJSON()
-    } catch (err: any) {
-      console.log("(Member.service.ts) error on signup:", err.message)
+			return result.toJSON();
+		} catch (err: any) {
+			console.log("(Member.service.ts) error on signup:", err.message);
 			throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
 		}
-  }
-  
-  public async userLogin(input: LoginInput): Promise<Member> {
-    // TODO: consider member status later
+	}
+
+	public async userLogin(input: LoginInput): Promise<Member> {
+		// TODO: consider member status later
 		const member = await this.memberModel
 			.findOne(
 				{
@@ -52,7 +52,7 @@ class MemberService {
 		}
 
 		// return await this.memberModel.findById(member._id).exec();
-    // .lean() methodi orqalik biz datebase'dan olgan ma'lumotimizni o'zgartirish imkoniga ega bo'lamiz
+		// .lean() methodi orqalik biz datebase'dan olgan ma'lumotimizni o'zgartirish imkoniga ega bo'lamiz
 		return await this.memberModel.findById(member._id).lean().exec();
 	}
 
