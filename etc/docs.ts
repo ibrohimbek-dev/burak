@@ -569,16 +569,21 @@
 // amalga oshirilida va ular router'lar orqalik controller'imizga keyin model service & model schema orqalik database'ga,
 // keyin database'dan keraklik ma'lumotni olib Model => Controller => View tartibida ishlab Client'ga ma'lumot uzatildi
 
-// Bundan keyingi darslarimizda endi Product'ga dahldor bo'lgan mantig'larni develop qilamiz
+// Bundan keyingi darslarimizda endi Product'ga dahldor bo'lgan mantiq'larni develop qilamiz
 
 // ------------------------------------------------------------------------------------------
 
+// middleware uchun next qo'yilishi shart
+// next() middleware uchun ishlatiladi. read docs
+
+// Agar remote'ga loyihangizni push qilmagan bo'lsangiz git'ning --amend commandasidan foydalanishingiz mumkin
+// --amend bu sizni yakuniy git commitingizni ustiga yangi comment yozib beradi ya'ni --amend orqalik so'nggi commentni update qila olamiz
 
 
 
 
 
-
+// Shu qismiga keldim
 
 
 

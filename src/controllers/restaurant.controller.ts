@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
@@ -49,8 +49,6 @@ restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 
 		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
 
-
-
 		req.session.member = result;
 		req.session.save(() => {
 			res.send(result);
@@ -75,7 +73,7 @@ restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 
 		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
 
-    console.log("member:", result)
+		console.log("member:", result);
 
 		req.session.member = result;
 		req.session.save(() => {
@@ -93,7 +91,7 @@ restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 
 restaurantController.adminLogout = async (req: AdminRequest, res: Response) => {
 	try {
-		console.log("req.body: ", req.body);
+		console.log("adminLogout req.body: ", req.body);
 		req.session.destroy(() => {
 			res.redirect("/admin");
 			// res.send("cookie session is destroyed successfuly!")
@@ -121,6 +119,23 @@ restaurantController.checkAdminAuthSession = async (
 	} catch (err: any) {
 		console.log("Error on processLogin:", err.message);
 		res.send(err);
+	}
+};
+
+// verification restaurant controller method:
+restaurantController.verifyAdmin = (
+	req: AdminRequest,
+	res: Response,
+	next: NextFunction
+) => {
+	if (req.session?.member?.memberType === MemberType.RESTAURANT) {
+    req.member = req.session.member;
+		next();
+	} else {
+		const message = Message.NOT_AUTHENTICATED;
+		res.send(
+			`<script>alert('${message}'); window.location.replace('/admin/login')</script>`
+		);
 	}
 };
 

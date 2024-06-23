@@ -7,7 +7,7 @@ import { MORGAN_FORMAT } from "./libs/config";
 
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
-
+import { T } from "./libs/types/common";
 
 const MongoDBStore = ConnectMongoDB(session);
 
@@ -15,8 +15,6 @@ const store = new MongoDBStore({
 	uri: String(process.env.MONGO_URL),
 	collection: "sessions",
 });
-
-console.log(typeof process.env.MONGO_URL);
 
 // Express Has Four Main Structures:
 // 1) ENTERANCE
@@ -41,6 +39,12 @@ app.use(
 		saveUninitialized: true,
 	})
 );
+
+app.use((req, res, next) => {
+	const sessionInstance = req.session as T;
+	res.locals.member = sessionInstance.member;
+	next();
+});
 
 // 3) VIEWS
 app.set("view engine", "ejs");
