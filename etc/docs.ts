@@ -576,24 +576,24 @@
 // middleware uchun next qo'yilishi shart
 // next() middleware uchun ishlatiladi. read docs
 
+// TODO: read about next() on documentation
+
 // Agar remote'ga loyihangizni push qilmagan bo'lsangiz git'ning --amend commandasidan foydalanishingiz mumkin
 // --amend bu sizni yakuniy git commitingizni ustiga yangi comment yozib beradi ya'ni --amend orqalik so'nggi commentni update qila olamiz
 
+// -------------------------------------------------------------------------------------
 
+// Darsimizning keyingi qismi bu endi loyihamizga rasmlar yuklash ya'ni createNewProduct mantiqi ustida ishlash
 
+// TODO: read about multer package on documentation
 
+// path bu core package uni install qilish shart emas
+// uuidv4 orqalik random id'lar hosil qilamiz
 
-// Shu qismiga keldim
+// TODO: read about uuid v3. v3. v4 etc. on documentation
 
-
-
-
-
-
-
-
-
-
+// uploadProductImage.single() => bir vaqtni o'zida bitta faylni upload qiladi
+// uploadProductImage.array() => bir vaqtni o'zida bir necha fayllarni upload qiladi
 
 
 
