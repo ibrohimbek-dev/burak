@@ -596,7 +596,59 @@
 // uploadProductImage.array() => bir vaqtni o'zida bir necha fayllarni upload qiladi
 
 
-
-
 // 47th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
+
+
+// ==========================================================================================
+
+// 2024-06-23
+// 48th Leson
+// Develop Product Schema Model
+
+
+// Darsimiz rejasi:
+// 1) Product enum value'larini belgilaymiz
+// 2) Product Schema Modeli konfiguratsiyasini amalga oshiramiz
+
+// ------------------------------------------------------
+
+// Validation turlari ( 4 xil bo'ladi)
+
+// Frontend va Backend oralig'ida amalga oshiriladigan Pipe Validation ham mavjud
+// Lekin biz Burak loyihamizda 3 xil Validation'dan foydalanamiz:
+
+// 1) Frontend Validation
+// 2) Backend Validation
+// 3) Database Validation
+
+// --------------------------------------------------
+
+// Biz Schema orqalik Database Validation'ni xosil qilmoqdamiz
+// Agar kiritilgan ma'lumot database'ga noto'g'ri yuborilgan bo'lsa
+// bizning schema'larimiz bizni himoyalaydi. Ya'ni noto'g'ri ma'lumotni kiritilmasligini ta'minlaydi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 48th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
