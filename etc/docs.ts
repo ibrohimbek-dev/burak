@@ -624,3 +624,35 @@
 
 // 48th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
+
+
+// ==========================================================================================
+
+// 2024-06-25
+// 49th Leson
+// Product Service Model - createNewProduct & updateChosenProduct
+
+// Darsimiz rejasi:
+// 1) Restaurant Controllerlarning signup va login proccesslarini modify qilamiz
+// 2) Product Service Model - createNewProduct biznes mantiqini tashkil qilamiz
+// 3) Product Service Model - updateChosenProduct mantiqini develop qilamiz
+
+// ----------------------------------------------------------
+
+// Yodingizda tuting biz fayllarni faqatgina server'ni o'zida saqlaymiz, saqlangan fayllarni manziliniga url sifatida database (mongodb)ga saqlaymiz
+
+// singup jarayonida biz serverga suratlarni multer package'i orqalik yuklamoqdamiz
+// Yuklangan suratlarni biz aynan signup method tarkibida req.file qilish orqalik olishimiz mumkin.
+
+
+
+
+
+
+
+
+
+
+
+// 49th - dars shu yerda yakunlandi
+// 수고 하셨습니다!

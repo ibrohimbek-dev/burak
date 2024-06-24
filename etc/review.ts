@@ -1,8 +1,10 @@
-const reverseSentence = (str: string): string => {
-	const arr = str.split(" ");
 
-	return arr.filter((ele) => ele.split("").reverse().join("")).join(" ");
-};
+// MASALAN: reverseSentence("we like coding!") return "ew ekil !gnidoc";
 
-const result = reverseSentence("we like coding");
-console.log(result);
+function reverseSentence(str: string) {
+	let words = str.split(" ");
+	let reversedWords = words.map((word) => word.split("").reverse().join(""));
+	return reversedWords.join(" ");
+}
+
+console.log(reverseSentence("we like coding!"));
