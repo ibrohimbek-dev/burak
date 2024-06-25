@@ -687,3 +687,14 @@
 
 // ----------------------------------------------------------------
 
+// Quyidagi middleware orqalik biz global variable hosil qilmoqdamiz (context)
+// app.use((req, res, next) => {
+// 	const sessionInstance = req.session as T;
+// 	res.locals.member = sessionInstance.member;
+// 	next();
+// });
+
+
+// 50th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
+
