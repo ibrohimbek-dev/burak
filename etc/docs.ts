@@ -629,7 +629,7 @@
 // ==========================================================================================
 
 // 2024-06-25
-// 49th Leson
+// 49th Lesson
 // Product Service Model - createNewProduct & updateChosenProduct
 
 // Darsimiz rejasi:
@@ -671,13 +671,19 @@
 // new; true qo'yilasa, default false bo'ladi
 
 
-
-
-
-
-
-
-
-
 // 49th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
+
+
+// ==========================================================================================
+
+// 2024-06-25
+// 50th Lesson
+// Product - Service Model - getAllProducts
+
+// Darsimiz rejasi:
+// 1) Product Service Model - getAllProducts mantiqini develop qilamiz
+// 2) Product Controllerlarimizdan EJS'larga ma'lumot yuborishni o'rganamiz
+
+// ----------------------------------------------------------------
+

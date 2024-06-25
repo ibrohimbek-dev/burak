@@ -2,7 +2,11 @@
 <body>
 	<div class="format-1">
 		<div>PRODUCT PAGE</div>
-		<div>I <%=member.memberNick%></div>
+		<div>I am <%=member.memberNick%></div>
+
+    <%productData.map((product, index) => { %>
+      <p><%= product.productName%> - <%= product.productSize %></p>
+    <%})%>
 	</div>
 </body>
 <%- include("includes/footer.ejs")%>
