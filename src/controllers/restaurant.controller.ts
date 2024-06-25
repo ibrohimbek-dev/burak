@@ -155,8 +155,8 @@ restaurantController.getUsers = async (req: Request, res: Response) => {
 	try {
 		console.log("(restaurant.controller.ts) getUsers");
 
-    const result = await memberService.getUsers();
-    console.log("result:", result)
+		const result = await memberService.getUsers();
+		console.log("result:", result);
 		res.render("users", { usersData: result });
 	} catch (err) {
 		console.log("(restaurant.controller.ts) error on updateChosenUser", err);
@@ -164,12 +164,17 @@ restaurantController.getUsers = async (req: Request, res: Response) => {
 	}
 };
 
-restaurantController.updateChosenUser = (req: Request, res: Response) => {
+restaurantController.updateChosenUser = async (req: Request, res: Response) => {
 	try {
 		console.log("(restaurant.controller.ts) updateChosenUser");
+
+		const result = await memberService.updateChosenUser(req.body);
+
+		res.status(HttpCode.OK).json({ userData: result });
 	} catch (err) {
 		console.log("(restaurant.controller.ts) error on updateChosenUser", err);
-		res.render("/admin/login");
+		if (err instanceof Errors) res.status(err.code).json(err);
+		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
 
