@@ -17,8 +17,8 @@ routerAdmin
 	);
 
 routerAdmin
-	.get("/login", restaurantController.getAdminLogin)
-	.post("/login", restaurantController.adminLogin);
+	.post("/login", restaurantController.adminLogin)
+	.get("/login", restaurantController.getAdminLogin);
 
 routerAdmin.get("/check-me", restaurantController.checkAdminAuthSession);
 routerAdmin.get("/logout", restaurantController.adminLogout);
@@ -37,7 +37,7 @@ routerAdmin.post(
 	productController.createNewProduct
 );
 routerAdmin.post(
-	"/product/update/:productId",
+	"/product/:id",
 	restaurantController.verifyAdmin,
 	productController.updateChosenProduct
 );

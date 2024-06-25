@@ -64,7 +64,7 @@ productController.createNewProduct = async (
 
 productController.updateChosenProduct = async (req: Request, res: Response) => {
 	try {
-		const productId = req.params.productId;
+		const productId = req.params.id;
 		console.log(
 			"(product.controller.ts) updateChosenProduct productId:",
 			productId
