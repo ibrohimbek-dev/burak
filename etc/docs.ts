@@ -655,6 +655,23 @@
 // req.file => a single file (.single())
 
 
+// -----------------------------------------------------------
+// new: true
+
+// Agar new: true qilib ketsak bizga yangi o'zgargan ma'lutmoni namoyon qiladi
+// Aksincha new: true'ni qo'ymasak yoki false qilib qo'ysak, bizga o'zgarguncha ya'ni
+// o'zgarishdan oldingi eski ma'lumotni namoyon qiladi. new: false'da update bo'lgan ma'lumotni ko'rish uchun
+// ikki marotaba request yuborishimiz kerak bo'ladi
+
+// const result = await this.productModel
+// 	.findOneAndUpdate({ _id: productId }, input, { new: true })
+// 	.exec();
+
+
+// new; true qo'yilasa, default false bo'ladi
+
+
+
 
 
 
