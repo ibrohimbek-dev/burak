@@ -10,7 +10,11 @@ routerAdmin.get("/", restaurantController.getAdminHome);
 
 routerAdmin
 	.get("/signup", restaurantController.getAdminSignup)
-	.post("/signup", makeUploader("members").single("memberImage"), restaurantController.adminSignup);
+	.post(
+		"/signup",
+		makeUploader("members").single("memberImage"),
+		restaurantController.adminSignup
+	);
 
 routerAdmin
 	.get("/login", restaurantController.getAdminLogin)

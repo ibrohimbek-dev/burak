@@ -644,7 +644,15 @@
 // singup jarayonida biz serverga suratlarni multer package'i orqalik yuklamoqdamiz
 // Yuklangan suratlarni biz aynan signup method tarkibida req.file qilish orqalik olishimiz mumkin.
 
+// ------------------------------------------------------------
 
+// Agar biz bir vaqtni o'zida bir necha suratlarni yuklasak (array) multer bizga
+// 'files' sifatida ma'lumotlarni ta'minlab beradi
+// req.files => multiple files (.array())
+
+// Aksincha yagona suratni yuklasak (single) multer bizga
+// 'file' sifatida ma'lumotlarni ta'minlab beradi
+// req.file => a single file (.single())
 
 
 

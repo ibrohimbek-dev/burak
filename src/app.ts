@@ -40,8 +40,7 @@ app.use(
 	})
 );
 
-app.use((req, res, next) => {
-	console.log("req app.ts:", req.session);
+app.use((req, res, next) => {	
 	const sessionInstance = req.session as T;
 	res.locals.member = sessionInstance.member;
 	next();

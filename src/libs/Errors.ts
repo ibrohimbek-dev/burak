@@ -20,7 +20,8 @@ export enum Message {
 	INCORRECT_PASSWORD = "Wrong password, please try again! ",
 	USER_EXIST = "User already exist, please sign in instead",
   NOT_AUTHENTICATED = "You are not authenticated. Please sign up first!",
-  FAILED_UPLOADING_IMAGE = "Please upload a image to singup!"
+  FAILED_UPLOADING_IMAGE = "Please upload a image to continue!",
+  PRODUCT_CREATION_FAILED = "Failed to create a product!"
 }
 
 class Errors extends Error {
