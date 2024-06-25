@@ -58,8 +58,8 @@ restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 
 		req.session.member = result;
 		req.session.save(() => {
-      // res.send(result);
-      res.redirect("/admin/product/all")
+			// res.send(result);
+			res.redirect("/admin/product/all");
 		});
 	} catch (err: any) {
 		const message =
@@ -85,8 +85,8 @@ restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 
 		req.session.member = result;
 		req.session.save(() => {
-      // res.send(result);
-      res.redirect("/admin/product/all");
+			// res.send(result);
+			res.redirect("/admin/product/all");
 		});
 	} catch (err: any) {
 		console.log("Error on adminLogin:", err.message);
@@ -131,6 +131,7 @@ restaurantController.checkAdminAuthSession = async (
 	}
 };
 
+// =================================================================
 // verification restaurant controller method:
 restaurantController.verifyAdmin = (
 	req: AdminRequest,
@@ -145,6 +146,30 @@ restaurantController.verifyAdmin = (
 		res.send(
 			`<script>alert('${message}'); window.location.replace('/admin/login')</script>`
 		);
+	}
+};
+
+// ========================================
+// Working on users
+restaurantController.getUsers = async (req: Request, res: Response) => {
+	try {
+		console.log("(restaurant.controller.ts) getUsers");
+
+    const result = await memberService.getUsers();
+    console.log("result:", result)
+		res.render("users", { usersData: result });
+	} catch (err) {
+		console.log("(restaurant.controller.ts) error on updateChosenUser", err);
+		res.render("/admin/login");
+	}
+};
+
+restaurantController.updateChosenUser = (req: Request, res: Response) => {
+	try {
+		console.log("(restaurant.controller.ts) updateChosenUser");
+	} catch (err) {
+		console.log("(restaurant.controller.ts) error on updateChosenUser", err);
+		res.render("/admin/login");
 	}
 };
 

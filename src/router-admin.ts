@@ -4,7 +4,8 @@ import restaurantController from "./controllers/restaurant.controller";
 import productController from "./controllers/product.controller";
 import makeUploader from "./libs/utils/uploader";
 
-// Restaurant
+// ===========================================================
+// Restaurant & Admin
 // api
 routerAdmin.get("/", restaurantController.getAdminHome);
 
@@ -23,6 +24,7 @@ routerAdmin
 routerAdmin.get("/check-me", restaurantController.checkAdminAuthSession);
 routerAdmin.get("/logout", restaurantController.adminLogout);
 
+// ===========================================================
 // Product
 routerAdmin.get(
 	"/product/all",
@@ -36,12 +38,19 @@ routerAdmin.post(
 	makeUploader("products").array("productImages", 5),
 	productController.createNewProduct
 );
+
 routerAdmin.post(
 	"/product/:id",
 	restaurantController.verifyAdmin,
 	productController.updateChosenProduct
 );
 
+// ===========================================================
 // User Members
+routerAdmin.get(
+	"/user/all",
+	restaurantController.verifyAdmin,
+	restaurantController.getUsers
+);
 
 export default routerAdmin;

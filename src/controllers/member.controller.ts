@@ -16,28 +16,22 @@ memberController.userSignup = async (req: Request, res: Response) => {
 
 		const result: Member = await memberService.userSignup(input);
 
-		// TODO: Loyihamizning mana shu qismida Token Authentication integration qilamiz
-
-		console.log("(member.controller.ts) signup result:", result);
+		// TODO: Loyihamizning mana shu qismida Token Authentication integration qilamiz		
 
 		res.json({ member: result });
 	} catch (err: any) {
-		console.log("(member.controller.ts) Error on signup: ", err.message);
-
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard.message);
 	}
 };
 
 memberController.userLogin = async (req: Request, res: Response) => {
-	try {
-		console.log("(member.controller.ts) req.body:", req.body);
+	try {		
 		const input: LoginInput = req.body;
 
 		const result = await memberService.userLogin(input);
 		// TODO: Loyihamizning mana shu qismida Token Authentication integration qilamiz
-
-		console.log("(member.controller.ts) result login:", result);
+		
 		res.json({ member: result });
 	} catch (err: any) {
 		console.log("Error on login", err.message);

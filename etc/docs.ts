@@ -698,3 +698,29 @@
 // 50th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
 
+// ==========================================================================================
+
+// 2024-06-26
+// 51th Lesson
+// User Service Model - getUsers & updateChosenUser
+
+// Darsimiz rejasi:
+// 1) getUsers API'ni develop qilamiz
+// 2) updateChosenUser API'i develop qilamiz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 51th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
