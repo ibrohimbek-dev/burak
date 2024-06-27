@@ -1,64 +1,50 @@
-// 2024-06-25
+// 2024-06-27
 // MIT 14
-// TASK M:
+// TASK N:
 
-// Shunday function tuzing, u raqamlardan tashkil topgan array qabul qilsin
-// va array ichidagi har bir raqam uchun raqamning o'zi va hamda o'sha raqamni kvadratidan
-// tashkil topgan object hosil qilib, hosil bo'lgan objectlarni array ichida qaytarsin
+// Parametr sifatida yagona string qabul qiladigan function tuzing.
+// Va bu function parametrni palindrom so'z yoki palindrom so'z emasligini aniqlab (boolean)
+// 'true' yokida 'false' qaytarsin.
 
-// MASALAN: MASALAN: getSquareNumbers([1, 2, 3]) return [{number: 1, square: 1}, { number: 2, square: 4 }, { number: 3, square: 9 }];
+// MASALAN: palindromCheck("dad") return true; palindromCheck("son") return false;
+// Birinchi misolda 'dad' so'zini ikkala tarafdan o'qilganda ham bir xil ma'noni beradi (true)
+// Ikkinchi misolda 'son' so'zini ikkala tarafdan o'qilganda bir xil ma'noni bermaydi (false)
 
-// Shu qismiga keldim
+// *Palindrom so'z deb o'ngdan chapga ham ~ chapdan o'ngga ham o'qilganda
+// bir xil ma'noni beradigan so'zga aytiladi
 
 // =========================================================================
 // Assets:
-const numbers: number[] = [1, 2, 3];
+const word: string = "dad";
 
 // Solutions:
-// ======================================================================
-console.log("METHOD ONE ---------------------------------");
-
-const getSquareNumbers_1 = (numbers: number[]) => {
-	const result: object[] = [];
-
-	numbers.map((num) => {
-		result.push({ number: num, square: num * num });
-	});
-
-	return result;
+console.log("METHOD ONE-----------------------------");
+const checkPalindrom_1 = (input: string) => {
+	return input.split("").reverse().join("") === input;
 };
 
-const result_1 = getSquareNumbers_1(numbers);
-
+const result_1 = checkPalindrom_1(word);
 console.log("(method one) result:", result_1);
 
-// ======================================================================
-console.log("METHOD TWO ---------------------------------");
+// --------------------------------------------------------------
+console.log("METHOD TWO-----------------------------");
+const checkPalindrom_2 = (input: string) => {
+	let reversed: string = "";
+	for (let i = input.length - 1; i >= 0; i--) {
+		reversed += input[i];
+	}
 
-const getSquareNumbers_2 = (numbers: number[]) => {
-	return numbers.map((num) => {
-		return { number: num, square: num * num };
-	});
+	return reversed === input;
 };
 
-const result_2 = getSquareNumbers_2(numbers);
-
+const result_2 = checkPalindrom_2(word);
 console.log("(method two) result:", result_2);
 
-// ======================================================================
-console.log("METHOD THREE ---------------------------------");
-
-const getSquareNumbers_3 = (numbers: number[]) => {
-	return numbers.reduce(
-		(arr: { number: number; square: number }[], num: number) => {
-			arr.push({ number: num, square: num * num });
-
-			return arr;
-		},
-		[]
-	);
+// --------------------------------------------------------------
+console.log("METHOD THREE-----------------------------");
+const checkPalindrom_3 = (input: string) => {
+	return [...input].reverse().join("") === input;
 };
 
-const result_3 = getSquareNumbers_3(numbers);
-
+const result_3 = checkPalindrom_3(word);
 console.log("(method three) result:", result_3);
