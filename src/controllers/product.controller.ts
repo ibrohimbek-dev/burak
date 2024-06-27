@@ -48,7 +48,7 @@ productController.createNewProduct = async (
 		await productService.createNewProduct(data);
 
 		res.send(
-			`<script>alert('${"successfully product created"}'); window.location.replace("admin/product/all")</script>`
+			`<script>alert('${"successfully product created"}'); window.location.replace("/admin/product/all")</script>`
 		);
 	} catch (err) {
 		console.log("(product.controller.ts) error on createNewProduct");
@@ -57,7 +57,7 @@ productController.createNewProduct = async (
 			err instanceof Errors ? err.message : Message.PRODUCT_CREATION_FAILED;
 
 		res.send(
-			`<script>alert('${message}'); window.location.replace("admin/product/all")</script>`
+			`<script>alert('${message}'); window.location.replace("/admin/product/all")</script>`
 		);
 	}
 };
