@@ -3,7 +3,7 @@ import Errors, { HttpCode, Message } from "../libs/Errors";
 import {
 	Product,
 	ProductInput,
-	ProductInputUpdateInput,
+	ProductUpdateInput,
 } from "../libs/types/product";
 import ProductModel from "../schema/Product.model";
 
@@ -36,7 +36,7 @@ class ProductService {
 
 	public async updateChosenProduct(
 		productId: string,
-		input: ProductInputUpdateInput
+		input: ProductUpdateInput
 	): Promise<Product> {
 		// string => ObjectId
 		productId = shapeIntoMongooseObjectId(productId);
@@ -54,5 +54,3 @@ class ProductService {
 }
 
 export default ProductService;
-
-// Keyingi mantiqlarimizni shu yerdan davom ettiramiz

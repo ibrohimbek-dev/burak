@@ -42,7 +42,9 @@ restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 	try {
 		console.log("adminSignup!");
 
-		const file = req.file;
+    const file = req.file;
+    
+    console.log("req.file: ", file)
 
 		if (!file)
 			throw new Errors(HttpCode.BAD_REQUEST, Message.FAILED_UPLOADING_IMAGE);

@@ -708,19 +708,20 @@
 // 1) getUsers API'ni develop qilamiz
 // 2) updateChosenUser API'i develop qilamiz
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 51th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
+
+
+// ==========================================================================================
+
+// 2024-06-27
+// 52th Lesson
+// EJS - Admin Frontend Publishing
+
+// Darsimiz rejasi:
+// 1) Adminka frontendimizning CSS, JavaScript hamda image fayllarini yuklaymiz
+// 2) Adminka loyihamizni EJS fayllarini yuklaymiz
+// 3) Frontendda ishlatiladigan turli xil animation package'larni siz bilan birga o'rganamiz
+
+// ------------------------------------------------------
+
