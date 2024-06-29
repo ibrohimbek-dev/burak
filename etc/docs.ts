@@ -725,3 +725,100 @@
 
 // ------------------------------------------------------
 
+// 52th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
+
+
+// ==========================================================================================
+
+// 2024-06-29
+// 53th Lesson
+// EJS - Admin Login jarayoni tahlili
+
+// Darsimiz rejasi:
+// 1) Request turlari va Traditional API request
+// 2) Admin login jarayonini tahlil qilamiz
+// 3) Admin logout jarayonini birga tahlil qilamiz
+
+// ------------------------------------------------------
+
+// 53th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
+
+// ==========================================================================================
+
+// 2024-06-29
+// 54th Lesson
+// EJS - Frontend signup jarayoni develop qilamiz
+
+// Darsimiz rejasi:
+// 1) jQuery'ni o'rganamiz
+// 2) Validationlar va frontend validation xaqida mushohada qilamiz
+// 3) Image preloading jarayonini tashkillashtiramiz
+// 4) Adminka signup jarayonini yakunlaymiz
+
+// ------------------------------------------------------
+
+// jQuery vbu JavaScriptning kutubxonasi xisoblanadi
+
+// Quyidagi jQuery'ning .ready() metodi bizga
+// bizning web page'imiz to'liq yuklmanmagunga qadar biror bir operatsiyani amalga
+// oshishidan checklab turadi. Ya'ni qachonki web page to'liq yuklanib bo'lganidan so'ng
+// barcha biz yozgan mantiqlar ishga tushadi. Bu asosan internet tezligi past bo'lgan
+// joylarda anchagina qo'l keladi. Va bu bizga biror xatolikni sodir bo'lishini oldini olib beradi:
+
+// $(document).ready(function ({
+//   jQuery methods go here
+// }));
+
+// Yuqoridagi kodni qisqagina varianti:
+// $(function () {
+  // jQuery methods go here
+// });
+
+// ---------------------------------------------
+// jQuery o'zi bizga nega kerak?
+// jQuery bu JavaScriptning kutubxonasi bo'lib uni ishlatish bilan biz
+// JS'ning anchagina qiyin bo'lgan kodlarini o'zimizga osonlashtirib olishimiz mumkin.
+// Masalan, JS'da bir necha qator yozgan kodlarimizni jQuery'da juda ham kam kodlar bilan amalga oshirishimiz mumkin.
+
+// For more about jQuery: https://www.w3schools.com/jquery/default.asp
+
+// jQuery orqalik elementlarga murojat qilish usullari:
+// class uchun nuqta (.button) bilan connect qilinadi
+// id uchun panjara (#button) bilan connect qilinadi
+// element uchun element nomi (button) bilan connect qilinadi
+
+// HTML tarkibida biz internal sifatida ham jQuery kodlarimizni yozishimiz mumkin:
+// <script>
+//   $(function () {
+//     // jQuery goes on here...
+//   })
+// </script>
+
+// ---------------------------------------------------
+// Validations:
+// Bizda Burak loyihamizda 3 xil validations ishlatamiz:
+// 1) Frontend validation
+// 2) Backend validation
+// 3) Database validation
+
+// Nega biz bu 3 ta validation'dan foydalanishimiz kerak?
+// Bizga Backend validation yoki Database uchun Schema validationni o'zi yetarlik emasmidi?
+
+// Yo'q bu ikkata backend & database validationni o'zi yetarli emas, chunki nega biz
+// frontendda validation qo'llamay noto'g'ri kiritilgan ma'lumotni backendga yuborishimiz kerak?
+// Bu bizning mantiqlarga to'g'ri kelmaydi. Masalan frontendda biz to'ldirilmagan inputlarni ham
+// backendga yuboradigan bo'lsak, bu mantiqga to'g'ri kelmaydi.
+
+// ----------------------------------------------------
+
+
+
+
+
+
+// 54th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
+
+

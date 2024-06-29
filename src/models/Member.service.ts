@@ -117,19 +117,20 @@ class MemberService {
 	public async getUsers(): Promise<Member[]> {
 		const result = await this.memberModel
 			.find({ memberType: MemberType.USER })
-			.exec();
-
-		if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+      .exec();
+    
+		if (!result.length) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
 		return result;
 	}
 
 	public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
-		const memberId = shapeIntoMongooseObjectId(input._id);
+		const memberId =  (input._id);
 		const result = await this.memberModel
 			.findByIdAndUpdate({ _id: memberId }, input, { new: true })
 			.exec();
 
+    console.log("result: MEM", result)
 		if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
 		return result;

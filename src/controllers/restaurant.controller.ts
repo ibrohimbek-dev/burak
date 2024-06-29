@@ -40,11 +40,9 @@ restaurantController.getAdminLogin = (req: Request, res: Response) => {
 
 restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 	try {
-		console.log("adminSignup!");
+		console.log("adminSignup!", req.body);
 
     const file = req.file;
-    
-    console.log("req.file: ", file)
 
 		if (!file)
 			throw new Errors(HttpCode.BAD_REQUEST, Message.FAILED_UPLOADING_IMAGE);
@@ -93,10 +91,14 @@ restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 	} catch (err: any) {
 		console.log("Error on adminLogin:", err.message);
 		const message =
-			err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+      err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+    
+    
 		res.send(
 			`<script>alert('${message}'); window.location.replace("/admin/login")</script>`
-		);
+    );
+    
+
 	}
 };
 

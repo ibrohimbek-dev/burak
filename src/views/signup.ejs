@@ -4,7 +4,7 @@
 
 <body>
   <div class="signup-container">
-    <form action="/admin/signup" method="POST" enctype="multipart/form-data">
+    <form action="/admin/signup" onsubmit="return validateSignupForm()" method="POST" enctype="multipart/form-data">
       <div class="signup-frame" style="width: 650px">
         <div class="signup-top">
           <span>Signup</span>
@@ -102,6 +102,27 @@
     </form>
   </div>
 
+
+  <!-- INTERNAL SCRIPTS -->
+  <!-- EXAMPLES OF JQUERY -->
+   <!-- <script>
+    $(function () {
+      $(".member-nick").click(function () {
+        // alert("jQuery is working an it's clicked!");
+
+        // Get a value of an input using .val() method of jQuery:
+        // alert($(".member-phone").val());
+
+        // Hide an element using .hide() method of jQuery:
+        // $(".member-phone").hide();
+
+        // Toggle an element using .toggle() method of jQuery:
+        $(".member-phone").toggle()
+      })
+    })
+   </script> -->
+
+   <!-- EXTERNAL JS SCRIPTS -->
   <script type="text/javascript" src="/js/signup.js"></script>
 </body>
 
