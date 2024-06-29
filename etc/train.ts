@@ -1,50 +1,47 @@
-// 2024-06-27
+// 2024-06-30
 // MIT 14
-// TASK N:
+// TASK O:
 
-// Parametr sifatida yagona string qabul qiladigan function tuzing.
-// Va bu function parametrni palindrom so'z yoki palindrom so'z emasligini aniqlab (boolean)
-// 'true' yokida 'false' qaytarsin.
+// Shunday function yozing va u har xil qiymatlardan iborat array qabul qilsin.
+// Va array ichidagi sonlar yig'indisini hisoblab chiqgan javobni qaytarsin
 
-// MASALAN: palindromCheck("dad") return true; palindromCheck("son") return false;
-// Birinchi misolda 'dad' so'zini ikkala tarafdan o'qilganda ham bir xil ma'noni beradi (true)
-// Ikkinchi misolda 'son' so'zini ikkala tarafdan o'qilganda bir xil ma'noni bermaydi (false)
+// MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]); return 45
+// Yuqoridagi misolda array tarkibida faqatgina ikkita yagona son mavjud bular 10 hamda 35
+// Qolganlari nested bo'lib yoki type'lari number emas.
 
-// *Palindrom so'z deb o'ngdan chapga ham ~ chapdan o'ngga ham o'qilganda
-// bir xil ma'noni beradigan so'zga aytiladi
-
-// =========================================================================
+// ====================================================================
 // Assets:
-const word: string = "dad";
+const arrayValues: any = [10, "10", { son: 10 }, true, 35];
 
 // Solutions:
-console.log("METHOD ONE-----------------------------");
-const checkPalindrom_1 = (input: string) => {
-	return input.split("").reverse().join("") === input;
+console.log("METHOD ONE-----------------------------------------");
+const calculateSumOfNumbers_1 = (numbers: number[]): number => {
+	return numbers.reduce((sum, val) => {
+		if (typeof val === "number") {
+			return sum + val;
+		}
+
+		return sum;
+	}, 0);
 };
 
-const result_1 = checkPalindrom_1(word);
+const result_1 = calculateSumOfNumbers_1(arrayValues);
 console.log("(method one) result:", result_1);
 
-// --------------------------------------------------------------
-console.log("METHOD TWO-----------------------------");
-const checkPalindrom_2 = (input: string) => {
-	let reversed: string = "";
-	for (let i = input.length - 1; i >= 0; i--) {
-		reversed += input[i];
-	}
-
-	return reversed === input;
+console.log("METHOD TWO-----------------------------------------");
+const calculateSumOfNumbers_2 = (numbers: number[]):number => {
+	return numbers
+		.filter((num) => typeof num === "number")
+		.reduce((sum, val) => sum + val, 0);
 };
 
-const result_2 = checkPalindrom_2(word);
+const result_2 = calculateSumOfNumbers_2(arrayValues);
 console.log("(method two) result:", result_2);
 
-// --------------------------------------------------------------
-console.log("METHOD THREE-----------------------------");
-const checkPalindrom_3 = (input: string) => {
-	return [...input].reverse().join("") === input;
+console.log("METHOD THREE-----------------------------------------");
+const calculateSumOfNumbers_3 = (numbers: number[]) => {
+	
 };
 
-const result_3 = checkPalindrom_3(word);
-console.log("(method three) result:", result_3);
+const result_3 = calculateSumOfNumbers_3(arrayValues);
+console.log("(method two) result:", result_3);
