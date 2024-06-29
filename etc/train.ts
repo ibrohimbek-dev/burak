@@ -20,7 +20,6 @@ const calculateSumOfNumbers_1 = (numbers: number[]): number => {
 		if (typeof val === "number") {
 			return sum + val;
 		}
-
 		return sum;
 	}, 0);
 };
@@ -29,7 +28,7 @@ const result_1 = calculateSumOfNumbers_1(arrayValues);
 console.log("(method one) result:", result_1);
 
 console.log("METHOD TWO-----------------------------------------");
-const calculateSumOfNumbers_2 = (numbers: number[]):number => {
+const calculateSumOfNumbers_2 = (numbers: number[]): number => {
 	return numbers
 		.filter((num) => typeof num === "number")
 		.reduce((sum, val) => sum + val, 0);
@@ -39,9 +38,23 @@ const result_2 = calculateSumOfNumbers_2(arrayValues);
 console.log("(method two) result:", result_2);
 
 console.log("METHOD THREE-----------------------------------------");
-const calculateSumOfNumbers_3 = (numbers: number[]) => {
-	
+const calculateSumOfNumbers_3 = (numbers: number[]): number => {
+	let sum: number = 0;
+	numbers.forEach((num) =>
+		typeof num === "number" ? (sum += num) : "No number type is found"
+	);
+	return sum;
 };
 
 const result_3 = calculateSumOfNumbers_3(arrayValues);
-console.log("(method two) result:", result_3);
+console.log("(method three) result:", result_3);
+
+console.log("METHOD FOUR-----------------------------------------");
+const calculateSumOfNumbers_4 = (numbers: number[]): number => {
+	return numbers.reduce(
+		(sum, number) => sum + (typeof number === "number" ? number : 0)
+	);
+};
+
+const result_4 = calculateSumOfNumbers_4(arrayValues);
+console.log("(method four) result:", result_4);
