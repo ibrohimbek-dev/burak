@@ -1,60 +1,71 @@
-// 2024-06-30
+// 2024-07-02
 // MIT 14
-// TASK O:
+// TASK P:
 
-// Shunday function yozing va u har xil qiymatlardan iborat array qabul qilsin.
-// Va array ichidagi sonlar yig'indisini hisoblab chiqgan javobni qaytarsin
+// Parametr sifatida yagona object qabul qiladigan function yozing.
+// Qabul qilingan objectni nested array sifatida convert qilib qaytarsin
 
-// MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]); return 45
-// Yuqoridagi misolda array tarkibida faqatgina ikkita yagona son mavjud bular 10 hamda 35
-// Qolganlari nested bo'lib yoki type'lari number emas.
+// MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
 
 // ====================================================================
 // Assets:
-const arrayValues: any = [10, "10", { son: 10 }, true, 35];
+// const object: object = { a: 10, b: 20 };
+const myObject: Record<string, number> = { a: 10, b: 20 };
 
 // Solutions:
-console.log("METHOD ONE-----------------------------------------");
-const calculateSumOfNumbers_1 = (numbers: number[]): number => {
-	return numbers.reduce((sum, val) => {
-		if (typeof val === "number") {
-			return sum + val;
-		}
-		return sum;
-	}, 0);
+console.log("METHOD ONE -----------------------------------");
+const objectToArray_1 = (object: Record<string, number>) => {
+	return Object.entries(object);
 };
 
-const result_1 = calculateSumOfNumbers_1(arrayValues);
+const result_1 = objectToArray_1(myObject);
 console.log("(method one) result:", result_1);
 
-console.log("METHOD TWO-----------------------------------------");
-const calculateSumOfNumbers_2 = (numbers: number[]): number => {
-	return numbers
-		.filter((num) => typeof num === "number")
-		.reduce((sum, val) => sum + val, 0);
+// ---------------------------------------------------------
+console.log("METHOD TWO -----------------------------------");
+const objectToArray_2 = (object: Record<string, number>) => {
+	const result: [string, number][] = [];
+
+	for (const key in object) {
+		result.push([key, object[key]]);
+	}
+	return result;
 };
 
-const result_2 = calculateSumOfNumbers_2(arrayValues);
+const result_2 = objectToArray_2(myObject);
 console.log("(method two) result:", result_2);
 
-console.log("METHOD THREE-----------------------------------------");
-const calculateSumOfNumbers_3 = (numbers: number[]): number => {
-	let sum: number = 0;
-	numbers.forEach((num) =>
-		typeof num === "number" ? (sum += num) : "No number type is found"
-	);
-	return sum;
+// ---------------------------------------------------------
+console.log("METHOD THREE -----------------------------------");
+const objectToArray_3 = (object: Record<string, number>) => {
+	const result: [string, number][] = [];
+
+	for (const key of Object.keys(object)) {
+		result.push([key, object[key]]);
+	}
+	return result;
 };
 
-const result_3 = calculateSumOfNumbers_3(arrayValues);
+const result_3 = objectToArray_3(myObject);
 console.log("(method three) result:", result_3);
 
-console.log("METHOD FOUR-----------------------------------------");
-const calculateSumOfNumbers_4 = (numbers: number[]): number => {
-	return numbers.reduce(
-		(sum, number) => sum + (typeof number === "number" ? number : 0)
-	);
+// ---------------------------------------------------------
+console.log("METHOD FOUR -----------------------------------");
+const objectToArray_4 = (object: Record<string, number>) => {
+	return Object.keys(object).map((key) => [key, object[key]]);
 };
 
-const result_4 = calculateSumOfNumbers_4(arrayValues);
+const result_4 = objectToArray_4(myObject);
 console.log("(method four) result:", result_4);
+
+// ---------------------------------------------------------
+console.log("METHOD FIVE -----------------------------------");
+const objectToArray_5 = (object: Record<string, number>) => {
+	return Object.keys(object).reduce((arr, val) => {
+		arr.push([val, object[val]]);
+		return arr;
+	}, [] as [string, number][]);
+};
+
+const result_5 = objectToArray_5(myObject);
+console.log("(method five) result:", result_5);
