@@ -6,7 +6,7 @@ import {
 	MemberUpdateInput,
 } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/Errors";
-import { MemberType } from "../libs/enums/member.enum";
+import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import * as bcrypt from "bcryptjs";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 
@@ -39,19 +39,24 @@ class MemberService {
 			.findOne(
 				{
 					memberNick: input.memberNick,
+					// memberStatus: { $nin: [MemberStatus.DELETE, MemberStatus.BLOCK] },
+					memberStatus: { $ne: MemberStatus.DELETE },
 				},
-				{ _id: true, memberNick: 1, memberPassword: 1 }
+				{ _id: 1, memberNick: 1, memberPassword: 1, memberStatus: 1 }
 			)
 			.exec();
 
 		if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+		else if (member.memberStatus === MemberStatus.BLOCK) {
+			throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
+		}
+
+		console.log("member:", member);
 
 		const isMatch = await bcrypt.compare(
 			input.memberPassword,
 			member.memberPassword
 		);
-
-		console.log("(Member.service.ts) login isMarch:", isMatch);
 
 		if (!isMatch) {
 			throw new Errors(HttpCode.UNAUTHORIZED, Message.INCORRECT_PASSWORD);
@@ -115,22 +120,22 @@ class MemberService {
 	public async getUsers(): Promise<Member[]> {
 		const result = await this.memberModel
 			.find({ memberType: MemberType.USER })
-      .exec();
-    
-      
-    console.log("(member.service.controller) getUsers:", result)
-		if (!result?.length) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+			.exec();
+
+		console.log("(member.service.controller) getUsers:", result);
+		if (!result?.length)
+			throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
 		return result;
 	}
 
 	public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
-		const memberId =  (input._id);
+		const memberId = input._id;
 		const result = await this.memberModel
 			.findByIdAndUpdate({ _id: memberId }, input, { new: true })
 			.exec();
 
-    console.log("(member.service.controller) updateChosenUser:", result);
+		console.log("(member.service.controller) updateChosenUser:", result);
 		if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
 		return result;

@@ -21,7 +21,8 @@ export enum Message {
 	ADMIN_EXIST = "Admin already exist. Please sign in instead!",
   NOT_AUTHENTICATED = "You are not authenticated. Please sign up first!",
   FAILED_UPLOADING_IMAGE = "Please upload a image to continue!",
-  PRODUCT_CREATION_FAILED = "Failed to create a product!"
+  PRODUCT_CREATION_FAILED = "Failed to create a product!",
+  BLOCKED_USER = "You are blocked by an admin! Contact to the admin"
 }
 
 class Errors extends Error {
