@@ -14,11 +14,11 @@ const productController: T = {};
 
 productController.getAllProducts = async (req: Request, res: Response) => {
 	try {
-    console.log("(product.controller.ts) getAllProducts")
-    
-    const productData = await productService.getAllProducts();
+		console.log("(product.controller.ts) getAllProducts");
 
-    console.log("productData:", productData);
+		const productData = await productService.getAllProducts();
+
+		console.log("productData:", productData);
 		res.render("products", { productData: productData });
 	} catch (err) {
 		console.log("(product.controller.ts) error on getAllProducts");
@@ -31,12 +31,13 @@ productController.createNewProduct = async (
 	req: AdminRequest,
 	res: Response
 ) => {
-	try {
-		if (!req.files?.length)
+  try {    
+		if (!req.files?.length) {
 			throw new Errors(
 				HttpCode.INTERNAL_SERVER_ERROR,
 				Message.FAILED_UPLOADING_IMAGE
 			);
+		}
 
 		const data: ProductInput = req.body;
 		data.productImages = req.files?.map((ele) => {
@@ -75,7 +76,7 @@ productController.updateChosenProduct = async (req: Request, res: Response) => {
 		const result = await productService.updateChosenProduct(
 			productId,
 			req.body
-    );
+		);
 
 		res.status(HttpCode.OK).json({ productData: result });
 	} catch (err) {

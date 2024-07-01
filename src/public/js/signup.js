@@ -1,18 +1,22 @@
 console.log("Signup frontend javascript file");
 
+
+// -----------------------------------------------
+// preview image before uploading to the serve
 $(function () {
 	const fileTarget = $(".file-box .upload-hidden");
 	let fileName;
-	
-	fileTarget.on("change", function() {
-    if (window.FileReader) {
+
+	fileTarget.on("change", function () {
+		if (window.FileReader) {
 			const uploadFile = $(this)[0].files[0];
 			const fileType = uploadFile["type"];
 
-			const valiImageType = ["image/jpg", "image/jpeg", "image/png"];
+			const validImageType = ["image/jpg", "image/jpeg", "image/png"];
 
-			if (!valiImageType.includes(fileType)) {
+			if (!validImageType.includes(fileType)) {
 				alert("Image type does not match!");
+				return false;
 			} else {
 				if (uploadFile) {
 					$(".upload-img-frame")
@@ -29,7 +33,8 @@ $(function () {
 });
 
 
-
+// -----------------------------------------------
+// Validate product form
 function validateSignupForm() {
 	const [memberNick, memberPhone, memberPassword, confirmPassword] = [
 		$(".member-nick").val(),
@@ -55,8 +60,8 @@ function validateSignupForm() {
 		return false;
 	}
 
-	const memberImgFileName = $(".member-image").get(0).files[0]
-	console.log("memberImgFileName:", memberImgFileName);
+	const memberImgFileName = $(".member-image").get(0).files[0];
+
 	const memberImage = memberImgFileName?.name ? memberImgFileName?.name : null;
 
 	if (!memberImage) {
