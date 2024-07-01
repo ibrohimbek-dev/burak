@@ -1,6 +1,7 @@
 console.log("Products frontend javascript file");
 
 $(function () {
+	// working on product volume:
 	$(".product-collection").on("change", () => {
 		const selectedValue = $(".product-collection").val();
 
@@ -13,6 +14,7 @@ $(function () {
 		}
 	});
 
+	// Toggle form by clicking button:
 	$("#process-btn").on("click", () => {
 		$(".dish-container").slideToggle(500);
 		$("#process-btn").css("display", "none");
@@ -21,6 +23,33 @@ $(function () {
 	$("#cancel-btn").on("click", () => {
 		$(".dish-container").slideToggle(400);
 		$("#process-btn").css("display", "flex");
+	});
+
+	// Update product status:
+	$(".new-product-status").on("change", async (event) => {
+		const productId = event.target.id;
+		const productStatus = $(`#${productId}.new-product-status`).val();
+
+		console.log("productId:", productId);
+		console.log("productStatus:", productStatus);
+
+		try {
+			const response = await axios.post(`/admin/product/${productId}`, {
+				productStatus: productStatus,
+			});
+
+      const result = response.data;
+     
+      if (result.productData) {
+        console.log("product updated successfully")
+				$(".new-product-status").blur();
+			} else {
+				alert("Product Upadation is Failed!");
+			}
+		} catch (err) {
+			console.log("Error on updating product status:", err);
+			alert("Product updation is failed!");
+		}
 	});
 });
 
