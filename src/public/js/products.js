@@ -38,10 +38,10 @@ $(function () {
 				productStatus: productStatus,
 			});
 
-      const result = response.data;
-     
-      if (result.productData) {
-        console.log("product updated successfully")
+			const result = response.data;
+
+			if (result.productsData) {
+				console.log("product updated successfully");
 				$(".new-product-status").blur();
 			} else {
 				alert("Product Upadation is Failed!");

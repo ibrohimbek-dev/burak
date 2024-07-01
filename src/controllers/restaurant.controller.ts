@@ -40,7 +40,6 @@ restaurantController.getAdminLogin = (req: Request, res: Response) => {
 
 restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 	try {
-		console.log("adminSignup!", req.body);
 
     const file = req.file;
 
@@ -71,25 +70,18 @@ restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 };
 
 restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
-	try {
-		console.log("req.body: ", req.body);
+	try {		
 		const input: LoginInput = req.body;
-
-		console.log("input:", input);
-
 		const result = await memberService.adminLogin(input);
 
 		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
-
-		console.log("member:", result);
 
 		req.session.member = result;
 		req.session.save(() => {
 			// res.send(result);
 			res.redirect("/admin/product/all");
 		});
-	} catch (err: any) {
-		console.log("Error on adminLogin:", err.message);
+	} catch (err: any) {		
 		const message =
       err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
     
@@ -156,27 +148,25 @@ restaurantController.verifyAdmin = (
 // ========================================
 // Working on users
 restaurantController.getUsers = async (req: Request, res: Response) => {
-	try {
-		console.log("(restaurant.controller.ts) getUsers");
-
-		const result = await memberService.getUsers();
-		console.log("result:", result);
+	try {    
+    const result = await memberService.getUsers();
+		console.log("(restaurant.controller.ts) result", result);		
 		res.render("users", { usersData: result });
-	} catch (err) {
-		console.log("(restaurant.controller.ts) error on updateChosenUser", err);
-		res.render("/admin/login");
+	} catch (err: any) {
+		console.log("(restaurant.controller.ts) error on getUsers", err.message);
+    res.redirect("/admin/login")
 	}
 };
 
 restaurantController.updateChosenUser = async (req: Request, res: Response) => {
 	try {
-		console.log("(restaurant.controller.ts) updateChosenUser");
-
-		const result = await memberService.updateChosenUser(req.body);
-
+    
+    const result = await memberService.updateChosenUser(req.body);
+    
+		console.log("(restaurant.controller.ts) updateChosenUser", result);
 		res.status(HttpCode.OK).json({ userData: result });
-	} catch (err) {
-		console.log("(restaurant.controller.ts) error on updateChosenUser", err);
+	} catch (err: any) {
+		console.log("(restaurant.controller.ts) error on updateChosenUser", err.message);
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard);
 	}

@@ -105,8 +105,6 @@ class MemberService {
 			member.memberPassword
 		);
 
-		console.log("isMatch:", isMatch);
-
 		if (!isMatch) {
 			throw new Errors(HttpCode.UNAUTHORIZED, Message.INCORRECT_PASSWORD);
 		}
@@ -119,7 +117,9 @@ class MemberService {
 			.find({ memberType: MemberType.USER })
       .exec();
     
-		if (!result.length) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+      
+    console.log("(member.service.controller) getUsers:", result)
+		if (!result?.length) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
 		return result;
 	}
@@ -130,7 +130,7 @@ class MemberService {
 			.findByIdAndUpdate({ _id: memberId }, input, { new: true })
 			.exec();
 
-    console.log("result: MEM", result)
+    console.log("(member.service.controller) updateChosenUser:", result);
 		if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
 		return result;

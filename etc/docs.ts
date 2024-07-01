@@ -831,7 +831,34 @@
 
 // ------------------------------------------------------
 
+// 55th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
 
+// ==========================================================================================
+
+// 2024-07-02
+// 56th Lesson
+// EJS - Frontend User Control Developing
+
+// Darsimiz rejasi:
+// 1) Adminka loyihamizning userlarni boshqarish sahifasini develop qilamiz
+// 2) Single page application uchun ishlatiladigan login jarayonini modify qilamiz
+
+// ------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+// 56th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
  
 
 
