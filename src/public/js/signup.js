@@ -3,9 +3,9 @@ console.log("Signup frontend javascript file");
 $(function () {
 	const fileTarget = $(".file-box .upload-hidden");
 	let fileName;
-
-	fileTarget.on("change", function () {
-		if (window.FileReader) {
+	
+	fileTarget.on("change", function() {
+    if (window.FileReader) {
 			const uploadFile = $(this)[0].files[0];
 			const fileType = uploadFile["type"];
 
@@ -27,6 +27,8 @@ $(function () {
 		}
 	});
 });
+
+
 
 function validateSignupForm() {
 	const [memberNick, memberPhone, memberPassword, confirmPassword] = [
@@ -53,12 +55,12 @@ function validateSignupForm() {
 		return false;
 	}
 
-	const memberImgFileName = $(".member-image").get(0).files[0];
+	const memberImgFileName = $(".member-image").get(0).files[0]
 	console.log("memberImgFileName:", memberImgFileName);
-  const memberImage = memberImgFileName ? memberImgFileName.name : null;
-  
-  if (!memberImage) {
-    alert("Please, upload an image!");
-    return false
-  }
+	const memberImage = memberImgFileName?.name ? memberImgFileName?.name : null;
+
+	if (!memberImage) {
+		alert("Please, upload an image!");
+		return false;
+	}
 }

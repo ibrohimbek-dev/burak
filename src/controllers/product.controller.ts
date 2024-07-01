@@ -14,11 +14,11 @@ const productController: T = {};
 
 productController.getAllProducts = async (req: Request, res: Response) => {
 	try {
-    console.log("(product.controller.ts) getAllProducts");
+    console.log("(product.controller.ts) getAllProducts")
     
     const productData = await productService.getAllProducts();
 
-    console.log("data:", productData);
+    console.log("productData:", productData);
 		res.render("products", { productData: productData });
 	} catch (err) {
 		console.log("(product.controller.ts) error on getAllProducts");

@@ -814,11 +814,36 @@
 // ----------------------------------------------------
 
 
-
-
-
-
 // 54th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
 
 
+// ==========================================================================================
+
+// 2024-07-01
+// 55th Lesson
+// EJS - Frontend Products sahifasini develop qilamiz
+
+// Darsimiz rejasi:
+// 1) Products saxifamizga xaqiqiy datalarni chaqiramiz va render qilamiz
+// 2) Yangi productlarni qo'shish mantiqini develop qilamiz
+// 3) Frontendda mavjud productlarni update qilish mexanizmini develop qilamiz
+
+// ------------------------------------------------------
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+// 53th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
