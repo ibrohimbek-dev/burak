@@ -850,18 +850,3 @@
 
 // 56th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
- 
-
-
-
-
-
-
-
-
-
-
-
-
-// 53th - dars shu yerda yakunlandi
-// 수고 하셨습니다!

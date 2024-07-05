@@ -17,7 +17,7 @@ const store = new MongoDBStore({
 });
 
 // Express Has Four Main Structures:
-// 1) ENTERANCE
+// 1) ENTRANCE
 const app = express();
 
 // Middleware pattern:
@@ -32,7 +32,7 @@ app.use(
 	session({
 		secret: String(process.env.SESSION_SECRET),
 		cookie: {
-			maxAge: 3600 * 3600 * 6, // 6hours. Cookie will destry itself after 6 hours!
+			maxAge: 3600 * 3600 * 6, // 6hours. Cookie will destroy itself after 6 hours!
 		},
 		store: store,
 		resave: true,

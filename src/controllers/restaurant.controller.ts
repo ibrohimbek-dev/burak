@@ -40,8 +40,7 @@ restaurantController.getAdminLogin = (req: Request, res: Response) => {
 
 restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 	try {
-
-    const file = req.file;
+		const file = req.file;
 
 		if (!file)
 			throw new Errors(HttpCode.BAD_REQUEST, Message.FAILED_UPLOADING_IMAGE);
@@ -70,7 +69,7 @@ restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 };
 
 restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
-	try {		
+	try {
 		const input: LoginInput = req.body;
 		const result = await memberService.adminLogin(input);
 
@@ -81,16 +80,13 @@ restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 			// res.send(result);
 			res.redirect("/admin/product/all");
 		});
-	} catch (err: any) {		
+	} catch (err: any) {
 		const message =
-      err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
-    
-    
+			err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+
 		res.send(
 			`<script>alert('${message}'); window.location.replace("/admin/login")</script>`
-    );
-    
-
+		);
 	}
 };
 
@@ -148,25 +144,27 @@ restaurantController.verifyAdmin = (
 // ========================================
 // Working on users
 restaurantController.getUsers = async (req: Request, res: Response) => {
-	try {    
-    const result = await memberService.getUsers();
-		console.log("(restaurant.controller.ts) result", result);		
+	try {
+		const result = await memberService.getUsers();
+		console.log("(restaurant.controller.ts) result", result);
 		res.render("users", { usersData: result });
 	} catch (err: any) {
 		console.log("(restaurant.controller.ts) error on getUsers", err.message);
-    res.redirect("/admin/login")
+		res.redirect("/admin/login");
 	}
 };
 
 restaurantController.updateChosenUser = async (req: Request, res: Response) => {
 	try {
-    
-    const result = await memberService.updateChosenUser(req.body);
-    
+		const result = await memberService.updateChosenUser(req.body);
+
 		console.log("(restaurant.controller.ts) updateChosenUser", result);
 		res.status(HttpCode.OK).json({ userData: result });
 	} catch (err: any) {
-		console.log("(restaurant.controller.ts) error on updateChosenUser", err.message);
+		console.log(
+			"(restaurant.controller.ts) error on updateChosenUser",
+			err.message
+		);
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard);
 	}

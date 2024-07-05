@@ -8,7 +8,6 @@ import {
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import * as bcrypt from "bcryptjs";
-import { shapeIntoMongooseObjectId } from "../libs/config";
 
 class MemberService {
 	private readonly memberModel;
@@ -120,7 +119,10 @@ class MemberService {
 	public async getUsers(): Promise<Member[]> {
 		const result = await this.memberModel
 			.find({ memberType: MemberType.USER })
-			.exec();
+      .exec();
+    
+    
+    
 
 		console.log("(member.service.controller) getUsers:", result);
 		// TODO: Shu qismida mantiqiy xatolik bor
