@@ -1,138 +1,149 @@
 // ----------------------------------------
-// 2024-07-05
-// MIT 14 TASK Q
+// 2024-07-06
+// MIT 14 TASK R
 
-// Shunday function yozing, u 2 ta parametrga ega bo'lib
-// birinchisi object, ikkinchisi string bo'lsin.
-// Agar qabul qilinayotgan ikkinchi string, objectning
-// biror bir propertysiga mos kelsa, 'true', aks holda mos kelmasa 'false' qaytarsin.
+// Shunday function yozing, u string parametrga ega bo'lsin.
+// Agar argument sifatida berilayotgan string, "1 + 2" bo'lsa,
+// string ichidagi sonlarin yig'indisni hisoblab, number holatida qaytarsin
 
-// MASALAN: hasProperty({ name: "BMW", model: "M3" }, "model"); return true;
-// Ushbu misolda, 'model' string objectning propertysiga mos kelganligi uchun 'true' natijani qaytarmoqda
+// MASALAN: calculate("1 + 3"); return 4;
+// 1 + 3 = 4, shu sababli 4 natijani qaytarmoqda.
 
-// MASALAN: hasProperty({ name: "BMW", model: "M3" }, "year"); return false;
-// Ushbu misolda, ikkinchi argument sifatida berilayotgan 'year' objectning
-// propertysida mavjud bo'lmaganligi uchun 'false' natijani qaytarmoqda.
-
-// -----------------------------------------------------------
+// =================================================
 // Assets:
-interface Car {
-	name: string;
-	model: string;
-}
+const strNum: string = "1 + 2";
+const numArr: string[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-const objectCar: Car = {
-	name: "BMW",
-	model: "M3",
-};
-
-const check: string = "model";
-
-// -----------------------------------------------------------
 // Solutions:
-
-console.log("-----------------------------------------------------------");
 // METHOD ONE
-const hasProperty_1 = (object: Car, str: string) => {
-	return Object.keys(object).includes(str);
-};
+const calculateString_1 = (str: string) => {
+	let result: number = 0;
 
-const result_1 = hasProperty_1(objectCar, check);
-console.log("(method one) result:", result_1);
-
-// -------------------------------------------------------------
-// METHOD TWO
-const hasProperty_2 = (object: Car, str: string) => {
-	return object.hasOwnProperty(str);
-};
-
-const result_2 = hasProperty_2(objectCar, check);
-console.log("(method two) result:", result_2);
-
-// -------------------------------------------------------------
-// METHOD THREE
-const hasProperty_3 = (object: Car, str: string) => {
-	return Object.entries(object).some((obj) => obj.includes(str));
-};
-
-const result_3 = hasProperty_3(objectCar, check);
-console.log("(method three) result:", result_3);
-
-// -------------------------------------------------------------
-// METHOD FOUR
-const hasProperty_4 = (object: Car, str: string) => {
-	return Object.keys(object).reduce((found, key) => {
-		return key === str;
-	}, false);
-};
-
-const result_4 = hasProperty_4(objectCar, check);
-console.log("(method four) result:", result_4);
-
-// -------------------------------------------------------------
-// METHOD FIVE
-const hasProperty_5 = (object: Car, str: string) => {
-	return Object.keys(object).filter((key) => key === str).length > 0;
-};
-
-const result_5 = hasProperty_5(objectCar, check);
-console.log("(method five) result:", result_5);
-
-// -------------------------------------------------------------
-// METHOD SIX
-const hasProperty_6 = (object: Car, str: string) => {
-	return Object.entries(object).some(([key, _]) => key === str);
-};
-
-const result_6 = hasProperty_6(objectCar, check);
-console.log("(method six) result:", result_6);
-
-// -------------------------------------------------------------
-// METHOD SEVEN
-const hasProperty_7 = (object: Car, str: string) => {
-	const keys: string[] = Object.keys(object);
-	return keys.includes(str);
-};
-
-const result_7 = hasProperty_7(objectCar, check);
-console.log("(method seven) result:", result_7);
-
-// -------------------------------------------------------------
-// METHOD EIGHT
-const hasProperty_8 = (object: Car, str: string) => {
-	return Object.keys(object).includes(str);
-};
-
-const result_8 = hasProperty_8(objectCar, check);
-console.log("(method eight) result:", result_8);
-
-// -------------------------------------------------------------
-// METHOD NINE
-const hasProperty_9 = (object: Car, str: string) => {
-	switch (true) {
-		case Object.hasOwnProperty.call(object, str):
-			return true;
-		default:
-			return false;
-	}
-};
-
-const result_9 = hasProperty_9(objectCar, check);
-console.log("(method nine) result:", result_9);
-
-// -------------------------------------------------------------
-// METHOD NINE
-const hasProperty_10 = (object: Car, str: string) => {
-	for (let key in object) {
-		if (key === str) {
-			return true;
+	str.split("").filter((num) => {
+		if (num.match(/\d/g)) {
+			return (result += Number(num));
 		}
-	}
+	});
 
-	return false;
+	return result;
 };
 
-const result_10 = hasProperty_10(objectCar, check);
-console.log("(method ten) result:", result_10);
+console.log(`(method one): ${calculateString_1(strNum)}`);
 
-console.log("-----------------------------------------------------------");
+// -------------------------------------------------------------------
+// METHOD TWO
+const calculateString_2 = (str: string) => {
+	return str
+		.split("")
+		.filter((num) => num.match(/\d/g))
+		.reduce((sum, val) => sum + Number(val), 0);
+};
+
+console.log(`(method two): ${calculateString_2(strNum)}`);
+
+// -------------------------------------------------------------------
+// METHOD THREE
+const calculateString_3 = (str: string) => {
+	return str.split("").reduce((sum, val) => {
+		if (val.match(/\d/g)) {
+			return sum + Number(val);
+		}
+
+		return sum;
+	}, 0);
+};
+
+console.log(`(method three): ${calculateString_3(strNum)}`);
+
+// -------------------------------------------------------------------
+// METHOD FOUR
+const calculateString_4 = (str: string) => {
+	return str.split("").reduce((sum, num) => {
+		const numVal = Number(num);
+		return isNaN(numVal) ? sum : sum + numVal;
+	}, 0);
+};
+
+console.log(`(method four): ${calculateString_4(strNum)}`);
+
+// -------------------------------------------------------------------
+// METHOD FIVE
+const calculateString_5 = (str: string) => {
+	const regex = /\d/g;
+	let result: number = 0;
+
+	for (let num of str) {
+		result += num.match(regex) ? Number(num) : 0;
+	}
+
+	return result;
+};
+
+console.log(`(method five): ${calculateString_5(strNum)}`);
+
+// -------------------------------------------------------------------
+// METHOD SIX
+const calculateString_6 = (str: string) => {
+	return str
+		.split("")
+		.filter((num) => num.match(/\d/g))
+		.reduce((sum, val) => {
+			return sum + Number(val);
+		}, 0);
+};
+
+console.log(`(method six): ${calculateString_6(strNum)}`);
+
+// -------------------------------------------------------------------
+// METHOD SEVEN
+const calculateString_7 = (str: string) => {
+	return str
+		.split("")
+		.filter((num) => numArr.includes(num))
+		.reduce((sum, val) => {
+			return sum + Number(val);
+		}, 0);
+};
+
+console.log(`(method seven): ${calculateString_7(strNum)}`);
+
+// -------------------------------------------------------------------
+// METHOD EIGHT
+const calculateString_8 = (str: string) => {
+	return str
+		.split("")
+		.filter((num) => {
+			const numValue: number = Number(num);
+			return !isNaN(numValue);
+		})
+		.map(Number)
+		.reduce((sum, val) => sum + val, 0);
+};
+
+console.log(`(method eight): ${calculateString_8(strNum)}`);
+
+// -------------------------------------------------------------------
+// METHOD NINE
+const calculateString_9 = (str: string) => {
+	let sum: number = 0;
+
+	for (let i = 0; i < str.length; i++) {
+		!isNaN(Number(str[i])) && (sum += Number(str[i]));
+	}
+
+	return sum;
+};
+
+console.log(`(method nine): ${calculateString_9(strNum)}`);
+
+// -------------------------------------------------------------------
+// METHOD TEN
+const calculateString_10 = (str: string) => {
+	let sum: number = 0;
+	str.split("").filter((num) => !isNaN(Number(num) && (sum += Number(num))));
+	return sum;
+};
+
+console.log(`(method ten): ${calculateString_10(strNum)}`);
+
+// -------------------------------------------------------------------
