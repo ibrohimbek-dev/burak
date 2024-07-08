@@ -1,6 +1,10 @@
-const calculate = (expression: string): number =>
-	expression
-		.split("+")
-		.map(Number)
-		.reduce((a, b) => a + b, 0);
-console.log(calculate("4/2")); // 42
+function calculate(expression: string): number {
+	const numbers: string[] = expression.split("+");
+	const numericValues: number[] = numbers.map((num) =>
+		parseInt(num.trim(), 10)
+	);
+	const sum: number = numericValues.reduce((acc, curr) => acc + curr, 0);
+	return sum;
+}
+
+console.log(calculate("8+2"));
