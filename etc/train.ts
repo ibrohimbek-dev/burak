@@ -1,138 +1,75 @@
 // ----------------------------------------
-// 2024-07-12
+// 2024-07-13
 // MIT 14
-// TASK T
+// TASK U
 
-// Shunday function tuzing, u sonlardan tashkil topgan 2'ta array qabul qilsin.
-// Va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin.
+// Shunday function tuzing, uni number parametri bo'lsin.
+// Va bu function berilgan parametrgacha, 0'dan boshlab
+// oraliqda nechta toq sonlar borligini aniqlab return qilsi.
 
-// MASALAN: mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]); return [0, 3, 4, 4, 6, 30, 31];
+// MASALAN: sumOdds(9) return 4; sumOdds(11) return 5;
 
-// Yuqoridagi misolda, ikkala arrayni birlashtirib, tartib raqam bo'yicha tartiblab qaytarmoqda.
+// Yuqoridagi birinchi misolda, argument sifatida, 9 berilmoqda.
+// Va 0'dan boshlab sanaganda 9'gacha 4'ta toq son mavjud.
+// Keyingi namunada ham xuddi shunday xolat takrorlanmoqda.
 
-// =================================================
+// =====================================================
 // Assets:
-const numArryOne: number[] = [0, 3, 4, 31];
-const numArryTwo: number[] = [4, 6, 30];
+const son: number = 9;
 
 // Solutions:
-// ---------------------------------------------
-// METHOD ONE
-console.log("---------------------------------------------");
-const mergeSortedArrays_1 = (arrOne: number[], arrTwo: number[]) => {
-	return arrOne.concat(arrTwo).sort((a, b) => a - b);
+
+// METHOD ONE:
+console.log("---------------------------------");
+const sumOdds_1 = (param: number) => {
+	return Array.from({ length: param }, (_, i) => i).filter((num) => num % 2)
+		.length;
 };
 
-console.log(
-	"(method one) result: ",
-	mergeSortedArrays_1(numArryOne, numArryTwo)
-);
+console.log("(method one) result:", sumOdds_1(son));
 
-// METHOD TWO
-console.log("---------------------------------------------");
-const mergeSortedArrays_2 = (arrOne: number[], arrTwo: number[]) => {
+// METHOD TWO:
+console.log("---------------------------------");
+const sumOdds_2 = (param: number) => {
 	const result: number[] = [];
 
-	for (let num1 of arrOne) {
-		result.push(num1);
-		for (let num2 of arrTwo) {
-			if (!result.includes(num2)) {
-				result.push(num2);
-			}
+	for (let i = 0; i < param; i++) {
+		if (i % 2 !== 0) {
+			result.push(i);
 		}
 	}
 
-	return result.sort((a, b) => a - b);
+	return result.length;
 };
 
-console.log(
-	"(method two) result: ",
-	mergeSortedArrays_2(numArryOne, numArryTwo)
-);
+console.log("(method two) result:", sumOdds_2(son));
 
-// METHOD TWO
-console.log("---------------------------------------------");
-const mergeSortedArrays_3 = (arrOne: number[], arrTwo: number[]) => {
-	return arrOne
-		.reduce((arr, num1) => {
-			arr.push(num1);
-			arrTwo.map((num2) => {
-				if (!arr.includes(num2)) {
-					arr.push(num2);
-				}
-			});
-
-			return arr;
-		}, [] as number[])
-		.sort((a, b) => a - b);
-};
-
-console.log(
-	"(method three) result: ",
-	mergeSortedArrays_3(numArryOne, numArryTwo)
-);
-
-// METHOD FOUR
-console.log("---------------------------------------------");
-const mergeSortedArrays_4 = (arrOne: number[], arrTwo: number[]) => {
-	return [...new Set([...arrOne, ...arrTwo])].sort((a, b) => a - b);
-};
-
-console.log(
-	"(method four) result: ",
-	mergeSortedArrays_4(numArryOne, numArryTwo)
-);
-
-// METHOD FIVE
-console.log("---------------------------------------------");
-const mergeSortedArrays_5 = (arrOne: number[], arrTwo: number[]) => {
-	return [
-		...new Set([
-			...arrOne.reduce((acc, num1) => {
-				acc.push(num1);
-				return acc;
-			}, [] as number[]),
-			...arrTwo.reduce((acc, num2) => {
-				acc.push(num2);
-				return acc;
-			}, [] as number[]),
-		]),
-	].sort((a, b) => a - b);
-};
-
-console.log(
-	"(method five) result: ",
-	mergeSortedArrays_5(numArryOne, numArryTwo)
-);
-
-// METHOD SIX
-console.log("---------------------------------------------");
-const mergeSortedArrays_6 = (arrOne: number[], arrTwo: number[]) => {
-	return [...arrOne, ...arrTwo].sort((a, b) => a - b);
-};
-
-console.log(
-	"(method six) result: ",
-	mergeSortedArrays_6(numArryOne, numArryTwo)
-);
-
-// METHOD SEVEN:
-console.log("---------------------------------------------");
-const mergeSortedArrays_7 = (arrOne: number[], arrTwo: number[]) => {
-	return [...arrOne, ...arrTwo].reduce((sortedArr, _, i, originalArr) => {
-		for (let j = 0; j < originalArr.length - i - 1; j++) {
-			if (originalArr[j] < originalArr[j + 1]) {
-				[originalArr[j], originalArr[j + 1]] = [
-					originalArr[j + 1],
-					originalArr[j],
-				];
-			}
+// METHOD THREE:
+console.log("---------------------------------");
+const sumOdds_3 = (param: number) => {
+	return Array.from({ length: param }, (_, i) => i).reduce((arr, val) => {
+		if (val % 2 !== 0) {
+			arr.push(val);
 		}
-		return [...sortedArr, originalArr[originalArr.length - i - 1]];
-	}, [] as number[]);
+
+		return arr;
+	}, [] as number[]).length;
 };
 
-console.log(
-	"(method seven) result: ",
-	mergeSortedArrays_7(numArryOne, numArryTwo)
-);
+console.log("(method three) result:", sumOdds_3(son));
+
+// METHOD FOUR:
+// Exception
+const sumOdds_4 = (param: number): number => {
+	if (param <= 0) {
+		return 0;
+	}
+
+	if (param === 1) {
+		return 1;
+	}
+
+	return 1 + sumOdds_4(param - 2) 
+};
+
+console.log("(method four) result:", sumOdds_4(son));
