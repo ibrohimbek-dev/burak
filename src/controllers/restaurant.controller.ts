@@ -74,7 +74,7 @@ restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 		const result = await memberService.adminLogin(input);
 
 		// TODO: Loyihamizning mana shu qismida Session Authentication integration qilamiz
-
+    		console.log("req.session.member login:", req.session.member);
 		req.session.member = result;
 		req.session.save(() => {
 			// res.send(result);
