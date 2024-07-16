@@ -4,11 +4,13 @@ import { LoginInput, Member, MemberInput } from "../libs/types/member";
 import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/enums/member.enum";
 import Errors from "../libs/Errors";
+import AuthService from "../models/Auth.service";
 
 // This is for React project
 
 const memberController: T = {};
 const memberService = new MemberService();
+const authService = new AuthService();
 
 memberController.userSignup = async (req: Request, res: Response) => {
 	try {
@@ -16,7 +18,10 @@ memberController.userSignup = async (req: Request, res: Response) => {
 
 		const result: Member = await memberService.userSignup(input);
 
-		// TODO: Loyihamizning mana shu qismida Token Authentication integration qilamiz		
+		// TODO: Loyihamizning mana shu qismida Token Authentication integration qilamiz:
+
+    const token = await authService.createToken(result);
+    console.log("Auth Token Sign Up =>", token);
 
 		res.json({ member: result });
 	} catch (err: any) {
@@ -26,12 +31,12 @@ memberController.userSignup = async (req: Request, res: Response) => {
 };
 
 memberController.userLogin = async (req: Request, res: Response) => {
-	try {		
+	try {
 		const input: LoginInput = req.body;
 
-		const result = await memberService.userLogin(input);
 		// TODO: Loyihamizning mana shu qismida Token Authentication integration qilamiz
-		
+		const result = await memberService.userLogin(input);
+		const token = await authService.createToken(result);		
 		res.json({ member: result });
 	} catch (err: any) {
 		console.log("Error on login", err.message);

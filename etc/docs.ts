@@ -625,7 +625,6 @@
 // 48th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
 
-
 // ==========================================================================================
 
 // 2024-06-25
@@ -654,7 +653,6 @@
 // 'file' sifatida ma'lumotlarni ta'minlab beradi
 // req.file => a single file (.single())
 
-
 // -----------------------------------------------------------
 // new: true
 
@@ -667,13 +665,10 @@
 // 	.findOneAndUpdate({ _id: productId }, input, { new: true })
 // 	.exec();
 
-
 // new; true qo'yilasa, default false bo'ladi
-
 
 // 49th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
-
 
 // ==========================================================================================
 
@@ -694,7 +689,6 @@
 // 	next();
 // });
 
-
 // 50th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
 
@@ -711,7 +705,6 @@
 // 51th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
 
-
 // ==========================================================================================
 
 // 2024-06-27
@@ -727,7 +720,6 @@
 
 // 52th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
-
 
 // ==========================================================================================
 
@@ -773,7 +765,7 @@
 
 // Yuqoridagi kodni qisqagina varianti:
 // $(function () {
-  // jQuery methods go here
+// jQuery methods go here
 // });
 
 // ---------------------------------------------
@@ -813,10 +805,8 @@
 
 // ----------------------------------------------------
 
-
 // 54th - dars shu yerda yakunlandi
 // 수고 하셨습니다!
-
 
 // ==========================================================================================
 
@@ -846,7 +836,28 @@
 
 // ------------------------------------------------------
 
-
-
 // 56th - dars shu yerda yakunlandi
+// 수고 하셨습니다!
+
+// =================================================================
+
+// 2024-07-17
+// 68th Lesson
+// Create Authentication process on users
+
+// Darsimiz rejasi:
+// 1) Burak loyihasini Authentication bo'yicha belgilab olingan
+// strategiyalarni muhokama etamiz
+// 2) Login va Sign up jarayonlarida JWT'ni hosil qilamiz
+// 3) Hosil qilayotgan Tokenlarimizni Cookie'larining ichida saqlaymiz
+// 4) User memberlarimizning credentiallarini tekshirib test qilamiz
+
+// ---------------------------------------------------
+
+// Authentication jarayonini 3 xil usulda xosil qilishimiz mumkin:
+// 1) Sessions (Cookies)
+// 2) Tokens (Cookies)
+// 3) Tokens (Headers)
+
+// 68th shu yerda yakunlandi
 // 수고 하셨습니다!

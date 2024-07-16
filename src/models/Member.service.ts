@@ -33,7 +33,7 @@ class MemberService {
 	}
 
 	public async userLogin(input: LoginInput): Promise<Member> {
-		// TODO: consider member status later
+		// TODO: consider member status laters
 		const member = await this.memberModel
 			.findOne(
 				{
@@ -48,9 +48,7 @@ class MemberService {
 		if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
 		else if (member.memberStatus === MemberStatus.BLOCK) {
 			throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
-		}
-
-		console.log("member:", member);
+		}		
 
 		const isMatch = await bcrypt.compare(
 			input.memberPassword,
