@@ -863,7 +863,11 @@
 // Biz backend loyihamiz ichida token'larni hosil qildik.
 // Endi ulardan frontendda foydalanish uchun biz ularni cookie'larga saqlashimiz kerak.
 
+// token'larni vaqti ko'p bo'lsa ham, cookie'larni vaqti kam bo'lsa, u holda
+// cookie'larimiz o'zini destroy qilganini hisobiga token'lar ishlamaydi
 
+// token va cookie'lari orasida o'zaro muammo kelib chiqmasligi uchun
+// token va cookie'larimizni yashash muddatini o'zaro bir xil qilib belgilashimiz kerak
 
 // 68th shu yerda yakunlandi
 // 수고 하셨습니다!
