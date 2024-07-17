@@ -859,5 +859,11 @@
 // 2) Tokens (Cookies)
 // 3) Tokens (Headers)
 
+// ---------------------------------------------
+// Biz backend loyihamiz ichida token'larni hosil qildik.
+// Endi ulardan frontendda foydalanish uchun biz ularni cookie'larga saqlashimiz kerak.
+
+
+
 // 68th shu yerda yakunlandi
 // 수고 하셨습니다!
