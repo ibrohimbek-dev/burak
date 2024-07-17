@@ -8,6 +8,7 @@ import {
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import * as bcrypt from "bcryptjs";
+import { shapeIntoMongooseObjectId } from "../libs/config";
 
 class MemberService {
 	private readonly memberModel;
@@ -18,6 +19,7 @@ class MemberService {
 
 	// ---------------------------------------------------------------------------------------------------------------------------------------------
 	// SPA uchun Member.service.ts bo'limi:
+
 	public async userSignup(input: MemberInput): Promise<Member> {
 		const salt = await bcrypt.genSalt();
 		input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
@@ -48,7 +50,7 @@ class MemberService {
 		if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
 		else if (member.memberStatus === MemberStatus.BLOCK) {
 			throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
-		}		
+		}
 
 		const isMatch = await bcrypt.compare(
 			input.memberPassword,
@@ -62,6 +64,19 @@ class MemberService {
 		// return await this.memberModel.findById(member._id).exec();
 		// .lean() methodi orqalik biz datebase'dan olgan ma'lumotimizni o'zgartirish imkoniga ega bo'lamiz
 		return await this.memberModel.findById(member._id).lean().exec();
+	}
+
+	public async getMemberDetail(member: Member): Promise<Member> {
+		const memberId = shapeIntoMongooseObjectId(member._id);
+		const result = await this.memberModel
+			.findOne({ _id: memberId, memberStatus: MemberStatus.ACTIVE })
+      .exec();
+    
+    
+    console.log("result getMemberDetail =>", result);
+		if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+		return result;
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -117,10 +132,7 @@ class MemberService {
 	public async getUsers(): Promise<Member[]> {
 		const result = await this.memberModel
 			.find({ memberType: MemberType.USER })
-      .exec();
-    
-    
-    
+			.exec();
 
 		console.log("(member.service.controller) getUsers:", result);
 		// TODO: Shu qismida mantiqiy xatolik bor

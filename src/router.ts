@@ -12,7 +12,11 @@ router.post(
 	memberController.verifyAuth,
 	memberController.userLogout
 );
-router.get("/member/detail", memberController.verifyAuth);
+router.get(
+	"/member/detail",
+	memberController.verifyAuth,
+	memberController.getMemberDetail
+);
 
 // Product:
 
