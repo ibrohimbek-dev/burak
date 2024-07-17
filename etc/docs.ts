@@ -871,3 +871,22 @@
 
 // 68th shu yerda yakunlandi
 // 수고 하셨습니다!
+
+// =================================================================
+
+// 2024-07-17
+// 69th Lesson
+// Develop Logout and getMemberDetail API's
+
+// Darsimiz rejasi:
+// 1) Member Controllerlar'ga daxldor Authentication method'larini develop qilamiz
+// 2) Logout jarayonini develop qilamiz
+// 3) getMemberDetail API'ni hosil qilamiz
+
+// ---------------------------------------------------
+
+
+
+// 69th shu yerda yakunlandi
+// 수고 하셨습니다!
+
