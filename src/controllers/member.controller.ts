@@ -128,7 +128,7 @@ memberController.rerieveAuth = async (
 		}
 		next();
 	} catch (err) {
-		console.log("Error, rerieveAuth:", err);
+		console.log("Error, retrieveAuth:", err);
 		next();
 	}
 };

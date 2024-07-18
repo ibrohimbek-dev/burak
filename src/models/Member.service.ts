@@ -62,8 +62,12 @@ class MemberService {
 		}
 
 		// return await this.memberModel.findById(member._id).exec();
-		// .lean() methodi orqalik biz datebase'dan olgan ma'lumotimizni o'zgartirish imkoniga ega bo'lamiz
-		return await this.memberModel.findById(member._id).lean().exec();
+    // .lean() methodi orqalik biz datebase'dan olgan ma'lumotimizni o'zgartirish imkoniga ega bo'lamiz
+    
+
+    return await this.memberModel.findById(member._id).lean().exec();
+    
+    
 	}
 
 	public async getMemberDetail(member: Member): Promise<Member> {

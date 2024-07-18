@@ -1,35 +1,41 @@
 // ----------------------------------------
-// 2024-07-16
+// 2024-07-18
 // MIT 14
-// TASK V
+// TASK W
 
-// Shunday function yozing, uni string parametri bo'lsin.
-// Va bu function stringdagi har bir harfni o'zi bilan
-// necha marotaba taktorlanganligini ko'rsatuvchi object qaytarsin.
+// Shunday function yozing, u o'ziga parametr sifatida
+// yagona array va number qabul qilsin. Siz tuzgan function
+// arrayni numberda berilgan uzunlikda kesib bo'laklarga
+// ajratgan holatida qaytarsin.
 
-// MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
+// MASALAN: chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
+// return [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]];
 
-// Yuqoridagi misolda, 'hello' so'zi tarkibida
-// qatnashgan harflar necha marotaba takrorlangini bilan
-// object sifatida qaytarilmoqda.
+// Yuqoridagi namunada berilayotgan array ikkinchi parametr 3'ga
+// asoslanib 3 bo'lib bo'lakga bo'linib qaytmoqda. Qolgani esa o'z holati qolyapti
 
 // =====================================================
 // Assets:
-const word: string = "hello";
+const numArr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const son: number = 3;
 
-// Solutions:
-// METHOD ONE:
-console.log("---------------------------------");
+const chunkArray = (arr: number[], num: number) => {
+	const result: number[][] = [];
+	let chunk: number[] = [];
 
-const countChars_1 = (text: string) => {
-	return text.split("").reduce((acc, letter) => {
-		if (!acc[letter]) {
-			acc[letter] = 0;
+	for (let i = 0; i < arr.length; i++) {
+		if (i > 0 && i % num === 0) {
+			result.push(chunk);
+			chunk = [];
 		}
+		chunk.push(arr[i]);
+	}
 
-		acc[letter]++;
-		return acc;
-	}, {} as Record<string, number>);
+	if (chunk.length > 0) {
+		result.push(chunk);
+	}
+
+	return result;
 };
 
-console.log("method one:", countChars_1(word));
+console.log("method one =>", chunkArray(numArr, son));

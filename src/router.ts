@@ -5,15 +5,15 @@ import memberController from "./controllers/member.controller";
 // This is for React project
 
 // Member:
-router.post("/member/login", memberController.userLogin);
-router.post("/member/signup", memberController.userSignup);
+router.post("/login", memberController.userLogin);
+router.post("/signup", memberController.userSignup);
 router.post(
-	"/member/logout",
+	"/logout",
 	memberController.verifyAuth,
 	memberController.userLogout
 );
 router.get(
-	"/member/detail",
+	"/detail",
 	memberController.verifyAuth,
 	memberController.getMemberDetail
 );
