@@ -62,25 +62,37 @@ class MemberService {
 		}
 
 		// return await this.memberModel.findById(member._id).exec();
-    // .lean() methodi orqalik biz datebase'dan olgan ma'lumotimizni o'zgartirish imkoniga ega bo'lamiz
-    
+		// .lean() methodi orqalik biz datebase'dan olgan ma'lumotimizni o'zgartirish imkoniga ega bo'lamiz
 
-    return await this.memberModel.findById(member._id).lean().exec();
-    
-    
+		return await this.memberModel.findById(member._id).lean().exec();
 	}
-
+	// TODO: Brian
 	public async getMemberDetail(member: Member): Promise<Member> {
 		const memberId = shapeIntoMongooseObjectId(member._id);
 		const result = await this.memberModel
 			.findOne({ _id: memberId, memberStatus: MemberStatus.ACTIVE })
-      .exec();
-    
-    
-    console.log("result getMemberDetail =>", result);
+			.exec();
+
+		console.log("result getMemberDetail =>", result);
 		if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
 		return result;
+	}
+
+	public async updateMember(
+		member: Member,
+		input: MemberUpdateInput
+	): Promise<Member> {
+		const memberId = shapeIntoMongooseObjectId(member._id);
+		const result = await this.memberModel
+			.findOneAndUpdate({ _id: memberId }, input, { new: true })
+			.exec();
+
+		if (!result) {
+			throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+    }
+    
+    return result
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------------------------------------

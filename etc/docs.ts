@@ -890,3 +890,19 @@
 // 69th shu yerda yakunlandi
 // 수고 하셨습니다!
 
+
+// =================================================================
+
+// 2024-07-20
+// 70th Lesson
+// updateMember Rest API (Node JS)
+
+// Darsimiz rejasi:
+// 1) Middleware methodlarini ketma-ketlikda ishlatishni muhokama etamiz
+// 2) updateMember Rest API'ni birga develop qilamiz
+
+
+// ---------------------------------------------------
+
+// 59th shu yerda yakunlandi
+// 수고 하셨습니다!

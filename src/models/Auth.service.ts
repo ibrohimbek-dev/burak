@@ -9,6 +9,7 @@ class AuthService {
 		this.secretToken = process.env.SECRET_TOKEN as string;
 	}
 
+	//
 	public async createToken(payload: Member) {
 		return new Promise((resolve, reject) => {
 			const duration = `${AUTH_TIMER}h`;

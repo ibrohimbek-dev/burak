@@ -5,6 +5,7 @@ import {
 	LoginInput,
 	Member,
 	MemberInput,
+	MemberUpdateInput,
 } from "../libs/types/member";
 import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/enums/member.enum";
@@ -88,6 +89,27 @@ memberController.getMemberDetail = async (
 	}
 };
 
+// TODO: savol => member ID bilan qanday ishlanyapti?
+memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
+	try {
+		console.log("updateMember");
+		const input: MemberUpdateInput = req.body;
+
+    // TODO: savol => regex'ga 'g' qo'yilmadi
+		if (req.file) {
+      input.memberImage = req.file.path.replace(/\\/g, "/",);                                        
+		}
+
+		const result = await memberService.updateMember(req.member, input);
+
+		res.status(HttpCode.OK).json({ result });
+	} catch (err: any) {
+		console.log("Error on user updateMember", err.message);
+		if (err instanceof Errors) res.status(err.code).json(err);
+		else res.status(Errors.standard.code).json(Errors.standard.message);
+	}
+};
+
 memberController.verifyAuth = async (
 	req: ExtendedRequest,
 	res: Response,
@@ -116,7 +138,7 @@ memberController.verifyAuth = async (
 	}
 };
 
-memberController.rerieveAuth = async (
+memberController.retrieveAuth = async (
 	req: ExtendedRequest,
 	res: Response,
 	next: NextFunction
