@@ -20,6 +20,21 @@ class MemberService {
 	// ---------------------------------------------------------------------------------------------------------------------------------------------
 	// SPA uchun Member.service.ts bo'limi:
 
+  public async getRestaurant(): Promise<Member> {
+    // TODO: Savol => .findOne() bilan find() nima farqi bor
+
+		const result = await this.memberModel
+			.findOne({ memberType: MemberType.RESTAURANT })
+      .exec();      
+
+  
+		if (!result) {
+			throw new Errors(HttpCode.NOT_FOUND, Message.NO_RESTAURANT_FOUND);
+		}
+
+		return result;
+	}
+
 	public async userSignup(input: MemberInput): Promise<Member> {
 		const salt = await bcrypt.genSalt();
 		input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
@@ -104,8 +119,9 @@ class MemberService {
 			.limit(4)
 			.exec();
 
-    // TODO: Savol => Nega member bo'lmasa ham bo'sh array'ni qaytarmoqda?
+		// TODO: Savol => Nega member bo'lmasa ham bo'sh array'ni qaytarmoqda?
     // Add .length
+  
 		if (!result) {
 			throw new Errors(HttpCode.NOT_FOUND, Message.NO_TOP_USERS_FOUND);
 		}

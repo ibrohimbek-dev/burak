@@ -24,7 +24,8 @@ export enum Message {
   PRODUCT_CREATION_FAILED = "Failed to create a product!",
   BLOCKED_USER = "You are blocked by an admin! Contact to the admin",
   TOKEN_CREATION_FAILED="An error occurred while generating token!",
-  NO_TOP_USERS_FOUND="An error occurred while generating token!"
+  NO_TOP_USERS_FOUND="No top users are found!",
+  NO_RESTAURANT_FOUND="No restaurant is found!",
 }
 
 class Errors extends Error {

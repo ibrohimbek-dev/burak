@@ -933,8 +933,32 @@
 
 // .limit() => orqalik biz faqatgina 4'ta user'ni sortlab bergin mantig'ini kirityapmiz
 
-// .exec() => Bundan keyin keladigan barcha query'larni shu yerda yakunlayapmiz. 
+// .exec() => Bundan keyin keladigan barcha query'larni shu yerda yakunlayapmiz.
 // Ya'ni shu yerdan keyin, keyingi query'larga o'tmaydi
 
 // 71th shu yerda yakunlandi
+// 수고 하셨습니다!
+
+// =================================================================
+
+// 2024-07-20
+// 72th Lesson
+// Develop getRestaurant Rest API
+
+// Darsimiz rejasi:
+// 1) getRestaurant bizness mantiqini develop qilamiz
+// 2) Lean Query commandasini tahlil etamiz
+
+// ---------------------------------------------------
+
+// .findOne() => Yagona object qaytaradi
+// .find() => Array qaytaradi
+
+// [] => Bo'sh array truthy value hisoblanadi
+
+// MongoDB'dan qaytgan document object'lar .lean() orqalik oddiy js objectlariga aylantiriladi
+
+// .lean() or .lean(true) (by default lean is true)
+
+// 72th shu yerda yakunlandi
 // 수고 하셨습니다!

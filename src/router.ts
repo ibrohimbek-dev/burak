@@ -7,7 +7,7 @@ import makeUploader from "./libs/utils/uploader";
 
 // Member:
 
-// TODO: Brian
+router.get("/restaurant", memberController.getRestaurant)
 router.post("/login", memberController.userLogin);
 router.post("/signup", memberController.userSignup);
 
