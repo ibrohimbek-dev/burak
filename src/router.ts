@@ -29,6 +29,8 @@ router.post(
 	memberController.updateMember
 );
 
+router.get("/top-users", memberController.getTopUsers)
+
 // Product:
 
 // Orders:

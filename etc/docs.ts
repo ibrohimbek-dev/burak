@@ -885,11 +885,8 @@
 
 // ---------------------------------------------------
 
-
-
 // 69th shu yerda yakunlandi
 // 수고 하셨습니다!
-
 
 // =================================================================
 
@@ -901,8 +898,43 @@
 // 1) Middleware methodlarini ketma-ketlikda ishlatishni muhokama etamiz
 // 2) updateMember Rest API'ni birga develop qilamiz
 
+// ---------------------------------------------------
+
+// 70th shu yerda yakunlandi
+// 수고 하셨습니다!
+
+// =================================================================
+
+// 2024-07-20
+// 71th Lesson
+// getTopUsers Rest API (NodeJS)
+
+// Darsimiz rejasi:
+// 1) Mongoose Query commandalarini o'rganamiz
+// 2) getTopUsers biznes mantiqini develop qilamiz
 
 // ---------------------------------------------------
 
-// 59th shu yerda yakunlandi
+// Greater Than Or Equal => $gte
+// Quyidagi holatda, member'ning point'lari 1'dn katta bo'lsin degan mantiqni kiritmoqdamiz
+//  memberPoints: {
+// 		$gte: 1;
+//  }
+
+// .sort():
+// Quyidagi qatorda member'ning pointlarini yuqori bo'lgan userlarni
+// birinchiga chiqarib sortlab bergin ma'nosini beradi
+// .sort({ memberPoints: -1 }) => descending (Kattadan boshlab kichik tartibida)
+// .sort({ memberPoints: +1 }) => ascending (Kichikdan boshlab katta tartibida)
+
+// .sort({ memberPoints: "desc" }) => ascending (Kichikdan boshlab katta tartibida)
+// .sort({ memberPoints: "asc" }) => descending (Kichikdan boshlab katta tartibida)
+
+
+// .limit() => orqalik biz faqatgina 4'ta user'ni sortlab bergin mantig'ini kirityapmiz
+
+// .exec() => Bundan keyin keladigan barcha query'larni shu yerda yakunlayapmiz. 
+// Ya'ni shu yerdan keyin, keyingi query'larga o'tmaydi
+
+// 71th shu yerda yakunlandi
 // 수고 하셨습니다!

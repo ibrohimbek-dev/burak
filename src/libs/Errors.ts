@@ -23,7 +23,8 @@ export enum Message {
   FAILED_UPLOADING_IMAGE = "Please upload a image to continue!",
   PRODUCT_CREATION_FAILED = "Failed to create a product!",
   BLOCKED_USER = "You are blocked by an admin! Contact to the admin",
-  TOKEN_CREATION_FAILED="An error occurred while generating token!"
+  TOKEN_CREATION_FAILED="An error occurred while generating token!",
+  NO_TOP_USERS_FOUND="An error occurred while generating token!"
 }
 
 class Errors extends Error {

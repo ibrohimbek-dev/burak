@@ -42,7 +42,6 @@ class AuthService {
 			this.secretToken
 		)) as Member;
 
-		console.log("result on checkAuth =>", result);
 		return result;
 	}
 }

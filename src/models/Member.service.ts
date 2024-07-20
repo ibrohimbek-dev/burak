@@ -73,7 +73,6 @@ class MemberService {
 			.findOne({ _id: memberId, memberStatus: MemberStatus.ACTIVE })
 			.exec();
 
-		console.log("result getMemberDetail =>", result);
 		if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
 		return result;
@@ -90,9 +89,28 @@ class MemberService {
 
 		if (!result) {
 			throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-    }
-    
-    return result
+		}
+
+		return result;
+	}
+
+	public async getTopUsers(): Promise<Member[]> {
+		const result = await this.memberModel
+			.find({
+				memberStatus: MemberStatus.ACTIVE,
+				memberPoints: { $gte: 1 },
+			})
+			.sort({ memberPoints: -1 })
+			.limit(4)
+			.exec();
+
+    // TODO: Savol => Nega member bo'lmasa ham bo'sh array'ni qaytarmoqda?
+    // Add .length
+		if (!result) {
+			throw new Errors(HttpCode.NOT_FOUND, Message.NO_TOP_USERS_FOUND);
+		}
+
+		return result;
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------------------------------------

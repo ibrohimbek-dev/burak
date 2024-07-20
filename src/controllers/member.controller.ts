@@ -95,9 +95,9 @@ memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
 		console.log("updateMember");
 		const input: MemberUpdateInput = req.body;
 
-    // TODO: savol => regex'ga 'g' qo'yilmadi
+		// TODO: savol => regex'ga 'g' qo'yilmadi
 		if (req.file) {
-      input.memberImage = req.file.path.replace(/\\/g, "/",);                                        
+			input.memberImage = req.file.path.replace(/\\/g, "/");
 		}
 
 		const result = await memberService.updateMember(req.member, input);
@@ -105,6 +105,20 @@ memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
 		res.status(HttpCode.OK).json({ result });
 	} catch (err: any) {
 		console.log("Error on user updateMember", err.message);
+		if (err instanceof Errors) res.status(err.code).json(err);
+		else res.status(Errors.standard.code).json(Errors.standard.message);
+	}
+};
+
+memberController.getTopUsers = async (req: Request, res: Response) => {
+	try {
+		console.log("getTopUsers");
+
+		const result = await memberService.getTopUsers();
+		console.log("getTopUsers", result);
+		res.status(HttpCode.OK).json(result);
+	} catch (err: any) {
+		console.log("Error on user getTopUsers", err.message);
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard.message);
 	}
