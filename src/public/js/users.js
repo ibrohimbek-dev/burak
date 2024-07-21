@@ -9,7 +9,7 @@ $(function () {
 		const memberStatus = $(`#${memberId}.member-status`).val();
 		console.log("memberStatus:", memberStatus);
 
-		// TODO: axios updateChosenUser
+
 		axios
 			.post("/admin/user/edit", {
 				_id: memberId,

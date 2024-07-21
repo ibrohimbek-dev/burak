@@ -21,7 +21,7 @@ const authService = new AuthService();
 
 memberController.getRestaurant = async (req: Request, res: Response) => {
 	try {
-		console.log("getRestaurant");
+		console.log("gerRestaurant");
 
 		const result = await memberService.getRestaurant();
 		res.status(HttpCode.OK).json(result);
