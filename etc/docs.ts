@@ -1114,3 +1114,32 @@
 
 // 73th shu yerda yakunlandi
 // 수고 하셨습니다!
+
+
+// =================================================================
+
+// 2024-07-23
+// 74th Lesson
+// Develop getProduct Rest API
+
+// Darsimiz rejasi:
+// 1) getProduct business mantiqini develop qilamiz
+// 2) Tomoshaga bog'liq bo'lgan Service hamda Schema modellarni tashkil etamiz
+// 3) Tomosha qilish tizimini integratsiyasini amalga oshiramiz
+
+// ---------------------------------------------------
+
+// memberController.retrieveAuth => orqalik biz login bo'lgan va login bo'lmagan user'lar uchun
+// ma'lum bir rest api'dan foydalanish imkoniyatini beramiz.
+// Ya'ni mantiq bo'yicha agar user authenticated bo'lgan bo'lsa biz  uni ma'lumotini req.member'ga
+// biriktirib beramiz. Aksincha, authenticated bo'lmagan user bo'lsa, biz hech qanday jarayonni amalga oshirmay
+// keyinchi qadamga (next()) o'tishiga imkon beramiz.
+
+// memberController.retrieveAuth methodidan foydalanishimizning yana bir sababi ko'rishlar sonini plus birga oshirish.
+// Va keyinchalik viewed qilgan user yana o'sha product'ni ko'rgan vaqti views sonini oshirmaslikdir.
+// Shuning uchun ham aynan mana shu mantiq orqalik, kim murojaat etayotganligini bilishimiz kerak bo'ladi.
+
+
+
+// 74th shu yerda yakunlandi
+// 수고 하셨습니다!
