@@ -1115,7 +1115,6 @@
 // 73th shu yerda yakunlandi
 // 수고 하셨습니다!
 
-
 // =================================================================
 
 // 2024-07-23
@@ -1139,7 +1138,14 @@
 // Va keyinchalik viewed qilgan user yana o'sha product'ni ko'rgan vaqti views sonini oshirmaslikdir.
 // Shuning uchun ham aynan mana shu mantiq orqalik, kim murojaat etayotganligini bilishimiz kerak bo'ladi.
 
+// ------------------------------------------------------------
 
+// { timestamps: true, collection: "users" } => MongoDB Schema bizga default collection name
+// hosil qilib beradi. Lekin biz uni o'zimiz ham customize qilib yaratib olishimiz mumkin.
+// Aksariyat hollarda default holatda tugani yaxshi
+
+// export default mongoose.model("Member", memberSchema) => Quyidagi holatda Schema nomni 'Member' bo'lsa ham
+// MongoDB bizga default holatda ko'plikda collection nomini 'members' nomi bilan ochib beradi
 
 // 74th shu yerda yakunlandi
 // 수고 하셨습니다!
