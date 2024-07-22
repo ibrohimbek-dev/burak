@@ -37,7 +37,6 @@ memberController.userSignup = async (req: Request, res: Response) => {
 
 		const result: Member = await memberService.userSignup(input);
 
-		// TODO: Loyihamizning mana shu qismida Token Authentication integration qilamiz:
 
 		const token = await authService.createToken(result);
 
@@ -101,16 +100,16 @@ memberController.getMemberDetail = async (
 	}
 };
 
-// TODO: savol => member ID bilan qanday ishlanyapti?
 memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
 	try {
 		console.log("updateMember");
 		const input: MemberUpdateInput = req.body;
 
-		// TODO: savol => regex'ga 'g' qo'yilmadi
 		if (req.file) {
 			input.memberImage = req.file.path.replace(/\\/g, "/");
-		}
+    }
+    
+    console.log("input.memberImage =>", req.file);
 
 		const result = await memberService.updateMember(req.member, input);
 

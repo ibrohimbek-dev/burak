@@ -14,8 +14,7 @@ class AuthService {
 		return new Promise((resolve, reject) => {
 			const duration = `${AUTH_TIMER}h`;
 
-			// TODO: Quyidagi qismni o'zgartirib ketdim:
-			// process.env.SECRET_TOKEN as string;
+
 			jwt.sign(
 				payload,
 				this.secretToken,

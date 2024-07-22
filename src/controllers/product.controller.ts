@@ -3,20 +3,48 @@ import { T } from "../libs/types/common";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import ProductService from "../models/Product.service";
 import { AdminRequest } from "../libs/types/member";
-import { ProductInput } from "../libs/types/product";
+import { ProductInput, ProductInquiry } from "../libs/types/product";
+import { ProductCollection } from "../libs/enums/product.enum";
 
 const productService = new ProductService();
 
 const productController: T = {};
 
 // SPA -----------------------------------
+productController.getProducts = async (req: Request, res: Response) => {
+	try {
+		const { page, limit, order, productCollection, search } = req.query;
+
+		const inquiry: ProductInquiry = {
+			order: String(order),
+			page: Number(page),
+			limit: Number(limit),
+		};
+
+		if (productCollection) {
+			inquiry.productCollection = productCollection as ProductCollection;
+		}
+
+		if (search) {
+			inquiry.search = String(search);
+		}
+
+		const result = await productService.getProducts(inquiry);
+
+		res.status(HttpCode.OK).json(result);
+	} catch (err) {
+		if (err instanceof Errors) res.status(err.code).json(err);
+		else res.status(Errors.standard.code).json(Errors.standard);
+	}
+};
+
 // SSR -----------------------------------
 
 productController.getAllProducts = async (req: Request, res: Response) => {
-	try {		
+	try {
 		const productsData = await productService.getAllProducts();
 		res.render("products", { productsData: productsData });
-	} catch (err) {		
+	} catch (err) {
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard);
 	}
@@ -37,13 +65,13 @@ productController.createNewProduct = async (
 		const data: ProductInput = req.body;
 		data.productImages = req.files?.map((ele) => {
 			return ele.path.replace(/\\/g, "/");
-		});		
+		});
 		await productService.createNewProduct(data);
 
 		res.send(
 			`<script>alert('${"successfully product created"}'); window.location.replace("/admin/product/all")</script>`
 		);
-	} catch (err) {		
+	} catch (err) {
 		const message =
 			err instanceof Errors ? err.message : Message.PRODUCT_CREATION_FAILED;
 

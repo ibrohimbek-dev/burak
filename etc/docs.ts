@@ -930,7 +930,6 @@
 // .sort({ memberPoints: "desc" }) => ascending (Kichikdan boshlab katta tartibida)
 // .sort({ memberPoints: "asc" }) => descending (Kichikdan boshlab katta tartibida)
 
-
 // .limit() => orqalik biz faqatgina 4'ta user'ni sortlab bergin mantig'ini kirityapmiz
 
 // .exec() => Bundan keyin keladigan barcha query'larni shu yerda yakunlayapmiz.
@@ -961,4 +960,157 @@
 // .lean() or .lean(true) (by default lean is true)
 
 // 72th shu yerda yakunlandi
+// 수고 하셨습니다!
+
+// =================================================================
+
+// 2024-07-22
+// 73th Lesson
+// getProducts Rest Api nodeJS
+
+// Darsimiz rejasi:
+// 1) MongoDB Aggregationni o'rganamiz
+// 2) URL'da qatnashadigan query va params tushunchalari
+// 3) getProdutcts bizness mantiqini develop qilamiz
+
+// ---------------------------------------------------
+
+// Aggregation nima? => Aggregation schema orqalik quriladi va u pipeline'lar orqalik tashkillashtiriladi.
+// Ya'ni aggregation bizga array'ni ichida turli xil pipeline'larni qurishimizga imkon beradi.
+// Aggregation bu mukammal bo'lgan query mantiqlarini qurishda bizga yordamga keladi.
+// Ayniqsa aggregation bir necha collection'larni bir vaqtni o'zida ma'lum bir documention'larni cross-query
+// mexanizmlarini bizga tashkillashtirib beradi. Ya'ni bir vaqtni o'zida bir nechta pipeline'ni ochganligi sabablik
+// bu pipeline'lar orqalik bir nechta collection'larni bir vaqtda o'qish imkoniyatini hosil qilib beradi.
+
+// Aggregation'ga yana bir misol, masalan bizda ikkita kema bo'lsin. Hamda birinchi kemammiz bu
+// cho'ponlardan iborat bo'lgan kema bo'lsin, hamda uni yonida ketayotgan ikkinchi kemamiz o'sha birinchi kemadagi
+// cho'ponlarni qo'ylaridan iborat bo'lgan kema bo'lsin.
+// Va bizga quyidagicha masala yuklatilsin: Masalan birinchi kemadagi cho'ponlar orasidan eng yoshi 3'ta cho'pon tanlab olinsin.
+// Va tanlab olingan cho'ponlarga tegishli bo'lgan qo'ylarini ikkinchi kemadan axtarish mexanizimini bajaradigon mexanizm tuzish kerak bo'lsin.
+
+// Agar bir yuqoridagi masalani aggretation usulidan emas, balki query methodian foydalanib yozadigon bo'lsak qanday bo'lar edi?
+
+// Query methodi orqalik, birinchi kemamizdan biz yoshi eng kichik bo'lgan 3'ta cho'ponni izlar edik. Va bizda natija bir array bo'ladi
+// va shu array ichida 3'ta cho'pon bo'ladi. Bu cho'ponlar saqlangan array 3 marotaba loop bo'ladi.
+// Har birinchi loop'da biz ikkinchi kemadan (collection) 3 marotabadan loop qilib tegishlik bo'lgan qo'ylarni olib kelib, bir joyga jamlab
+// bizning client'imizga yuborishimiz kerak edi.
+
+// Huddi shu usul orqalik bizning server'imiz database'ga 4 marotaba murojaat qilmoqda.
+
+// Aytaylik, ikkinchi holat, misol uchun eng yosh 10'ta cho'ponimizni qo'ylarini topsih kerak bo'lsa, unda bizda
+// unda biz bu holatda server va database orasida bir necha marotaba query tashkillashtirishimizga to'g'ri keladi.
+
+// Shunday ortiqcha noqulayliklarni chetlab o'tib, bundayin complex query'larni ya'ni bir necha collection (kema)'lar aro
+// searching mexanizimini tashkillashtirish uchun, bizga aggretation xizmatga keladi.
+
+// Aggregation faqatgina bundagina emas, aggregation bilan juda ko'p operatsiyalarni pipeline'larda hosil qilishimiz mumkin.
+// Aynan mana shu pipeline'larimiz array shaklida bo'ladi va o'sha pipleline'larimiz orqalik complex mantiqlarni hosil qilishimiz mumkin ekan.
+
+// Jumladan aggregation'larda ham o'zining kommandalari mavjud
+
+// Demak, aggregation argument sifatida array'ni qabul qilar ekan va arrayni ichida bir qator pipeline'larni
+// ketma - ketlikda berishimiz mumkin ekan.
+
+// Aggregate.prototype.match() => Bu query'dagi .find() mantig'iga o'xshash mantiq hisoblanadi.
+// Quyida .match()'ning ma'nosi document ichidagi department dataset'ini 'sales' yoki 'engineering' qiymatiga teng bo'lgan
+// dokumentlarni topib berish buyrug'ini kirityapmiz.
+
+// aggregate.match({department: {$in: ["sales", "engineering"]}});
+
+// Aggregate.prototype.limit() => Keyinga jarayonga o'tish uchun maksimum limit qo'yish mantig'i:
+// aggregate.limit(10);
+
+// Aggregate.prototype.lookup() => Bir vaqtni o'zida bir nechta collection bo'ylab cross-query qilish mantig'i imkonini beradi:
+// aggregate.lookup({from: "users", localField: "userId", foreignField; "_id", as: "users"})
+
+// Aggregate.prototype.sample() => Bu bizga random dokumentlarni tanlab olish mantig'ini beradi.
+// aggregate.sample(3) => Quyidagi mantiq orqalik, masalan bizda, aggregation orqalik 20'ta data paydo bo'lsa,
+// .sample() bizga ixtiyoriy random holatda 3'tasini tanlab beradi.
+
+// Aggregate.prototype.search() => Bu bizga text search mexanizimini tashkillashtirish uchun bizga yordamga keladi.
+// const res = await Model.aggregate().search({
+// 	text: {
+// 		query: "baseball",
+// 		path: "plot",
+// 	},
+// });
+
+// Aggregate.prototype.skip() => Kelgusi jarayondan oldin nechtadur data'larni skip qilib beradi.
+// aggregate.skip(10) => 10'tasi skip bo'ladi
+
+// Aggregate.prototype.sort() => Data'larimizni sort qilib berish mexanizimini amalga oshirib beradi
+// aggregate.sort({field: "asc", test: -1});
+// aggregate.sort("field -test");
+
+// TODO: more info about aggregation => https://mongoosejs.com/docs/api/aggregate.html
+
+// ------------------------------------------------------------------
+
+// Query => query'lar bizni url'larimizda hosil bo'ladi. Biz ularni quyidagicha kiritishimiz kerak:
+// http://localhost:3003/member/products/all?name=brain
+// result =>  { name: 'brian' }
+
+// POST => method'larida header & body qismi mavjud
+// GET => method'larida faqatgina header qismi mavjud
+
+// Biz header qismi orqalik ham ma'lumotni backend'ga yuborishimiz mumkin.
+// Demak query va params orqalik yuborishimiz mumkin.
+// Biz hozir query'larni tahlil etyapmiz.
+
+// Birinchi query'chi ochish uchun so'roq (?) belgisini qo'yamiz.
+// Undan keyin davom etadigan query'larni qo'yish uchun esa and (&) belgisini qo'yamiz
+// MASALAN:
+// http://localhost:3003/products/all?name=brian&age=26&nation=german
+// result => { name: 'brian', age: '26', nation: 'german' }
+
+// -------------------------------------------------------
+// Params => params'larni ham biz url'larimizda hosil qilib olamiz.
+// Har qanday link ohiridan kiritilgan textlarni params deb qabul qilamiz.
+
+// MASALAN:
+// router.get("/products/all:id", productController.getProducts);
+
+// :id o'rniga biz url'dan text ko'rinishida har qanday ma'lumotni kiritishimiz mumkin.
+
+// http://localhost:3003/products/all/hello23World
+// result =>  { id: 'hello23World' }
+
+// Biz param'larni istaganimizcha qo'yishimiz mumkin:
+// MASALAN:
+// router.get("/products/all/:id/:param", productController.getProducts);
+// http://localhost:3003/products/all/hello23World/hithere
+
+// result =>  { id: 'hello23World', param: 'hithere' }
+
+// --------------------------------------------------------------
+
+// Biz ham param'ni ham query'ni birga ishlatishimiz mumkinmi?
+// Ha albatta ishlatishimiz mumkin.
+// MASALAN:
+// http://localhost:3003/products/all/hello?name=brian
+
+// result =>
+// SPA => getProducts req.query => { name: 'brian' }
+// SPA => getProducts req.params => { id: 'hello' }
+
+// -------------------------------------------------------------
+
+// Bizning request'larimiz GET va POST methodlaridan foydalanib quriladi.
+// Agar biznin methodimiz GET methodidan foydalanib qurilgan bo'lsa, requestimizning faqatgina header qismi
+// mavjud bo'ladi va shartlik ravishda body qismi mavjud bo'lmaydi deb ketganmiz.
+
+// Lekin shunday bo'lsada biz GET methodi orqalik hosil qilingan so'rovni body qismida ham yuborsak bo'ladi
+// ammo bu ko'p developer'lar tomonidan qabul qilinmagan amaliyot hisoblanadi. Shuning uchun
+// biz doim GET methodini ishlatgan vaqtimizda frontendan ~ backend'ga ma'lumotlarni header orqalik ya'ni query va param orqalik ma'lumotlarni
+// yuborish bu hamma qabul qilgan standart hisoblanadi.
+
+// GET methodi orqalik ham body qismini shakllantirsak backend bu ma'lumotarni oladi lekin bu standart
+// bo'lmaganligi uchun, biz bu usuldan foydalanmaymiz.
+
+// Agar frontend'dan backend'ga ma'lumtoni body orqalik yuborish kerak bo'lsa biz buni
+// POST methodi orqalik amalga oshiramiz.
+
+// aggregation o'zida array'larni jalb qiladi
+
+// 73th shu yerda yakunlandi
 // 수고 하셨습니다!

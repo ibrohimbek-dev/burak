@@ -2,36 +2,39 @@ import express from "express";
 const router = express.Router();
 import memberController from "./controllers/member.controller";
 import makeUploader from "./libs/utils/uploader";
+import productController from "./controllers/product.controller";
 
 // This is for React project
 
 // Member:
 
-router.get("/restaurant", memberController.getRestaurant)
-router.post("/login", memberController.userLogin);
-router.post("/signup", memberController.userSignup);
+router.get("/member/restaurant", memberController.getRestaurant);
+router.post("/member/login", memberController.userLogin);
+router.post("/member/signup", memberController.userSignup);
 
 router.post(
-	"/logout",
+	"/member/logout",
 	memberController.verifyAuth,
 	memberController.userLogout
 );
+
 router.get(
-	"/detail",
+	"/member/detail",
 	memberController.verifyAuth,
 	memberController.getMemberDetail
 );
 
 router.post(
-	"/update",
+	"/member/update",
 	memberController.verifyAuth,
 	makeUploader("members").single("memberImage"),
 	memberController.updateMember
 );
 
-router.get("/top-users", memberController.getTopUsers)
+router.get("/member/top-users", memberController.getTopUsers);
 
 // Product:
+router.get("/products/all", productController.getProducts);
 
 // Orders:
 

@@ -21,13 +21,12 @@ class MemberService {
 	// SPA uchun Member.service.ts bo'limi:
 
   public async getRestaurant(): Promise<Member> {
-    // TODO: Savol => .findOne() bilan find() nima farqi bor
 
 		const result = await this.memberModel
 			.findOne({ memberType: MemberType.RESTAURANT })
       .exec();      
 
-  
+    result.target = "test"
 		if (!result) {
 			throw new Errors(HttpCode.NOT_FOUND, Message.NO_RESTAURANT_FOUND);
 		}
@@ -50,7 +49,6 @@ class MemberService {
 	}
 
 	public async userLogin(input: LoginInput): Promise<Member> {
-		// TODO: consider member status laters
 		const member = await this.memberModel
 			.findOne(
 				{
@@ -177,7 +175,9 @@ class MemberService {
 		}
 
 		return await this.memberModel.findById(member._id).exec();
-	}
+  }
+  
+
 
 	public async getUsers(): Promise<Member[]> {
 		const result = await this.memberModel
@@ -191,7 +191,9 @@ class MemberService {
 		// }
 
 		return result;
-	}
+  }
+  
+  
 
 	public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
 		const memberId = input._id;

@@ -48,7 +48,7 @@ export interface MemberUpdateInput {
 }
 
 
-// TODO: Brian
+
 export interface ExtendedRequest extends Request {
 	member: Member;  
   file: Express.Multer.File;
@@ -57,9 +57,9 @@ export interface ExtendedRequest extends Request {
 
 export interface AdminRequest extends Request {
 	member: Member;
-  session: Session & { member: Member };
-  file: Express.Multer.File;
-  files: Express.Multer.File[]
+	session: Session & { member: Member };
+	file: Express.Multer.File;
+	files: Express.Multer.File[];
 }
 
 

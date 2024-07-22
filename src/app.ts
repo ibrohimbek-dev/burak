@@ -63,7 +63,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use("/admin", routerAdmin); // EJS
 
 // This router is for React project
-app.use("/member", router); // REACT
+app.use("/", router); // REACT
 
 // Export app.ts in order to use it in another file
 export default app; // module.exports = app
