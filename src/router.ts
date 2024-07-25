@@ -3,6 +3,7 @@ const router = express.Router();
 import memberController from "./controllers/member.controller";
 import makeUploader from "./libs/utils/uploader";
 import productController from "./controllers/product.controller";
+import orderController from "./controllers/order.controller";
 
 // This is for React project
 
@@ -41,6 +42,12 @@ router.get(
 	memberController.retrieveAuth,
 	productController.getProduct
 );
+
 // Orders:
+router.post(
+	"/order/create",
+	memberController.verifyAuth,
+	orderController.createOrder
+);
 
 export default router;
