@@ -1165,7 +1165,22 @@
 
 // ---------------------------------------------------
 
-// 
 
 // 75th shu yerda yakunlandi
+// 수고 하셨습니다!
+
+
+// =================================================================
+
+// 2024-07-25
+// 76th Lesson
+// Develop getMyOrders API
+
+// Darsimiz rejasi:
+// 1) getMyOrders business mantiqini birga develop qilamiz
+
+
+// ---------------------------------------------------
+
+// 76th shu yerda yakunlandi
 // 수고 하셨습니다!
