@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { OrderStatus } from "../libs/enums/order.enum";
 
+// TODO: Brian 1) ---------------------------------------------------------------
 const orderSchema = new Schema(
 	{
 		orderTotal: {

@@ -20,13 +20,12 @@ class MemberService {
 	// ---------------------------------------------------------------------------------------------------------------------------------------------
 	// SPA uchun Member.service.ts bo'limi:
 
-  public async getRestaurant(): Promise<Member> {
-
+	public async getRestaurant(): Promise<Member> {
 		const result = await this.memberModel
 			.findOne({ memberType: MemberType.RESTAURANT })
-      .exec();      
+			.exec();
 
-    result.target = "test"
+		result.target = "test";
 		if (!result) {
 			throw new Errors(HttpCode.NOT_FOUND, Message.NO_RESTAURANT_FOUND);
 		}
@@ -118,13 +117,29 @@ class MemberService {
 			.exec();
 
 		// TODO: Savol => Nega member bo'lmasa ham bo'sh array'ni qaytarmoqda?
-    // Add .length
-  
+		// Add .length
+
 		if (!result) {
 			throw new Errors(HttpCode.NOT_FOUND, Message.NO_TOP_USERS_FOUND);
 		}
 
 		return result;
+	}
+
+	public async addUserPoint(member: Member, point: number): Promise<Member> {
+		const memberId = shapeIntoMongooseObjectId(member._id);
+
+		return await this.memberModel
+			.findOneAndUpdate(
+				{
+					_id: memberId,
+					memberType: MemberType.USER,
+					memberStatus: MemberStatus.ACTIVE,
+				},
+				{ $inc: { memberPoints: point } },
+				{ new: true }
+			)
+			.exec();
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -175,9 +190,7 @@ class MemberService {
 		}
 
 		return await this.memberModel.findById(member._id).exec();
-  }
-  
-
+	}
 
 	public async getUsers(): Promise<Member[]> {
 		const result = await this.memberModel
@@ -191,9 +204,7 @@ class MemberService {
 		// }
 
 		return result;
-  }
-  
-  
+	}
 
 	public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
 		const memberId = input._id;

@@ -1,18 +1,27 @@
 import { shapeIntoMongooseObjectId } from "../libs/config";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { Member } from "../libs/types/member";
-import { Order, OrderInquiry, OrderItemInput } from "../libs/types/order";
+import {
+	Order,
+	OrderInquiry,
+	OrderItemInput,
+	OrderUpdateInput,
+} from "../libs/types/order";
 import OrderModel from "../schema/Order.model";
 import OrderItemModel from "../schema/OrderItem.model";
 import { ObjectId } from "mongoose";
+import MemberService from "./Member.service";
+import { OrderStatus } from "../libs/enums/order.enum";
 
 class OrderService {
 	private readonly orderModel;
 	private readonly orderItemModel;
+	private readonly memberService;
 
 	constructor() {
 		this.orderModel = OrderModel;
 		this.orderItemModel = OrderItemModel;
+		this.memberService = new MemberService();
 	}
 
 	public async createOrder(
@@ -33,6 +42,8 @@ class OrderService {
 				orderDelivery: delivery,
 				memberId: memberId,
 			});
+
+			// TODO:
 
 			const orderId = newOrder._id;
 			await this.recordOrderItem(orderId, input);
@@ -57,6 +68,7 @@ class OrderService {
 		const orderItemsState = await Promise.all(promisedList);
 	}
 
+	// TODO: Brian 1) ---------------------------------------------------------------
 	public async getMyOrders(
 		member: Member,
 		inquiry: OrderInquiry
@@ -91,6 +103,33 @@ class OrderService {
 			.exec();
 
 		if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		return result;
+	}
+
+	public async updateOrder(
+		member: Member,
+		input: OrderUpdateInput
+	): Promise<Order> {
+		const memberId = shapeIntoMongooseObjectId(member._id);
+		const orderId = shapeIntoMongooseObjectId(input.orderId);
+		const orderStatus = input.orderStatus;
+
+		const result = await this.orderModel
+			.findOneAndUpdate(
+				{
+					memberId: memberId,
+					_id: orderId,
+				},
+				{ orderStatus: orderStatus },
+				{ new: true }
+			)
+			.exec();
+
+		if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+		if (orderStatus === OrderStatus.PROCESS) {
+      const result = await this.memberService.addUserPoint(memberId, 1);      
+		}
 		return result;
 	}
 }

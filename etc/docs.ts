@@ -1184,3 +1184,21 @@
 
 // 76th shu yerda yakunlandi
 // 수고 하셨습니다!
+
+
+// =================================================================
+
+// 2024-07-25
+// 77th Lesson
+// Develop updateOrder Rest Api
+// Shu qismiga keldim
+
+// Darsimiz rejasi:
+// 1) updateOrder business mantiqini develop qilamiz
+
+// ---------------------------------------------------
+
+// 
+
+// 77th shu yerda yakunlandi
+// 수고 하셨습니다!
