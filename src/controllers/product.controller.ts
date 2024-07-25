@@ -12,7 +12,8 @@ const productController: T = {};
 
 // SPA -----------------------------------
 productController.getProducts = async (req: Request, res: Response) => {
-	try {
+  try {
+    // Destruction => biz yoyib olyapmiz
 		const { page, limit, order, productCollection, search } = req.query;
 
 		const inquiry: ProductInquiry = {
@@ -41,7 +42,7 @@ productController.getProducts = async (req: Request, res: Response) => {
 // TODO: Savol => nega 'ExtendedRequest' ishlatyapmiz, 'AdminRequest' ham ishlatsak bo'ladi-ku?
 
 productController.getProduct = async (req: ExtendedRequest, res: Response) => {
-	try {		
+	try {
 		// First method to get params:
 		// const id: string = req.params.id;
 

@@ -123,10 +123,7 @@ memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
 
 memberController.getTopUsers = async (req: Request, res: Response) => {
 	try {
-		console.log("getTopUsers");
-
 		const result = await memberService.getTopUsers();
-		console.log("getTopUsers", result);
 		res.status(HttpCode.OK).json(result);
 	} catch (err: any) {
 		console.log("Error on user getTopUsers", err.message);

@@ -1149,3 +1149,23 @@
 
 // 74th shu yerda yakunlandi
 // 수고 하셨습니다!
+
+
+
+// =================================================================
+
+// 2024-07-25
+// 75th Lesson
+// Develop createOrder Rest Api
+
+// Darsimiz rejasi:
+// 1) Orderlarga daxldor bo'lgan Schema modellarini hosil etamiz
+// 2) Orderlarimiz uchun xizmat qiladigan Order Controller va Order Service Modellarini hosil etamiz
+// 3) createOrder business mantiqini develop qilamiz
+
+// ---------------------------------------------------
+
+// 
+
+// 75th shu yerda yakunlandi
+// 수고 하셨습니다!

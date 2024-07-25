@@ -24,8 +24,7 @@ class ProductService {
 	}
 
 	// SPA ---------------------------------------------
-	public async getProducts(inquiry: ProductInquiry): Promise<Product[]> {
-		console.log("inquiry =>", inquiry);
+	public async getProducts(inquiry: ProductInquiry): Promise<Product[]> {		
 
 		const match: T = { productStatus: ProductStatus.PROCESS };
 
