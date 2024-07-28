@@ -50,14 +50,12 @@ router.post(
 	orderController.createOrder
 );
 
-// TODO: Brian 1) ---------------------------------------------------------------
 router.get(
 	"/order/all",
 	memberController.verifyAuth,
 	orderController.getMyOrders
 );
 
-// TODO: Brian 2) ---------------------------------------------------------------
 router.post(
 	"/order/update",
 	memberController.verifyAuth,

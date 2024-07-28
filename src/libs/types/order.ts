@@ -12,7 +12,6 @@ export interface OrderItem {
 	updatedAt: Date;
 }
 
-// TODO: Brian 1) ---------------------------------------------------------------
 export interface Order {
 	_id: ObjectId;
 	orderTotal: number;
@@ -34,14 +33,12 @@ export interface OrderItemInput {
 	orderId?: ObjectId;
 }
 
-// TODO: Brian 1) ---------------------------------------------------------------
 export interface OrderInquiry {
 	page: number;
 	limit: number;
 	orderStatus: OrderStatus;
 }
 
-// TODO: Brian 2) ---------------------------------------------------------------
 export interface OrderUpdateInput {
   orderId: string;
   orderStatus: OrderStatus

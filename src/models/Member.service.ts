@@ -52,7 +52,6 @@ class MemberService {
 			.findOne(
 				{
 					memberNick: input.memberNick,
-					// memberStatus: { $nin: [MemberStatus.DELETE, MemberStatus.BLOCK] },
 					memberStatus: { $ne: MemberStatus.DELETE },
 				},
 				{ _id: 1, memberNick: 1, memberPassword: 1, memberStatus: 1 }
@@ -72,9 +71,6 @@ class MemberService {
 		if (!isMatch) {
 			throw new Errors(HttpCode.UNAUTHORIZED, Message.INCORRECT_PASSWORD);
 		}
-
-		// return await this.memberModel.findById(member._id).exec();
-		// .lean() methodi orqalik biz datebase'dan olgan ma'lumotimizni o'zgartirish imkoniga ega bo'lamiz
 
 		return await this.memberModel.findById(member._id).lean().exec();
 	}
@@ -116,8 +112,6 @@ class MemberService {
 			.limit(4)
 			.exec();
 
-		// TODO: Savol => Nega member bo'lmasa ham bo'sh array'ni qaytarmoqda?
-		// Add .length
 
 		if (!result) {
 			throw new Errors(HttpCode.NOT_FOUND, Message.NO_TOP_USERS_FOUND);
@@ -198,10 +192,9 @@ class MemberService {
 			.exec();
 
 		console.log("(member.service.controller) getUsers:", result);
-		// TODO: Shu qismida mantiqiy xatolik bor
-		// if (!result?.length) {
-		// 	throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
-		// }
+		if (!result) {
+			throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+		}
 
 		return result;
 	}

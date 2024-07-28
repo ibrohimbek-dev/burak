@@ -41,7 +41,6 @@ class ProductService {
 				? { [inquiry.order]: 1 }
 				: { [inquiry.order]: -1 };
 
-		// TODO: Savol = Dollar qo'yish orqalik biz aggregation'ni methodlarini chaqirib olyapmizmi?
 		const result = await this.productModel
 			.aggregate([
 				{ $match: match }, // find product

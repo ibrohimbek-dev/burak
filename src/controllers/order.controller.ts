@@ -23,7 +23,6 @@ orderController.createOrder = async (req: ExtendedRequest, res: Response) => {
 };
 
 
-// TODO: Brian 1) ---------------------------------------------------------------
 orderController.getMyOrders = async (req: ExtendedRequest, res: Response) => {
 	try {
 		console.log("getMyOrders");
@@ -46,7 +45,6 @@ orderController.getMyOrders = async (req: ExtendedRequest, res: Response) => {
 };
 
 
-// TODO: Brian 2) ---------------------------------------------------------------
 orderController.updateOrder = async (req: ExtendedRequest, res: Response) => {
 	try {
 		const input: OrderUpdateInput = req.body;

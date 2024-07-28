@@ -1,107 +1,66 @@
 // ----------------------------------------
-// 2024-07-26
+// 2024-07-28
 // MIT 14
 
-// TASK Z
+// TASK ZA
 
-// Shunday function yozing. Bu function sonlardan iborat array
-// qabul qilsin. Function'ning vazifasi array tarkibidagi juft
-// sonlarni topib ularni yig'disini qaytarsin.
+// Shunday function yozing, u array ichidagi objectlarni
+// 'age' qiymati bo'yicha sortlab bersin.
 
-// MASALAN:
-// sumEvens([1, 2, 3]); return 2;
-// sumEvens([1, 2, 3, 2]); return 4;
+// MASALAN: sortByAge([{age:23}, {age:21}, {age:13}]) return [{age:13}, {age:21}, {age:23}]
 
-// Yuqoridagi misolda, bizning funktsiya
-// berilayotgan array tarkibidagi sonlar ichidan faqatgina juft bo'lgan
-// sonlarni topib, ularni hisoblab yig'indisini qaytarmoqda.
+// Yuqoridagi misolda, kichik raqamlar katta raqamlar tomon
+// tartiblangan holatda return bo'lmoqda.
 
-// =====================================================
+// ====================================================
+
 // Assets:
-const myArrNums: number[] = [1, 2, 3, 2, 1];
+interface myObject {
+	age: number;
+}
 
-// Solutions:
+const sortObject: myObject[] = [{ age: 23 }, { age: 21 }, { age: 13 }];
 
 // METHOD ONE:
-console.log("------------------------------------");
-const sumEvens_1 = (myArr: number[]) => {
-	return myArr.reduce((arr, num) => {
-		if (num % 2 === 0) {
-			return arr + num;
-		}
-		return arr;
-	}, 0);
+console.log("---------------------------------------");
+const sortByAge_1 = (obj: myObject[]) => {
+	return obj.sort((a, b) => a.age - b.age);
 };
 
-console.log("method one =>", sumEvens_1(myArrNums));
+console.log("method one =>", sortByAge_1(sortObject));
 
-// METHOD TWO:
-console.log("------------------------------------");
-const sumEvens_2 = (myArr: number[]) => {
-	let sum: number = 0;
+// ==================================================================
+// ----------------------------------------
+// 2024-07-28
+// MIT 14
 
-	for (let i = 0; i < myArr.length; i++) {
-		if (myArr[i] % 2 === 0) {
-			sum += myArr[i];
-		}
-	}
+// TASK ZB
 
-	return sum;
+// Shunday function yozing, uni 2 ta number parametri bolsin
+// va berilgan sonlar orasidan random raqam return qilsin
+// MASALAN: randomBetween(30, 50) return 45
+
+// Shunday function yozing, uni 2'ta number parametri bo'lsin.
+// Va berilgan sonlar orasidan random raqam returnb qilsin.
+
+// MASALAN: randomBetween(30, 50) return 45;
+
+// Yuqoridagi misolda, argument sifatida ikkita raqam, '30' va '45'
+// berilmoqda, function'ning vazifasi, shu ikkala son orasidan
+// random raqamni topib qaytarmoqda.
+
+// ================================================================
+
+// Assets:
+const numOne: number = 30;
+const numTwo: number = 50;
+
+// Solutions:
+// METHOD ONE:
+const randomBetween_1 = (num1: number, num2: number) => {
+	return Math.floor(Math.random() * (num2 - num1 + 1)) + num1;
 };
 
-console.log("method two =>", sumEvens_2(myArrNums));
+console.log("method one =>", randomBetween_1(numOne, numTwo));
 
-// METHOD THREE:
-console.log("------------------------------------");
-const sumEvens_3 = (myArr: number[]) => {
-	return myArr.reduce(
-		(acum, curr) => {
-			if (curr % 2 === 0) acum["evens"] = acum["evens"] + curr;
-			else acum["odds"] = acum["odds"] + curr;
-			return acum;
-		},
-		{ evens: 0, odds: 0 }
-	);
-};
 
-console.log("method three =>", sumEvens_3(myArrNums));
-
-// METHOD FOUR:
-console.log("------------------------------------");
-const sumEvens_4 = (myArr: number[]) => {
-	const evens: number[] = myArr.filter((num) => num % 2 == 0);
-
-	return evens.reduce((total, num) => total + num, 0);
-};
-
-console.log("method four =>", sumEvens_4(myArrNums));
-
-// METHOD FIVE:
-console.log("------------------------------------");
-const sumEvens_5 = (myArr: number[]) => {
-	const evens: number[] = myArr.filter((num) => num % 2 == 0);
-
-	return eval([...evens].join("+"));
-};
-
-console.log("method five =>", sumEvens_5(myArrNums));
-
-// METHOD SIX:
-console.log("------------------------------------");
-const sumEvens_6 = (myArr: number[]) => {
-	const evens: number[] = myArr.filter((num) => num % 2 == 0);
-
-	return eval(evens.toString().replace(/,/g, "+"));
-};
-
-console.log("method six =>", sumEvens_6(myArrNums));
-
-// METHOD SEVEN:
-console.log("------------------------------------");
-const sumEvens_7 = (myArr: number[]) => {
-	return myArr
-		.filter((num) => num % 2 === 0)
-		.reduce((total, son) => total + son, 0);
-};
-
-console.log("method seven =>", sumEvens_7(myArrNums));

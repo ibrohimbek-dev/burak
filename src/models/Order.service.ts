@@ -43,7 +43,6 @@ class OrderService {
 				memberId: memberId,
 			});
 
-			// TODO:
 
 			const orderId = newOrder._id;
 			await this.recordOrderItem(orderId, input);
@@ -68,7 +67,6 @@ class OrderService {
 		const orderItemsState = await Promise.all(promisedList);
 	}
 
-	// TODO: Brian 1) ---------------------------------------------------------------
 	public async getMyOrders(
 		member: Member,
 		inquiry: OrderInquiry

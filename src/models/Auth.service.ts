@@ -35,7 +35,6 @@ class AuthService {
 	}
 
 	public async checkAuth(token: string): Promise<Member> {
-		// TODO: Savol => 'await' has no effect on the type of this expression.
 		const result: Member = (await jwt.verify(
 			token,
 			this.secretToken

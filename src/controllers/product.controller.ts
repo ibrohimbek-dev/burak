@@ -39,7 +39,6 @@ productController.getProducts = async (req: Request, res: Response) => {
 	}
 };
 
-// TODO: Savol => nega 'ExtendedRequest' ishlatyapmiz, 'AdminRequest' ham ishlatsak bo'ladi-ku?
 
 productController.getProduct = async (req: ExtendedRequest, res: Response) => {
 	try {
