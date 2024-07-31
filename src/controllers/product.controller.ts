@@ -30,7 +30,8 @@ productController.getProducts = async (req: Request, res: Response) => {
 			inquiry.search = String(search);
 		}
 
-		const result = await productService.getProducts(inquiry);
+    const result = await productService.getProducts(inquiry);
+    
 
 		res.status(HttpCode.OK).json(result);
 	} catch (err) {
