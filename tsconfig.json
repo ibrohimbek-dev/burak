@@ -1,17 +1,26 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
-    "paths": {
-      "*": ["node_modules/*"]
-    }
-  },
-  "include": ["src/**/*.ts", "src/server.ts"],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"target": "ES2020",
+		"module": "commonjs",
+		"outDir": "./dist",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"baseUrl": "./",
+		"types": ["node"],
+		"paths": {
+			"*": ["node_modules/*"]
+		}
+	},
+	"include": [
+		"../**/*.ts",
+		"../**/*.js",
+		"src/**/*.ts",
+		"src/server.ts",
+		"train.ts",
+		"etc/train.ts",
+		"etc/review.ts"
+	],
+	"exclude": ["node_modules"]
 }
