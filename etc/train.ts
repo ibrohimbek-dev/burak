@@ -1,44 +1,42 @@
 // ----------------------------------------
-// 2024-08-01
+// 2024-08-03
 // MIT 14
 
-// TASK ZD
+// TASK ZE
 
-// Shunday function yozing. Bu function o'ziga, parametr sifatida
-// birinchi oddiy number, keyin yagona array va uchinchi bo'lib oddiy number
-// qabul qilsin. Berilgan birinchi number parametr, arrayning tarkibida indeks bo'yicha hisoblanib,
-// shu aniqlangan indeksni uchinchi number parametr bilan alashtirib, natija sifatida
-// yangilangan arrayni qaytarsin.
+// Shunday function yozing, uniygona string parametri mavjud bo'lsin.
+// Bu function string tarkibidagi takrorlangan xarflarni olib tashlab qolgan
+// qiymatni qaytarsin.
 
-// MASALAN: changeNumberInArray(1, [1,3,7,2], 2) return [1,2,7,2];
+// MASALAN: removeDuplicate('stringg') return 'string'
 
-// Yuqoridagi misolda, birinchi raqam bu '1' va arrayning '1'chi indeksi bu 3.
-// Bizning function uchinchi berilgan '2' raqamini shu '3' bilan almashtirib,
-// yangilangan arrayni qaytarmoqda.
+// Yuqoridagi misolda, 'stringg' so'zi tarkibida 'g' harfi takrorlanmoqda
+// funktsiyamiz shu bittadan ortiq takrorlangan harfni olib natijani
+// qaytarmoqda.
 
-// ====================================================================================
+// =====================================================
 // Assets:
+const duplicatedWord: string = "stringg";
 
-const numOne: number = 1;
-const numTwo: number = 2;
-
-const numArray: number[] = [1, 3, 7, 2];
-
-// Solutions:
-
-console.log("---------------------------------------------------------");
 // METHOD ONE:
+const removeDuplicate_1 = (myWord: string) => {
+	let result = myWord[0];
 
-const changeNumberInArray_1 = (
-	num1: number,
-	numArr: number[],
-	num2: number
-) => {
-	const result: number[] = [...numArr];
-	const index: number = result.indexOf(result[num1]);
-	result[index] = num2;
+	for (let i = 1; i < myWord.length; i++) {
+		if (myWord[i] !== myWord[i - 1]) {
+			result += myWord[i];
+		}
+	}
 
 	return result;
 };
 
-console.log("method one =>", changeNumberInArray_1(numOne, numArray, numTwo));
+console.log("methd one =>", removeDuplicate_1(duplicatedWord));
+
+// METHOD TWO:
+console.log("--------------------------------------");
+const removeDuplicate_2 = (myWord: string) => {
+	return myWord.replace(/(.)\1+/g, "$1");
+};
+
+console.log("methd two =>", removeDuplicate_2(duplicatedWord));
