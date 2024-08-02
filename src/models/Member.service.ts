@@ -42,7 +42,6 @@ class MemberService {
 			result.memberPassword = "";
 			return result.toJSON();
 		} catch (err: any) {
-			console.log("(Member.service.ts) error on signup:", err.message);
 			throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
 		}
 	}
@@ -191,7 +190,6 @@ class MemberService {
 			.find({ memberType: MemberType.USER })
 			.exec();
 
-		console.log("(member.service.controller) getUsers:", result);
 		if (!result) {
 			throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 		}
@@ -205,7 +203,6 @@ class MemberService {
 			.findByIdAndUpdate({ _id: memberId }, input, { new: true })
 			.exec();
 
-		console.log("(member.service.controller) updateChosenUser:", result);
 		if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
 		return result;

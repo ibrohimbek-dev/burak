@@ -23,7 +23,6 @@ const store = new MongoDBStore({
 const app = express();
 
 // Middleware pattern:
-// console.log("__dirname:", __dirname);
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({ extended: true }));

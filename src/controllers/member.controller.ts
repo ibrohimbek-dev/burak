@@ -21,7 +21,6 @@ const authService = new AuthService();
 
 memberController.getRestaurant = async (req: Request, res: Response) => {
 	try {
-		console.log("gerRestaurant");
 
 		const result = await memberService.getRestaurant();
 		res.status(HttpCode.OK).json(result);
@@ -66,7 +65,6 @@ memberController.userLogin = async (req: Request, res: Response) => {
 
 		res.status(HttpCode.OK).json({ member: result, accessToken: token });
 	} catch (err: any) {
-		console.log("Error on login", err.message);
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard.message);
 	}
@@ -74,11 +72,9 @@ memberController.userLogin = async (req: Request, res: Response) => {
 
 memberController.userLogout = (req: ExtendedRequest, res: Response) => {
 	try {
-		console.log("logout");
 		res.cookie("accessToken", null, { maxAge: 0, httpOnly: true });
 		res.status(HttpCode.OK).json({ logout: true });
 	} catch (err: any) {
-		console.log("Error on user userLogout", err.message);
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard.message);
 	}
@@ -89,12 +85,10 @@ memberController.getMemberDetail = async (
 	res: Response
 ) => {
 	try {
-		console.log("getMemberDetail");
 		const result = await memberService.getMemberDetail(req.member);
 
 		res.status(HttpCode.OK).json(result);
 	} catch (err: any) {
-		console.log("Error on user getMemberDetail", err.message);
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard.message);
 	}
@@ -102,20 +96,17 @@ memberController.getMemberDetail = async (
 
 memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
 	try {
-		console.log("updateMember");
 		const input: MemberUpdateInput = req.body;
 
 		if (req.file) {
 			input.memberImage = req.file.path.replace(/\\/g, "/");
     }
     
-    console.log("input.memberImage =>", req.file);
 
 		const result = await memberService.updateMember(req.member, input);
 
 		res.status(HttpCode.OK).json({ result });
 	} catch (err: any) {
-		console.log("Error on user updateMember", err.message);
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard.message);
 	}
@@ -126,7 +117,6 @@ memberController.getTopUsers = async (req: Request, res: Response) => {
 		const result = await memberService.getTopUsers();
 		res.status(HttpCode.OK).json(result);
 	} catch (err: any) {
-		console.log("Error on user getTopUsers", err.message);
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard.message);
 	}
@@ -154,7 +144,6 @@ memberController.verifyAuth = async (
 		// TODO: Shu qismini mentordan so'rab olishim kerak
 		// err: any yoki boshqa type
 	} catch (err: any) {
-		console.log("Error on verifyAuth", err.message);
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard.message);
 	}
@@ -172,7 +161,6 @@ memberController.retrieveAuth = async (
 		}
 		next();
 	} catch (err) {
-		console.log("Error, retrieveAuth:", err);
 		next();
 	}
 };

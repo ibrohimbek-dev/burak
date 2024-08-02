@@ -83,21 +83,25 @@ class ProductService {
 				viewRefId: productId,
 				viewGroup: ViewGroup.PRODUCT,
 			};
-			const existView = await this.viewService.checkIfViewExistence(input);
+      const existView = await this.viewService.checkIfViewExistence(input);
+      
+
+      console.log("existView =>", existView);
 
 			if (!existView) {
 				// Insert View:
-				console.log("PLANNIG TO INSERT NEW VIEW");
 				await this.viewService.insertMemberView(input);
 				// Increase Counts:
 
 				result = await this.productModel
 					.findByIdAndUpdate(
 						productId,
-						{ $inc: { productViews: +1 } },
+						{ $inc: { productViews: + 1 } },
 						{ new: true }
 					)
-					.exec();
+          .exec();
+        
+        console.log("result on insertMemberView =>", result);
 			}
 		}
 
@@ -135,7 +139,6 @@ class ProductService {
 
 		if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
-		console.log("(product.service.ts) result:", result);
 
 		return result;
 	}

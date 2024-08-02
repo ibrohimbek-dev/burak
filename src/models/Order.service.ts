@@ -49,7 +49,6 @@ class OrderService {
 
 			return newOrder;
 		} catch (err) {
-			console.log("Error on createOrder model =>", err);
 			throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 		}
 	}
@@ -127,6 +126,8 @@ class OrderService {
 
 		if (orderStatus === OrderStatus.PROCESS) {
       const result = await this.memberService.addUserPoint(memberId, 1);      
+
+      console.log("result on addUserPoint =>", result);
 		}
 		return result;
 	}

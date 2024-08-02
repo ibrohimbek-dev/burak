@@ -1,4 +1,3 @@
-console.log("Products frontend javascript file");
 
 $(function () {
 	// working on product volume:
@@ -30,9 +29,6 @@ $(function () {
 		const productId = event.target.id;
 		const productStatus = $(`#${productId}.new-product-status`).val();
 
-		console.log("productId:", productId);
-		console.log("productStatus:", productStatus);
-
 		try {
 			const response = await axios.post(`/admin/product/${productId}`, {
 				productStatus: productStatus,
@@ -40,14 +36,12 @@ $(function () {
 
 			const result = response.data;
 
-			if (result.productsData) {
-				console.log("product updated successfully");
+			if (result.productsData) {				
 				$(".new-product-status").blur();
 			} else {
 				alert("Product Upadation is Failed!");
 			}
 		} catch (err) {
-			console.log("Error on updating product status:", err);
 			alert("Product updation is failed!");
 		}
 	});
@@ -107,7 +101,6 @@ function previewFileHandler(input, order) {
 		return false;
 	} else {
 		if (file) {
-			console.log("file:", file);
 			const reader = new FileReader();
 			reader.onload = function () {
 				$(`#image-section-${order}`).attr("src", reader.result);

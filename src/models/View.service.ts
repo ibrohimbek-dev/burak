@@ -17,18 +17,17 @@ class ViewService {
 			})
 			.exec();
 
-		console.log("checkViewExistence view =>", view);
 
 		return view;
 	}
 
 	public async insertMemberView(input: ViewInput): Promise<View> {
 		try {
-			const result = this.viewModel.create(input);
-			console.log("insertMemberView result =>", result);
+      const result = this.viewModel.create(input);
+      console.log("result on insertMemberView2 =>", result);
+
 			return result;
 		} catch (error) {
-			console.log("Error on View.service.ts insertMemberView =>", error);
 			throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 		}
 	}
