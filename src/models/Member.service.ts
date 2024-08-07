@@ -41,8 +41,8 @@ class MemberService {
 			const result = await this.memberModel.create(input);
 			result.memberPassword = "";
 			return result.toJSON();
-		} catch (err: any) {
-			throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
+		} catch (err) {
+			throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);			
 		}
 	}
 
@@ -110,7 +110,6 @@ class MemberService {
 			.sort({ memberPoints: -1 })
 			.limit(4)
 			.exec();
-
 
 		if (!result) {
 			throw new Errors(HttpCode.NOT_FOUND, Message.NO_TOP_USERS_FOUND);

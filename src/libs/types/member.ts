@@ -19,12 +19,12 @@ export interface Member {
 }
 
 export interface MemberInput {
-	memberType?: MemberType;
-	memberStatus?: MemberStatus;
 	memberNick: string;
 	memberPhone: string;
 	memberPassword: string;
-	memberAddress: string;
+	memberType?: MemberType;
+	memberStatus?: MemberStatus;
+	memberAddress?: string;
 	memberDesc?: string;
 	memberImage?: string;
 	memberPoints?: number;

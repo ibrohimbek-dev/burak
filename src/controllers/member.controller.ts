@@ -21,12 +21,11 @@ const authService = new AuthService();
 
 memberController.getRestaurant = async (req: Request, res: Response) => {
 	try {
-
 		const result = await memberService.getRestaurant();
 		res.status(HttpCode.OK).json(result);
-	} catch (err: any) {
+	} catch (err) {
 		if (err instanceof Errors) res.status(err.code).json(err);
-		else res.status(Errors.standard.code).json(Errors.standard.message);
+		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
 
@@ -36,7 +35,6 @@ memberController.userSignup = async (req: Request, res: Response) => {
 
 		const result: Member = await memberService.userSignup(input);
 
-
 		const token = await authService.createToken(result);
 
 		res.cookie("accessToken", token, {
@@ -45,9 +43,12 @@ memberController.userSignup = async (req: Request, res: Response) => {
 		});
 
 		res.status(HttpCode.CREATED).json({ member: result, accessToken: token });
-	} catch (err: any) {
-		if (err instanceof Errors) res.status(err.code).json(err);
-		else res.status(Errors.standard.code).json(Errors.standard.message);
+	} catch (err) {	
+		if (err instanceof Errors) {
+			res.status(err.code).json(err);
+		} else {
+			res.status(Errors.standard.code).json(Errors.standard.message);
+		}
 	}
 };
 
@@ -64,9 +65,9 @@ memberController.userLogin = async (req: Request, res: Response) => {
 		});
 
 		res.status(HttpCode.OK).json({ member: result, accessToken: token });
-	} catch (err: any) {
+	} catch (err) {
 		if (err instanceof Errors) res.status(err.code).json(err);
-		else res.status(Errors.standard.code).json(Errors.standard.message);
+		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
 
@@ -74,9 +75,9 @@ memberController.userLogout = (req: ExtendedRequest, res: Response) => {
 	try {
 		res.cookie("accessToken", null, { maxAge: 0, httpOnly: true });
 		res.status(HttpCode.OK).json({ logout: true });
-	} catch (err: any) {
+	} catch (err) {
 		if (err instanceof Errors) res.status(err.code).json(err);
-		else res.status(Errors.standard.code).json(Errors.standard.message);
+		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
 
@@ -88,9 +89,9 @@ memberController.getMemberDetail = async (
 		const result = await memberService.getMemberDetail(req.member);
 
 		res.status(HttpCode.OK).json(result);
-	} catch (err: any) {
+	} catch (err) {
 		if (err instanceof Errors) res.status(err.code).json(err);
-		else res.status(Errors.standard.code).json(Errors.standard.message);
+		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
 
@@ -100,15 +101,14 @@ memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
 
 		if (req.file) {
 			input.memberImage = req.file.path.replace(/\\/g, "/");
-    }
-    
+		}
 
 		const result = await memberService.updateMember(req.member, input);
 
 		res.status(HttpCode.OK).json({ result });
-	} catch (err: any) {
+	} catch (err) {
 		if (err instanceof Errors) res.status(err.code).json(err);
-		else res.status(Errors.standard.code).json(Errors.standard.message);
+		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
 
@@ -116,9 +116,9 @@ memberController.getTopUsers = async (req: Request, res: Response) => {
 	try {
 		const result = await memberService.getTopUsers();
 		res.status(HttpCode.OK).json(result);
-	} catch (err: any) {
+	} catch (err) {
 		if (err instanceof Errors) res.status(err.code).json(err);
-		else res.status(Errors.standard.code).json(Errors.standard.message);
+		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
 
@@ -143,9 +143,9 @@ memberController.verifyAuth = async (
 
 		// TODO: Shu qismini mentordan so'rab olishim kerak
 		// err: any yoki boshqa type
-	} catch (err: any) {
+	} catch (err) {
 		if (err instanceof Errors) res.status(err.code).json(err);
-		else res.status(Errors.standard.code).json(Errors.standard.message);
+		else res.status(Errors.standard.code).json(Errors.standard);
 	}
 };
 

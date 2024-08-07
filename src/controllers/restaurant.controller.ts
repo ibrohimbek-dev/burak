@@ -13,7 +13,7 @@ restaurantController.getAdminHome = (req: Request, res: Response) => {
 	try {
 		res.render("home");
 		// send | json | redirect | end | render
-	} catch (err: any) {
+	} catch (err) {
 		res.redirect("/admin");
 	}
 };
@@ -21,7 +21,7 @@ restaurantController.getAdminHome = (req: Request, res: Response) => {
 restaurantController.getAdminSignup = (req: Request, res: Response) => {
 	try {
 		res.render("signup");
-	} catch (err: any) {
+	} catch (err) {
 		res.redirect("/admin");
 	}
 };
@@ -29,7 +29,7 @@ restaurantController.getAdminSignup = (req: Request, res: Response) => {
 restaurantController.getAdminLogin = (req: Request, res: Response) => {
 	try {
 		res.render("login");
-	} catch (err: any) {
+	} catch (err) {
 		res.redirect("/admin");
 	}
 };
@@ -54,7 +54,7 @@ restaurantController.adminSignup = async (req: AdminRequest, res: Response) => {
 			// res.send(result);
 			res.redirect("/admin/product/all");
 		});
-	} catch (err: any) {
+	} catch (err) {
 		const message =
 			err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
 		res.send(
@@ -73,7 +73,7 @@ restaurantController.adminLogin = async (req: AdminRequest, res: Response) => {
 			// res.send(result);
 			res.redirect("/admin/product/all");
 		});
-	} catch (err: any) {
+	} catch (err) {
 		const message =
 			err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
 
@@ -89,7 +89,7 @@ restaurantController.adminLogout = async (req: AdminRequest, res: Response) => {
 			res.redirect("/admin");
 			// res.send("cookie session is destroyed successfuly!")
 		});
-	} catch (err: any) {
+	} catch (err) {
 		res.redirect("/admin");
 	}
 };
@@ -107,7 +107,7 @@ restaurantController.checkAdminAuthSession = async (
 			// res.send(Message.NOT_AUTHENTICATED);
 			res.send(`<script>alert('${Message.NOT_AUTHENTICATED}')</script>`);
 		}
-	} catch (err: any) {
+	} catch (err) {
 		res.send(err);
 	}
 };
@@ -136,7 +136,7 @@ restaurantController.getUsers = async (req: Request, res: Response) => {
 	try {
 		const result = await memberService.getUsers();
 		res.render("users", { usersData: result });
-	} catch (err: any) {
+	} catch (err) {
 		res.redirect("/admin/login");
 	}
 };
@@ -146,7 +146,7 @@ restaurantController.updateChosenUser = async (req: Request, res: Response) => {
 		const result = await memberService.updateChosenUser(req.body);
 
 		res.status(HttpCode.OK).json({ userData: result });
-	} catch (err: any) {
+	} catch (err) {
 
 		if (err instanceof Errors) res.status(err.code).json(err);
 		else res.status(Errors.standard.code).json(Errors.standard);
