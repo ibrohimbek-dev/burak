@@ -126,8 +126,6 @@ class OrderService {
 
 		if (orderStatus === OrderStatus.PROCESS) {
       const result = await this.memberService.addUserPoint(memberId, 1);      
-
-      console.log("result on addUserPoint =>", result);
 		}
 		return result;
 	}
