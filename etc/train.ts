@@ -42,3 +42,12 @@ const convertToSnakeCase_2 = (myStr: string) => {
 };
 
 console.log("method two =>", convertToSnakeCase_2(myWordJoined));
+
+// METHOD THREE:
+console.log("------------------------------------");
+
+const convertToSnakeCase_3 = (myStr: string) => {
+	return myStr.replace(/\s+/g, "_");
+};
+
+console.log("method three =>", convertToSnakeCase_3(myWord));
